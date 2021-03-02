@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/welcome_bg"
+    tools:context=".User_Login">
+
+    <TextView
+        android:id="@+id/UserLoginTitle1"
+        android:layout_width="328dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="53dp"
+        android:fontFamily="@font/bold"
+        android:text="   Login in as a"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/UserLoginTitle2"
+        android:layout_width="228dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginEnd="37dp"
+        android:fontFamily="@font/bold"
+        android:text="   User"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserLoginTitle1" />
+
+    <TextView
+        android:id="@+id/U_L_username"
+        android:layout_width="352dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="312dp"
+        android:fontFamily="@font/medium"
+        android:text="UserName"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserLoginTitle2" />
+
+    <EditText
+        android:id="@+id/U_L_loginid"
+        android:layout_width="351dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/medium"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_L_username" />
+
+    <TextView
+        android:id="@+id/U_L_password"
+        android:layout_width="352dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/medium"
+        android:text="Password"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_L_loginid" />
+
+    <EditText
+        android:id="@+id/U_L_passwordenter"
+        android:layout_width="350dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/medium"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_L_password" />
+
+    <Button
+        android:id="@+id/U_L_LoginInbt"
+        android:layout_width="152dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/medium"
+        android:gravity="center"
+        android:text="LOGIN"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_L_passwordenter" />
+
+
+    <Button
+        android:id="@+id/U_L_skipbt"
+        android:layout_width="152dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="64dp"
+        android:alpha="0.5"
+        android:background="@drawable/skipbt"
+        android:fontFamily="@font/medium"
+        android:text="SKIP"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/U_L_LoginInbt"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_L_passwordenter" />
+</androidx.constraintlayout.widget.ConstraintLayout>

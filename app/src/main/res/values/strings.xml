@@ -4,4 +4,24 @@
     <string name="sign_in_as">Sign in as</string>
     <string name="user">User</string>
     <string name="service_provider">Service Provider</string>
+    <string name="servicehub">ServiceHub</string>
+    <string name="get_anything_done">Get anything done,</string>
+    <string name="sitting_home">sitting home.</string>
+    <string name="get_started">GET STARTED</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="mobile_no">Mobile No.</string>
+    <string name="address">Address</string>
+    <string name="password">Password</string>
+    <string name="verify_password">Verify Password</string>
+    <string name="astrings1">*</string>
+    <string name="astrings2">*</string>
+    <string name="astrings3">*</string>
+    <string name="astrings4">*</string>
+    <string name="astrings5">*</string>
+    <string name="skip">SKIP</string>
+    <string name="sign_up_as_service_provider">Sign up as Service Provider</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="verify_email_address">Verify Email address :</string>
+    <string name="verify_mobile_number">Verify Mobile Number :</string>
 </resources>
