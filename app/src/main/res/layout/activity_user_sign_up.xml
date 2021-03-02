@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/welcome_bg"
+    tools:context=".UserSignUp">
+
+
+    <TextView
+        android:id="@+id/U_SignUpTitle"
+        android:layout_width="209dp"
+        android:layout_height="118dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="96dp"
+        android:fontFamily="@font/bold"
+        android:text="  Sign in as a User"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/U_Sp_Login"
+        android:layout_width="119dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="295dp"
+        android:layout_marginEnd="119dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/medium"
+        android:gravity="center"
+        android:text="Login"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_SignUpTitle" />
+
+    <Button
+        android:id="@+id/U_Sp_Createbt"
+        android:layout_width="342dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="26dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/medium"
+        android:gravity="center"
+        android:text="@string/create_account"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_Sp_Login" />
+
+    <TextView
+        android:id="@+id/U_Sp_or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/bold"
+        android:text="OR"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_Sp_Createbt" />
+
+    <Button
+        android:id="@+id/U_Sp_Loginwithegoogle"
+        android:layout_width="342dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/medium"
+        android:gravity="center"
+        android:text="LOGIN WITH GOOGLE"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_Sp_or" />
+
+    <Button
+        android:id="@+id/U_Sp_skipbt"
+        android:layout_width="152dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="140dp"
+        android:alpha="0.5"
+        android:background="@drawable/skipbt"
+        android:fontFamily="@font/medium"
+        android:text="@string/skip"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_Sp_Loginwithegoogle" />
+</androidx.constraintlayout.widget.ConstraintLayout>

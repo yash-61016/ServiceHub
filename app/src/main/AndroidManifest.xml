@@ -8,8 +8,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".welcome"></activity>
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".User_VerifyID_Screen"></activity>
+        <activity android:name=".User_Create_Account" />
+        <activity android:name=".User_Login" />
+        <activity android:name=".UserSignUp" />
+        <activity android:name=".welcome" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
