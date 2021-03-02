@@ -1,15 +1,19 @@
 package uk.ac.tees.w9336459.servicehub;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class welcome extends AppCompatActivity {
 
+
     Button btUser;
+    TextView t1 , t2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,8 @@ public class welcome extends AppCompatActivity {
             startActivity(a);
 
         });
+        t1 = findViewById(R.id.welcome);
+        t2 = findViewById(R.id.signInAs);
 
 }
 }
