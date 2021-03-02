@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "92105915836",
+    "project_id": "servicehub-c43ae",
+    "storage_bucket": "servicehub-c43ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92105915836:android:7318b8e0b96cf62bdcffb9",
+        "android_client_info": {
+          "package_name": "uk.ac.tees.w9336459.servicehub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92105915836-q129bnrq4p0s2s7vudpvf6kufv7a8144.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaZ5o8olFUVj_O9FAgKZPIE-Q0WufpwMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92105915836-q129bnrq4p0s2s7vudpvf6kufv7a8144.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

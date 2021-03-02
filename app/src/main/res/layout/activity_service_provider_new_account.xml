@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/signup_bg"
+    tools:context=".ServiceProviderNewAccount">
+
+    <TextView
+        android:id="@+id/SP_NA_signupas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/bold"
+        android:text="Sign up as Service Provider"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/SP_NA_CreateAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:fontFamily="@font/medium"
+        android:text="CREATE ACCOUNT"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_signupas" />
+
+    <TextView
+        android:id="@+id/SP_NA_fullname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="154dp"
+        android:layout_marginEnd="308dp"
+        android:fontFamily="@font/medium"
+        android:text="Full Name"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_signupas" />
+
+    <TextView
+        android:id="@+id/SP_NA_Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="308dp"
+        android:fontFamily="@font/medium"
+        android:text="Email"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_fullname" />
+
+    <TextView
+        android:id="@+id/SP_NA_Mobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="308dp"
+        android:fontFamily="@font/medium"
+        android:text="Mobile No."
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_Email" />
+
+    <TextView
+        android:id="@+id/SP_NA_Address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="308dp"
+        android:fontFamily="@font/medium"
+        android:text="Address"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_Mobile" />
+
+    <TextView
+        android:id="@+id/SP_NA_Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="308dp"
+        android:fontFamily="@font/medium"
+        android:text="Password"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_Address" />
+
+    <TextView
+        android:id="@+id/SP_NA_BankDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="308dp"
+        android:fontFamily="@font/medium"
+        android:text="Bank Details :"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_Password" />
+
+    <TextView
+        android:id="@+id/SP_NA_AccountNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="308dp"
+        android:fontFamily="@font/medium"
+        android:text="Account Number
+"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_BankDetails" />
+
+    <TextView
+        android:id="@+id/SP_NA_SortCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="308dp"
+        android:fontFamily="@font/medium"
+        android:text="Sort Code"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_AccountNo" />
+
+    <TextView
+        android:id="@+id/SP_NA_AST1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="308dp"
+        android:fontFamily="@font/medium"
+        android:text="*"
+        android:textColor="#FF0000"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.627"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_signupas" />
+
+    <TextView
+        android:id="@+id/SP_NA_AST2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="308dp"
+        android:fontFamily="@font/medium"
+        android:text="*"
+        android:textColor="#FF0000"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/SP_NA_Email"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_fullname" />
+
+    <TextView
+        android:id="@+id/SP_NA_AST3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="308dp"
+        android:fontFamily="@font/medium"
+        android:text="*"
+        android:textColor="#FF0000"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_AST1" />
+
+    <TextView
+        android:id="@+id/SP_NA_AST4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="308dp"
+        android:fontFamily="@font/medium"
+        android:text="*"
+        android:textColor="#FF0000"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_Mobile" />
+
+
+    <EditText
+        android:id="@+id/SP_NA_Last_nameTXT"
+        android:layout_width="106dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="58dp"
+        android:background="@drawable/textboxes"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_CreateAccount" />
+
+    <EditText
+        android:id="@+id/SP_NA_First_nameTXT"
+        android:layout_width="106dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/textboxes"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/SP_NA_Last_nameTXT"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_CreateAccount" />
+
+    <EditText
+        android:id="@+id/SP_NA_EmailTXT"
+        android:layout_width="283dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/textboxes"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_First_nameTXT" />
+
+    <EditText
+        android:id="@+id/SP_NA_MobileNOTXT"
+        android:layout_width="174dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="124dp"
+        android:background="@drawable/textboxes"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_EmailTXT" />
+
+    <EditText
+        android:id="@+id/SP_NA_Address1TXT"
+        android:layout_width="223dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="76dp"
+        android:background="@drawable/textboxes"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_MobileNOTXT" />
+
+    <EditText
+        android:id="@+id/SP_NA_Address2TXT"
+        android:layout_width="168dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="129dp"
+        android:background="@drawable/textboxes"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_Address1TXT" />
+
+    <EditText
+        android:id="@+id/SP_NA_Address3TXT"
+        android:layout_width="121dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="176dp"
+        android:background="@drawable/textboxes"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_Address2TXT" />
+
+    <EditText
+        android:id="@+id/SP_NA_PasswordTXT"
+        android:layout_width="121dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="176dp"
+        android:background="@drawable/textboxes"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_Address3TXT" />
+
+    <EditText
+        android:id="@+id/SP_NA_AccountNoTXT"
+        android:layout_width="121dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="176dp"
+        android:background="@drawable/textboxes"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_PasswordTXT" />
+
+    <EditText
+        android:id="@+id/SP_NA_SortCodeTXT"
+        android:layout_width="121dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="176dp"
+        android:background="@drawable/textboxes"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_NA_AccountNoTXT" />
+
+    <Button
+        android:id="@+id/SP_NA__Next"
+        android:layout_width="124dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="82dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/medium"
+        android:gravity="center"
+        android:text="Next"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
