@@ -11,14 +11,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class welcome extends AppCompatActivity {
 
-
-    Button btUser;
+    Button btUser,sp;
     TextView t1 , t2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        sp = findViewById(R.id.ServiceProvider);
+
+        sp.setOnClickListener((v)->{
+
+            Intent a = new Intent(welcome.this , ServiceProviderLogin.class);
+            startActivity(a);
+
+        });
+
 
         btUser = findViewById(R.id.User);
 
