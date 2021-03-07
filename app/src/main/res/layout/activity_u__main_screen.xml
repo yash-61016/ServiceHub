@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".U_MainScreen">
+
+    <Button
+        android:id="@+id/U_Ms_Menubt"
+        android:layout_width="45dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/menubtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/U_Ms_name"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="266dp"
+        android:fontFamily="@font/bold"
+        android:text="Hey Joe,"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_Ms_Menubt" />
+
+    <TextView
+        android:id="@+id/U_Ms_title"
+        android:layout_width="350dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="66dp"
+        android:alpha="0.5"
+        android:fontFamily="@font/bold"
+        android:text="Choose what would you like to get done today,"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_Ms_name" />
+
+    <SearchView
+        android:id="@+id/U_Ms_search"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="41dp"
+        android:alpha="0.5"
+        android:background="@drawable/searchbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_Ms_title" />
+
+
+    <Button
+        android:id="@+id/U_Ms_houseServices"
+        android:layout_width="188dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="208dp"
+        android:background="@drawable/homeservices"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_Ms_search" />
+
+    <Button
+        android:id="@+id/U_Ms_ElectronicRepairs"
+        android:layout_width="188dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/electronicrepairs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/U_Ms_houseServices"
+        app:layout_constraintTop_toBottomOf="@+id/U_Ms_search" />
+
+
+    <Button
+        android:id="@+id/U_Ms_PersonalGrooming"
+        android:layout_width="188dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="34dp"
+        android:background="@drawable/personalservices"
+        app:layout_constraintEnd_toStartOf="@+id/U_Ms_ElectronicRepairs"
+        app:layout_constraintHorizontal_bias="0.263"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_Ms_houseServices" />
+
+    <Button
+        android:id="@+id/U_Ms_MoversandShifters"
+        android:layout_width="188dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/moversandshifters"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/U_Ms_PersonalGrooming"
+        app:layout_constraintTop_toBottomOf="@+id/U_Ms_ElectronicRepairs" />
+
+    <Button
+        android:id="@+id/U_Ms_Health"
+        android:layout_width="188dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="34dp"
+        android:background="@drawable/healthservices"
+        app:layout_constraintEnd_toStartOf="@+id/U_Ms_MoversandShifters"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_Ms_PersonalGrooming" />
+
+
+    <Button
+        android:id="@+id/U_Ms_PartyandEvents"
+        android:layout_width="188dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/partyandevent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/U_Ms_Health"
+        app:layout_constraintTop_toBottomOf="@+id/U_Ms_MoversandShifters" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
