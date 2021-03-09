@@ -40,12 +40,11 @@ public class ServiceProviderNewAccount extends AppCompatActivity {
             String number = regNumber.getText().toString();
             String email = regEmail.getText().toString();
             String password = regPassword.getText().toString();
-            String address = regAddress1.getText().toString() + regAddress2.getText().toString();
-            String postCode = regAddress3.getText().toString();
+            String address = regAddress1.getText().toString() + regAddress2.getText().toString() +regAddress3.getText().toString();
             String accountNum = regAccountNo.getText().toString();
             String sortCode = regSortCode.getText().toString();
             ServiceProviderHelperClass helperClass = new ServiceProviderHelperClass(name,number,address,email, accountNum, sortCode, password);
-            reference.setValue(helperClass);
+            reference.child(regEmail.getText().toString()).setValue(helperClass);
             Intent a = new Intent(ServiceProviderNewAccount.this , ServiceProviderNewAccountVerify.class);
             startActivity(a);
 

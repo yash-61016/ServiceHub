@@ -18,7 +18,7 @@ public class welcome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        sp = findViewById(R.id.ServiceProvider);
+        sp = findViewById(R.id.ServiceProvider_bt);
 
         sp.setOnClickListener((v)->{
 
@@ -28,7 +28,7 @@ public class welcome extends AppCompatActivity {
         });
 
 
-        btUser = findViewById(R.id.User);
+        btUser = findViewById(R.id.User_bt);
 
         btUser.setOnClickListener((v)->{
             Intent a = new Intent(welcome.this , UserSignUp.class);
