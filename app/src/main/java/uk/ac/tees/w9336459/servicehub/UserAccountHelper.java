@@ -4,9 +4,20 @@ public class UserAccountHelper {
     String name;
     String number;
     String address;
+    String postcode;
     String email;
     String password;
     String verify_password;
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcde(String postcode) {
+        this.postcode = postcode;
+    }
+
+
 
     public void setName(String name) {
         this.name = name;
@@ -63,10 +74,11 @@ public class UserAccountHelper {
     public UserAccountHelper() {
 
     }
-    public UserAccountHelper(String name, String number, String address, String email, String password, String verify_password) {
+    public UserAccountHelper(String name,String email, String number, String address,String Postcode, String password, String verify_password) {
         this.name = name;
         this.number = number;
         this.address = address;
+        this.postcode = Postcode;
         this.email = email;
         this.password = password;
         this.verify_password = verify_password;

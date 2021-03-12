@@ -39,11 +39,14 @@
         android:id="@+id/U_NAV_verifyEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="185dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="90dp"
         android:fontFamily="@font/medium"
         android:text="@string/verify_email_address"
         android:textColor="@color/white"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/U_NAV_EmailSendCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,150 +54,121 @@
 
     <Button
         android:id="@+id/U_NAV_EmailSendCode"
-        android:layout_width="155dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="43dp"
-        android:background="@drawable/textboxes"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="73dp"
+        android:background="@drawable/button"
         android:fontFamily="@font/medium"
         android:gravity="center"
         android:text="send_code"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/U_NAV_verifyNumber"
+        app:layout_constraintEnd_toStartOf="@+id/U_NAV_EmailSendCode1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/U_NAV_verifyEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/U_NAV_EmailEnter" />
 
     <EditText
         android:id="@+id/U_NAV_EmailSendCode1"
-        android:layout_width="26dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="43dp"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="89dp"
+        android:layout_marginBottom="73dp"
         android:background="@drawable/textboxes"
         android:fontFamily="@font/medium"
         android:textColor="@color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/U_NAV_verifyNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/U_NAV_EmailSendCode"
         app:layout_constraintTop_toBottomOf="@+id/U_NAV_verifyEmail" />
 
     <EditText
-        android:id="@+id/U_NAV_EmailSendCode2"
-        android:layout_width="26dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="43dp"
+        android:id="@+id/U_NAV_EmailEnter"
+        android:layout_width="317dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="52dp"
         android:background="@drawable/textboxes"
         android:fontFamily="@font/medium"
+        android:hint="Email"
         android:textColor="@color/black"
+        android:textColorHint="@color/Grey"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/U_NAV_EmailSendCode1"
-        app:layout_constraintTop_toBottomOf="@+id/U_NAV_verifyEmail" />
-
-    <EditText
-        android:id="@+id/U_NAV_EmailSendCode3"
-        android:layout_width="26dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="43dp"
-        android:background="@drawable/textboxes"
-        android:fontFamily="@font/medium"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/U_NAV_EmailSendCode2"
-        app:layout_constraintTop_toBottomOf="@+id/U_NAV_verifyEmail" />
-
-    <EditText
-        android:id="@+id/U_NAV_EmailSendCode4"
-        android:layout_width="26dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="43dp"
-        android:background="@drawable/textboxes"
-        android:fontFamily="@font/medium"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/U_NAV_EmailSendCode3"
+        app:layout_constraintBottom_toTopOf="@+id/U_NAV_EmailSendCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_NAV_verifyEmail" />
 
     <TextView
         android:id="@+id/U_NAV_verifyNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginEnd="159dp"
         android:fontFamily="@font/medium"
         android:text="@string/verify_mobile_number"
         android:textColor="@color/white"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/U_NAV_EmailSendCode" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/U_NAV_NumberSendCode"
-        android:layout_width="155dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="43dp"
-        android:background="@drawable/textboxes"
+        android:layout_width="138dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="139dp"
+        android:background="@drawable/button"
         android:fontFamily="@font/medium"
         android:gravity="center"
         android:text="send_code"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/U_NAV_Done"
+        app:layout_constraintEnd_toStartOf="@+id/U_NAV_NumberSendCode1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_NAV_entenumber" />
+
+    <EditText
+        android:id="@+id/U_NAV_entenumber"
+        android:layout_width="317dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/textboxes"
+        android:fontFamily="@font/medium"
+        android:hint="Mobile No."
+        android:textColor="@color/black"
+        android:textColorHint="@color/Grey"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/U_NAV_NumberSendCode"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_NAV_verifyNumber" />
 
     <EditText
         android:id="@+id/U_NAV_NumberSendCode1"
-        android:layout_width="26dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="43dp"
+        android:layout_width="140dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="139dp"
         android:background="@drawable/textboxes"
         android:fontFamily="@font/medium"
         android:textColor="@color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/U_NAV_Done"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/U_NAV_NumberSendCode"
-        app:layout_constraintTop_toBottomOf="@+id/U_NAV_verifyNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/U_NAV_entenumber" />
 
-    <EditText
-        android:id="@+id/U_NAV_NumberSendCode2"
-        android:layout_width="26dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="43dp"
-        android:background="@drawable/textboxes"
-        android:fontFamily="@font/medium"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/U_NAV_NumberSendCode1"
-        app:layout_constraintTop_toBottomOf="@+id/U_NAV_verifyNumber" />
-
-    <EditText
-        android:id="@+id/U_NAV_NumberSendCode3"
-        android:layout_width="26dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="43dp"
-        android:background="@drawable/textboxes"
-        android:fontFamily="@font/medium"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/U_NAV_NumberSendCode2"
-        app:layout_constraintTop_toBottomOf="@+id/U_NAV_verifyNumber" />
-
-    <EditText
-        android:id="@+id/U_NAV_NumberSendCode4"
-        android:layout_width="26dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="43dp"
-        android:background="@drawable/textboxes"
-        android:fontFamily="@font/medium"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/U_NAV_NumberSendCode3"
-        app:layout_constraintTop_toBottomOf="@+id/U_NAV_verifyNumber" />
     <Button
-        android:id="@+id/U_NAV__Done"
+        android:id="@+id/U_NAV_Done"
         android:layout_width="124dp"
         android:layout_height="40dp"
         android:layout_marginBottom="82dp"
@@ -207,7 +181,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_NAV_NumberSendCode1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

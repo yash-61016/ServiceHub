@@ -18,7 +18,10 @@ public class welcome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        sp = findViewById(R.id.ServiceProvider_bt);
+        t1 = findViewById(R.id.welcome);
+        t2 = findViewById(R.id.signInAs);
+        sp = findViewById(R.id.ServiceProvider_bt); // sign up as Service provider
+        btUser = findViewById(R.id.User_bt); // sign up as user
 
         sp.setOnClickListener((v)->{
 
@@ -27,16 +30,12 @@ public class welcome extends AppCompatActivity {
 
         });
 
-
-        btUser = findViewById(R.id.User_bt);
-
         btUser.setOnClickListener((v)->{
             Intent a = new Intent(welcome.this , UserSignUp.class);
             startActivity(a);
 
         });
-        t1 = findViewById(R.id.welcome);
-        t2 = findViewById(R.id.signInAs);
+
 
 }
 }

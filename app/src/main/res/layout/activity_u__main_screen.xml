@@ -48,19 +48,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_Ms_name" />
 
+
     <SearchView
         android:id="@+id/U_Ms_search"
-        android:layout_width="350dp"
+        android:layout_width="367dp"
         android:layout_height="40dp"
         android:layout_marginStart="41dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="41dp"
         android:alpha="0.5"
         android:background="@drawable/searchbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_Ms_title" />
-
 
     <ScrollView
         android:id="@+id/Scroll"
@@ -83,7 +84,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_Ms_search"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.384"
         tools:visibility="visible">
 
         <LinearLayout
