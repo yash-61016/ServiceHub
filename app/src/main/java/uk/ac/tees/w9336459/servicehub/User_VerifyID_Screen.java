@@ -1,10 +1,10 @@
 package uk.ac.tees.w9336459.servicehub;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -108,22 +107,19 @@ public class User_VerifyID_Screen extends AppCompatActivity {
         // inside this method we are checking if
         // the code entered is correct or not.
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // if the code is correct and the task is successful
-                            // we are sending our user to new activity.
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // if the code is correct and the task is successful
+                        // we are sending our user to new activity.
 
-                            Intent i = new Intent(User_VerifyID_Screen.this, U_MainScreen.class);
-                            startActivity(i);
-                            finish();
+                        Intent i = new Intent(User_VerifyID_Screen.this, U_MainScreen.class);
+                        startActivity(i);
+                        finish();
 
-                        } else {
-                            // if the code is not correct then we are
-                            // displaying an error message to the user.
-                            Toast.makeText(User_VerifyID_Screen.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                        }
+                    } else {
+                        // if the code is not correct then we are
+                        // displaying an error message to the user.
+                        Toast.makeText(User_VerifyID_Screen.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }

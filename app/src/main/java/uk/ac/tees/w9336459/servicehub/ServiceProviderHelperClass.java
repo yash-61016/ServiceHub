@@ -1,19 +1,37 @@
 package uk.ac.tees.w9336459.servicehub;
 
 public class ServiceProviderHelperClass {
-    String name,mobileNumber,address,email,accountNumber,sortCode,password;
+    String name,mobileNumber,address,email,accountNumber,sortCode,password,verifypassword,postcode;
 
     public ServiceProviderHelperClass() {
     }
 
-    public ServiceProviderHelperClass(String name, String mobileNumber, String address, String email, String accountNumber, String sortCode, String password) {
+    public ServiceProviderHelperClass(String name,String email, String mobileNumber, String address, String PostCode, String password,String verifypassword, String accountNumber, String sortCode) {
         this.name = name;
         this.mobileNumber = mobileNumber;
         this.address = address;
+        this.postcode = PostCode;
         this.email = email;
         this.accountNumber = accountNumber;
         this.sortCode = sortCode;
         this.password = password;
+        this.verifypassword = verifypassword;
+    }
+
+    public String getVerifypassword() {
+        return verifypassword;
+    }
+
+    public void setVerifypassword(String verifypassword) {
+        this.verifypassword = verifypassword;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 
     public String getName() {
