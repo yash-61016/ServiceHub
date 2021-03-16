@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.media.MediaCodec;
 import android.os.Bundle;
 
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
@@ -19,13 +21,22 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import static android.graphics.drawable.Drawable.createFromPath;
 import static android.text.TextUtils.isEmpty;
+import static android.text.TextUtils.replace;
 
 
 public class User_Create_Account extends AppCompatActivity {
 
 
-    TextInputEditText reg_f_name, reg_l_name,reg_mobile,reg_email, reg_address1, reg_password, reg_v_password,reg_postcode;
-    Button loginhome;
+    TextInputEditText reg_f_name;
+    TextInputEditText reg_l_name;
+    static TextInputEditText reg_mobile;
+    TextInputEditText reg_email;
+    TextInputEditText reg_address1;
+    TextInputEditText reg_password;
+    TextInputEditText reg_v_password;
+    TextInputEditText reg_postcode;
+    Button loginhome,showHideBtn;
+
     FirebaseDatabase rootNode;
     DatabaseReference reference;
 
@@ -35,6 +46,7 @@ public class User_Create_Account extends AppCompatActivity {
         setContentView(R.layout.activity_user__create__account);
 
         loginhome = findViewById(R.id.U_CA_LoginInbt);
+        showHideBtn = findViewById(R.id.Hide);
 
         reg_f_name = findViewById(R.id.U_CA_FirstName);
         reg_l_name = findViewById(R.id.U_CA_LastName);
@@ -44,6 +56,7 @@ public class User_Create_Account extends AppCompatActivity {
         reg_postcode = findViewById(R.id.U_CA_postcode);
         reg_password = findViewById(R.id.U_CA_Password);
         reg_v_password = findViewById(R.id.U_CA_VerifyPassword);
+
 
 
         loginhome.setOnClickListener((v)->
@@ -92,17 +105,19 @@ public class User_Create_Account extends AppCompatActivity {
                  Resources res = getResources();
                  Drawable dr = res.getDrawable(R.drawable.border);
                  reg_address1.setBackground(dr);
-            }else if(reg_password.length()==0 )
+            }else if(reg_password.length()<=7||!(reg_password.getText().toString().matches("(.*[0-9].*)"))
+                    ||!(reg_password.getText().toString().matches("(.*[A-Z].*)"))||!(password.matches("^(?=.*[_.()$&@]).*$")))
             {
                 reg_password.requestFocus();
-                reg_password.setError("FIELD CANNOT BE EMPTY");
+                reg_password.setError("FIELD CANNOT BE EMPTY/ 8 characters in length, 1 Uppercase Letter,1 Lowercase Letter, 1 Number, and no symbols");
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
                 reg_password.setBackground(dr);
-             }else if(reg_v_password.length()==0 )
+             }else if(reg_v_password.length()<=7||!(reg_v_password.getText().toString().matches("(.*[0-9].*)"))
+                    ||!(reg_v_password.getText().toString().matches("(.*[A-Z].*)"))||!(password.matches("^(?=.*[_.()$&@]).*$")))
             {
                 reg_v_password.requestFocus();
-                reg_v_password.setError("FIELD CANNOT BE EMPTY");
+                reg_v_password.setError("FIELD CANNOT BE EMPTY/ 8 characters in length, 1 Uppercase Letter,1 Lowercase Letter, 1 Number, and no symbols");
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
                 reg_v_password.setBackground(dr);
@@ -118,7 +133,7 @@ public class User_Create_Account extends AppCompatActivity {
             {
                 Toast.makeText(User_Create_Account.this,"Validation Successful",Toast.LENGTH_LONG).show();
                 UserAccountHelper helperClass = new UserAccountHelper(name, email, number, address,Postcode, password, verify_password);
-                reference.child(number).setValue(helperClass);
+                reference.child(reg_email.getText().toString()).setValue(helperClass);
                 Intent a = new Intent(User_Create_Account.this, User_VerifyID_Screen.class);
                 startActivity(a);
             }

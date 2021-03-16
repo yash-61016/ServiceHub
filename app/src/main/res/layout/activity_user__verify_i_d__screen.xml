@@ -36,73 +36,6 @@
         app:layout_constraintTop_toBottomOf="@+id/U_NAV_signupas" />
 
     <TextView
-        android:id="@+id/U_NAV_verifyEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginBottom="90dp"
-        android:fontFamily="@font/medium"
-        android:text="@string/verify_email_address"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/U_NAV_EmailSendCode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/U_NAV_CreateAccount" />
-
-    <Button
-        android:id="@+id/U_NAV_EmailSendCode"
-        android:layout_width="140dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginBottom="73dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/medium"
-        android:gravity="center"
-        android:text="send_code"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/U_NAV_verifyNumber"
-        app:layout_constraintEnd_toStartOf="@+id/U_NAV_EmailSendCode1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/U_NAV_EmailEnter" />
-
-    <EditText
-        android:id="@+id/U_NAV_EmailSendCode1"
-        android:layout_width="140dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="89dp"
-        android:layout_marginBottom="73dp"
-        android:background="@drawable/textboxes"
-        android:fontFamily="@font/medium"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/U_NAV_verifyNumber"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/U_NAV_EmailSendCode"
-        app:layout_constraintTop_toBottomOf="@+id/U_NAV_verifyEmail" />
-
-    <EditText
-        android:id="@+id/U_NAV_EmailEnter"
-        android:layout_width="317dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="52dp"
-        android:background="@drawable/textboxes"
-        android:fontFamily="@font/medium"
-        android:hint="Email"
-        android:textColor="@color/black"
-        android:textColorHint="@color/Grey"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/U_NAV_EmailSendCode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/U_NAV_verifyEmail" />
-
-    <TextView
         android:id="@+id/U_NAV_verifyNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -114,8 +47,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.239" />
 
     <Button
         android:id="@+id/U_NAV_NumberSendCode"
@@ -171,7 +106,7 @@
         android:id="@+id/U_NAV_Done"
         android:layout_width="124dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="82dp"
+        android:layout_marginBottom="272dp"
         android:background="@drawable/button"
         android:fontFamily="@font/medium"
         android:gravity="center"
@@ -180,9 +115,9 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/U_NAV_NumberSendCode1" />
+        app:layout_constraintTop_toBottomOf="@+id/U_NAV_NumberSendCode" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
