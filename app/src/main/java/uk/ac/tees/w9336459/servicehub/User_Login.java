@@ -5,103 +5,99 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
 
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+
 
 public class User_Login extends AppCompatActivity {
 
-    TextInputLayout username;
-    TextInputLayout password;
-    ProgressBar progressBar;
+    // variable for FirebaseAuth class
+    private FirebaseAuth mAuth;
+
+    // variable for our text input
+    // field for phone and OTP.
+    private TextInputEditText emailid,password;
+
+    // buttons for generating OTP and verifying OTP
+    private Button login;
+
+
+    private FirebaseAuth.AuthStateListener mAuthstatelistener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user__login);
 
-        username = findViewById(R.id.U_L_loginid);
+        mAuth = FirebaseAuth.getInstance();
+        emailid = findViewById(R.id.U_L_loginid);
         password = findViewById(R.id.U_L_passwordenter);
+        login = findViewById(R.id.U_L_LoginInbt);
 
-        //Validate Login Info
-        if (!validateUsername() | !validatePassword()) {
-            return;
-        }else {
-            isUser();
-        }
-    }
-    private boolean validatePassword() {
-
-        String val = username.getEditText().getText().toString();
-        if (val.isEmpty()) {
-            username.setError("Field cannot be empty");
-            return false;
-        } else {
-            username.setError(null);
-            username.setErrorEnabled(false);
-            return true;
-        }
-    }
-
-    private boolean validateUsername() {
-
-        String val = password.getEditText().getText().toString();
-        if (val.isEmpty()) {
-            password.setError("Field cannot be empty");
-            return false;
-        } else {
-            password.setError(null);
-            password.setErrorEnabled(false);
-            return true;
-        }
-    }
-
-    private void isUser() {
-
-        progressBar.setVisibility(View.VISIBLE);
-        final String userEnteredUsername = username.getEditText().getText().toString().trim();
-        final String userEnteredPassword = password.getEditText().getText().toString().trim();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-        Query checkUser = reference.orderByChild("name").equalTo(userEnteredUsername);
-        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    username.setError(null);
-                    username.setErrorEnabled(false);
-                    String passwordFromDB = dataSnapshot.child(userEnteredUsername).child("password").getValue(String.class);
-                    if (passwordFromDB.equals(userEnteredPassword)) {
-                        username.setError(null);
-                        username.setErrorEnabled(false);
-                        //String nameFromDB = dataSnapshot.child(userEnteredUsername).child("name").getValue(String.class);
-                        //String usernameFromDB = dataSnapshot.child(userEnteredUsername).child("username").getValue(String.class);
-                        //String phoneNoFromDB = dataSnapshot.child(userEnteredUsername).child("phoneNo").getValue(String.class);
-                       // String emailFromDB = dataSnapshot.child(userEnteredUsername).child("email").getValue(String.class);
-                        Intent intent = new Intent(getApplicationContext(), U_MainScreen.class);
-                        startActivity(intent);
-                    } else {
-                        progressBar.setVisibility(View.GONE);
-                        password.setError("Wrong Password");
-                        password.requestFocus();
-                    }
-                } else {
-                    progressBar.setVisibility(View.GONE);
-                    username.setError("No such User exist");
-                    username.requestFocus();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+        mAuthstatelistener = (firebaseAuth -> {
+            FirebaseUser mFbuser = mAuth.getCurrentUser();
+            if (mFbuser != null) {
+                Toast.makeText(User_Login.this, "You are logged in!!", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(User_Login.this, U_MainScreen.class);
+                startActivity(i);
+            } else {
+                Toast.makeText(User_Login.this, "Please Login", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        login.setOnClickListener((v) -> {
+            String email = emailid.getText().toString();
+            String pwd = password.getText().toString();
+            FirebaseDatabase db= FirebaseDatabase.getInstance();
+            DatabaseReference reference = db.getReference("Users");
+            String emailId = reference.orderByChild("email").toString();
+            String pd = reference.orderByChild("password").toString();
+            if (email.isEmpty()) {
+                emailid.setError("FIELD CANNOT BE EMPTY/INCORRECT EMAIL");
+                emailid.requestFocus();
+            } else if (pwd.isEmpty()) {
+                password.setError("FIELD CANNOT BE EMPTY/INCORRECT PASSWORD");
+                password.requestFocus();
+            } else if (email.isEmpty() && pwd.isEmpty()) {
+                Toast.makeText(User_Login.this, "FIELDS ARE EMPTY!!!", Toast.LENGTH_SHORT).show();
+            } else if (!(email.isEmpty() && pwd.isEmpty())||(emailId.matches(email))) {
+
+                mAuth.signInWithEmailAndPassword(emailId, pwd).addOnCompleteListener(User_Login.this, task -> {
+                    if (!task.isComplete()) {
+                        Toast.makeText(User_Login.this, "Error Occured! Please Login Again!!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intToHome = new Intent(User_Login.this, U_MainScreen.class);
+                        startActivity(intToHome);
+                    }
+                });
+            } else {
+                Toast.makeText(User_Login.this, "Error Occured!!", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        //mAuth.addAuthStateListener(mAuthstatelistener);
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            currentUser.reload();
+        }
     }
 
 }
