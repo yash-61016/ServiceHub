@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ServiceProviderMainScreen"
+    tools:layout_editor_absoluteY="25dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/SP_MS_profile_image"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/animoji"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.021" />
+
+    <ImageButton
+        android:id="@+id/SP_MS_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="280dp"
+        android:backgroundTint="#00FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/SP_MS_profile_image"
+        app:layout_constraintHorizontal_bias="0.187"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/menubtn" />
+
+    <TextView
+        android:id="@+id/SP_MS_myJobsTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/bold"
+        android:text="My Jobs"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toStartOf="@+id/SP_MS_profile_image"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toEndOf="@+id/SP_MS_menu"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:layout_width="431dp"
+        android:layout_height="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_MS_myJobsTXT"
+        app:layout_constraintVertical_bias="0.081">
+
+        <RadioButton
+            android:id="@+id/work_in_progress"
+            android:layout_width="214dp"
+            android:layout_height="24dp"
+            android:background="@drawable/radio_selected"
+            android:button="@drawable/selected"
+            android:fontFamily="@font/light"
+            android:text="Work in progress"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_selected"
+            android:textSize="15sp"></RadioButton>
+
+        <RadioButton
+            android:id="@+id/post_work"
+            android:layout_width="214dp"
+            android:layout_height="24dp"
+            android:background="@drawable/radio_selected"
+            android:button="@drawable/selected"
+            android:fontFamily="@font/light"
+            android:text="Post Jobs"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_selected"
+            android:textSize="15sp"></RadioButton>
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="260dp"
+        android:layout_height="37dp"
+        android:background="@drawable/sp_jobs_messeges"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_MS_myJobsTXT"
+        app:layout_constraintVertical_bias="0.92">
+
+        <RadioButton
+            android:id="@+id/SP_MS_Jobs"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:button="@drawable/jobs"
+            android:background="@drawable/sp_jobs_messeges_selector"
+            android:layout_gravity="center" />
+        <RadioButton
+            android:id="@+id/SP_MS_msgs"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:button="@drawable/message"
+            android:background="@drawable/sp_jobs_messeges_selector"
+            android:layout_gravity="center"/>
+
+
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
