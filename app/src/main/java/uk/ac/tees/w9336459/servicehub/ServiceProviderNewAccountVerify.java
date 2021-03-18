@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,10 +31,11 @@ public class ServiceProviderNewAccountVerify extends AppCompatActivity {
 
     // variable for our text input
     // field for phone and OTP.
-    private EditText edtPhone,edtmail, edtOTP1, edtOTP2;
+    private EditText  edtOTP1;
+    private TextView edtPhone;
 
     // buttons for generating OTP and verifying OTP
-    private Button verifyOTPBtn, generateOTPBtn1,generateOTPBtn2;
+    private Button verifyOTPBtn, generateOTPBtn1;
 
     // string for storing our verification ID
     private String verificationId;
@@ -51,11 +53,11 @@ public class ServiceProviderNewAccountVerify extends AppCompatActivity {
         // initializing variables for button and Edittext.
         edtPhone = findViewById(R.id.SP_NAV_entenumber);
         edtOTP1 = findViewById(R.id.SP_NAV_NumberSendCode1);
-        edtmail = findViewById(R.id.SP_NAV_EmailEnter);
-        edtOTP2 = findViewById(R.id.SP_NAV_EmailSendCode1);
+
         verifyOTPBtn = findViewById(R.id.SP_NAV_Done);
         generateOTPBtn1 = findViewById(R.id.SP_NAV_NumberSendCode);
-        generateOTPBtn2 = findViewById(R.id.SP_NAV_EmailSendCode);
+
+        this.edtPhone.setText(ServiceProviderNewAccount.reg_mobile.getText().toString());
 
 
 

@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,10 +31,11 @@ public class User_VerifyID_Screen extends AppCompatActivity {
 
     // variable for our text input
     // field for phone and OTP.
-    private EditText edtPhone,edtmail, edtOTP1, edtOTP2;
+    private EditText  edtOTP1;
+    private TextView edtPhone;
 
     // buttons for generating OTP and verifying OTP
-    private Button verifyOTPBtn, generateOTPBtn1,generateOTPBtn2;
+    private Button verifyOTPBtn, generateOTPBtn1;
 
     // string for storing our verification ID
     private String verificationId;

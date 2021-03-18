@@ -38,13 +38,13 @@
         android:id="@+id/U_L_username"
         android:layout_width="352dp"
         android:layout_height="29dp"
-        android:layout_marginTop="208dp"
+        android:layout_marginTop="224dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/medium"
         android:text="UserName"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.728"
+        app:layout_constraintHorizontal_bias="0.743"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UserLoginTitle2" />
 
@@ -79,7 +79,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="35dp"
         android:fontFamily="@font/medium"
-        android:textSize="25sp"
+        android:inputType="textPassword"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/U_L_LoginInbt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -107,7 +108,7 @@
         android:id="@+id/U_L_skipbt"
         android:layout_width="152dp"
         android:layout_height="48dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="30dp"
         android:alpha="0.5"
         android:background="@drawable/skipbt"
         android:fontFamily="@font/medium"
@@ -118,5 +119,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_L_passwordenter" />
 
+    <TextView
+        android:id="@+id/U_LoginAc"
+        android:layout_width="217dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="110dp"
+        android:fontFamily="@font/bold"
+        android:paddingHorizontal="10dp"
+        android:text="New Here? Create Account!"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_L_LoginInbt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

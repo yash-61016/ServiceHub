@@ -1,12 +1,12 @@
 package uk.ac.tees.w9336459.servicehub;
 
 public class ServiceProviderHelperClass {
-    String name,mobileNumber,address,email,accountNumber,sortCode,password,verifypassword,postcode;
+    String name,mobileNumber,address,email,accountNumber,sortCode,postcode;
 
     public ServiceProviderHelperClass() {
     }
 
-    public ServiceProviderHelperClass(String name,String email, String mobileNumber, String address, String PostCode, String password,String verifypassword, String accountNumber, String sortCode) {
+    public ServiceProviderHelperClass(String name,String email, String mobileNumber, String address, String PostCode, String accountNumber, String sortCode) {
         this.name = name;
         this.mobileNumber = mobileNumber;
         this.address = address;
@@ -14,17 +14,9 @@ public class ServiceProviderHelperClass {
         this.email = email;
         this.accountNumber = accountNumber;
         this.sortCode = sortCode;
-        this.password = password;
-        this.verifypassword = verifypassword;
+
     }
 
-    public String getVerifypassword() {
-        return verifypassword;
-    }
-
-    public void setVerifypassword(String verifypassword) {
-        this.verifypassword = verifypassword;
-    }
 
     public String getPostcode() {
         return postcode;
@@ -58,9 +50,6 @@ public class ServiceProviderHelperClass {
         return sortCode;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -86,7 +75,5 @@ public class ServiceProviderHelperClass {
         this.sortCode = sortCode;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+
 }

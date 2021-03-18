@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,6 +34,8 @@ public class User_Login extends AppCompatActivity {
     // buttons for generating OTP and verifying OTP
     private Button login;
 
+    TextView goTo_createAc;
+
 
     private FirebaseAuth.AuthStateListener mAuthstatelistener;
 
@@ -45,6 +48,7 @@ public class User_Login extends AppCompatActivity {
         emailid = findViewById(R.id.U_L_loginid);
         password = findViewById(R.id.U_L_passwordenter);
         login = findViewById(R.id.U_L_LoginInbt);
+        goTo_createAc = findViewById(R.id.U_LoginAc);
 
         mAuthstatelistener = (firebaseAuth -> {
             FirebaseUser mFbuser = mAuth.getCurrentUser();
@@ -61,10 +65,10 @@ public class User_Login extends AppCompatActivity {
         login.setOnClickListener((v) -> {
             String email = emailid.getText().toString();
             String pwd = password.getText().toString();
-            FirebaseDatabase db= FirebaseDatabase.getInstance();
-            DatabaseReference reference = db.getReference("Users");
-            String emailId = reference.orderByChild("email").toString();
-            String pd = reference.orderByChild("password").toString();
+           // FirebaseDatabase db= FirebaseDatabase.getInstance();
+           // DatabaseReference reference = db.getReference("Users");
+          //  String emailId = reference.child(User_Create_Account.reg_email.getText().toString()).toString();
+
             if (email.isEmpty()) {
                 emailid.setError("FIELD CANNOT BE EMPTY/INCORRECT EMAIL");
                 emailid.requestFocus();
@@ -72,20 +76,33 @@ public class User_Login extends AppCompatActivity {
                 password.setError("FIELD CANNOT BE EMPTY/INCORRECT PASSWORD");
                 password.requestFocus();
             } else if (email.isEmpty() && pwd.isEmpty()) {
+                emailid.setError("FIELD CANNOT BE EMPTY/INCORRECT EMAIL");
+                emailid.requestFocus();
+                password.setError("FIELD CANNOT BE EMPTY/INCORRECT PASSWORD");
+                password.requestFocus();
                 Toast.makeText(User_Login.this, "FIELDS ARE EMPTY!!!", Toast.LENGTH_SHORT).show();
-            } else if (!(email.isEmpty() && pwd.isEmpty())||(emailId.matches(email))) {
+            } else if (!(email.isEmpty() && pwd.isEmpty())) {
 
-                mAuth.signInWithEmailAndPassword(emailId, pwd).addOnCompleteListener(User_Login.this, task -> {
-                    if (!task.isComplete()) {
-                        Toast.makeText(User_Login.this, "Error Occured! Please Login Again!!", Toast.LENGTH_SHORT).show();
+
+                mAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(User_Login.this, task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(User_Login.this, "Logged In Successfully!!", Toast.LENGTH_SHORT).show();
+                        Intent intToHome = new Intent(getApplicationContext(), U_MainScreen.class);
+
                     } else {
-                        Intent intToHome = new Intent(User_Login.this, U_MainScreen.class);
-                        startActivity(intToHome);
+                        Toast.makeText(User_Login.this, "Error Occured! Please Login Again!!"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             } else {
                 Toast.makeText(User_Login.this, "Error Occured!!", Toast.LENGTH_SHORT).show();
             }
+
+        });
+
+        goTo_createAc.setOnClickListener((v)->{
+            Intent i = new Intent(User_Login.this, User_Create_Account.class);
+            startActivity(i);
+            finish();
 
         });
 
@@ -99,5 +116,7 @@ public class User_Login extends AppCompatActivity {
             currentUser.reload();
         }
     }
+
+
 
 }

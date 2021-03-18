@@ -6,8 +6,6 @@ public class UserAccountHelper {
     String address;
     String postcode;
     String email;
-    String password;
-    String verify_password;
 
     public String getPostcode() {
         return postcode;
@@ -35,14 +33,6 @@ public class UserAccountHelper {
         this.email = email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setVerify_password(String verify_password) {
-        this.verify_password = verify_password;
-    }
-
 
 
     public String getName() {
@@ -61,27 +51,18 @@ public class UserAccountHelper {
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getVerify_password() {
-        return verify_password;
-    }
-
 
 
     public UserAccountHelper() {
 
     }
-    public UserAccountHelper(String name,String email, String number, String address,String Postcode, String password, String verify_password) {
+    public UserAccountHelper(String name,String email, String number, String address,String Postcode) {
         this.name = name;
         this.number = number;
         this.address = address;
         this.postcode = Postcode;
         this.email = email;
-        this.password = password;
-        this.verify_password = verify_password;
+
     }
 
 

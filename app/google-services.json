@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "92105915836",
-    "project_id": "servicehub-c43ae",
-    "storage_bucket": "servicehub-c43ae.appspot.com"
+    "project_number": "374818484032",
+    "firebase_url": "https://service-hub-af470-default-rtdb.firebaseio.com",
+    "project_id": "service-hub-af470",
+    "storage_bucket": "service-hub-af470.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:92105915836:android:7318b8e0b96cf62bdcffb9",
+        "mobilesdk_app_id": "1:374818484032:android:0a3c4e0a3d20bdaadf14a5",
         "android_client_info": {
           "package_name": "uk.ac.tees.w9336459.servicehub"
         }
       },
       "oauth_client": [
         {
-          "client_id": "92105915836-q129bnrq4p0s2s7vudpvf6kufv7a8144.apps.googleusercontent.com",
+          "client_id": "374818484032-h9ib0buf1b7orejc1edg5irhvg3o5bn9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDaZ5o8olFUVj_O9FAgKZPIE-Q0WufpwMY"
+          "current_key": "AIzaSyCEHN268350asLp0NC88QlDLBPJ1AgsIBU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "92105915836-q129bnrq4p0s2s7vudpvf6kufv7a8144.apps.googleusercontent.com",
+              "client_id": "374818484032-h9ib0buf1b7orejc1edg5irhvg3o5bn9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
