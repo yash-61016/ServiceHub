@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menubtn"
+    android:orientation="vertical"
+    android:background="@drawable/menu_bg">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:layout_marginTop="5dp">
+
+        <ImageView
+            android:layout_width="99dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:src="@drawable/ic_baseline_notes_24">
+
+        </ImageView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="141dp"
+            android:layout_height="135dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp"
+            android:padding="10dp"
+            android:src="@drawable/avatar"
+            app:civ_border_color="#4CAF50"
+            app:civ_border_width="4dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="478dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="213dp"
+            android:layout_height="100dp"
+            android:layout_gravity="start"
+            android:text="Bookings"
+            android:background="#00000000"
+            android:textSize="25sp"/>
+
+        <Button
+            android:layout_width="213dp"
+            android:layout_height="103dp"
+            android:layout_gravity="start"
+            android:text="chat box"
+            android:background="#00000000"
+            android:textSize="25sp"/>
+
+        <Button
+            android:layout_width="213dp"
+            android:layout_height="99dp"
+            android:layout_gravity="start"
+            android:text="settings"
+            android:background="#00000000"
+            android:textSize="25sp"/>
+
+        <Button
+            android:layout_width="213dp"
+            android:layout_height="107dp"
+            android:layout_gravity="start"
+            android:text="help"
+            android:background="#00000000"
+            android:textSize="25sp"/>
+    </LinearLayout>
+</LinearLayout>
