@@ -142,12 +142,10 @@ public class ServiceProviderNewAccount extends AppCompatActivity {
                             String number = reg_mobile.getText().toString();
                             String address = reg_address1.getText().toString();
                             String Postcode = reg_postcode.getText().toString();
-                            String password = reg_password.getText().toString();
-                            String verify_password = reg_v_password.getText().toString();
                             String account = reg_account.getText().toString();
                             String sortcode = reg_sortcode.getText().toString();
-                            ServiceProviderHelperClass helperClass = new ServiceProviderHelperClass(name, email, number, address, Postcode, account, sortcode);
-                            reference.child(number).setValue(helperClass);
+                            ServiceProviderHelperClass helperClass = new ServiceProviderHelperClass(name, email, address, Postcode, account, sortcode);
+                            reference.child("Details").child(number).setValue(helperClass);
                             Intent a = new Intent(ServiceProviderNewAccount.this, ServiceProviderNewAccountVerify.class);
                             startActivity(a);
                         }

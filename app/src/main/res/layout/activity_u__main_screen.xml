@@ -18,15 +18,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile"
+        android:layout_width="80dp"
+        android:layout_height="56dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="211dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="41dp"
+        android:padding="10dp"
+        android:src="@drawable/avatar"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/U_Ms_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/U_Ms_Menubt"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/U_Ms_name"
         android:layout_width="150dp"
         android:layout_height="35dp"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="75dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="266dp"
         android:fontFamily="@font/bold"
         android:text="Hey Joe,"
+
         android:textColor="@color/black"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +54,7 @@
         android:id="@+id/U_Ms_title"
         android:layout_width="350dp"
         android:layout_height="23dp"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="75dp"
         android:layout_marginEnd="66dp"
         android:alpha="0.5"
         android:fontFamily="@font/bold"
@@ -51,8 +68,8 @@
 
     <SearchView
         android:id="@+id/U_Ms_search"
-        android:layout_width="367dp"
-        android:layout_height="40dp"
+        android:layout_width="346dp"
+        android:layout_height="42dp"
         android:layout_marginStart="41dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="41dp"
@@ -66,8 +83,8 @@
     <ScrollView
         android:id="@+id/Scroll"
         style="@android:style/Widget.DeviceDefault.ScrollView"
-        android:layout_width="423dp"
-        android:layout_height="655dp"
+        android:layout_width="418dp"
+        android:layout_height="533dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="4dp"
@@ -88,8 +105,8 @@
 
         <LinearLayout
 
-            android:layout_width="405dp"
-            android:layout_height="-300dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
@@ -97,18 +114,18 @@
                 android:id="@+id/U_Ms_houseServices"
                 android:layout_width="188dp"
                 android:layout_height="212dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="18dp"
                 android:background="@drawable/homeservices" />
 
             <Button
                 android:id="@+id/U_Ms_ElectronicRepairs"
-                android:layout_width="182dp"
-                android:layout_height="226dp"
-                android:layout_marginStart="224dp"
-                android:layout_marginTop="-150dp"
+                android:layout_width="188dp"
+                android:layout_height="212dp"
+                android:layout_marginStart="204dp"
+                android:layout_marginTop="-190dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="18dp"
                 android:background="@drawable/electronicrepairs" />
@@ -117,8 +134,8 @@
                 android:id="@+id/U_Ms_PersonalGrooming"
                 android:layout_width="188dp"
                 android:layout_height="220dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="-100dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="-60dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="18dp"
                 android:background="@drawable/personalservices" />
@@ -127,8 +144,8 @@
                 android:id="@+id/U_Ms_Health"
                 android:layout_width="188dp"
                 android:layout_height="220dp"
-                android:layout_marginStart="224dp"
-                android:layout_marginTop="-150dp"
+                android:layout_marginStart="204dp"
+                android:layout_marginTop="-190dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="18dp"
                 android:background="@drawable/healthservices" />
@@ -137,8 +154,8 @@
                 android:id="@+id/U_Ms_PartyandEvents"
                 android:layout_width="188dp"
                 android:layout_height="220dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="-100dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="-60dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="18dp"
                 android:background="@drawable/partyandevent" />
@@ -147,8 +164,8 @@
                 android:id="@+id/U_Ms_MoversandShifters"
                 android:layout_width="188dp"
                 android:layout_height="220dp"
-                android:layout_marginStart="224dp"
-                android:layout_marginTop="-150dp"
+                android:layout_marginStart="204dp"
+                android:layout_marginTop="-190dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="18dp"
                 android:background="@drawable/moversandshifters" />

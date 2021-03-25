@@ -56,9 +56,8 @@ public class UserAccountHelper {
     public UserAccountHelper() {
 
     }
-    public UserAccountHelper(String name,String email, String number, String address,String Postcode) {
+    public UserAccountHelper(String name,String email, String address,String Postcode) {
         this.name = name;
-        this.number = number;
         this.address = address;
         this.postcode = Postcode;
         this.email = email;
