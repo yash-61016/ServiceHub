@@ -133,7 +133,7 @@ public class User_Create_Account extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(User_Create_Account.this,"Validation Successful",Toast.LENGTH_LONG).show();
                             String new_email = "";
-                            String name =  reg_f_name.getText().toString() + reg_l_name.getText().toString();
+                            String name =  reg_f_name.getText().toString() + " " + reg_l_name.getText().toString();
                             if(reg_email.getText().toString().contains(".com")){
 
                                 int index = reg_email.getText().toString().indexOf(".");
@@ -143,8 +143,8 @@ public class User_Create_Account extends AppCompatActivity {
                             String number = reg_mobile.getText().toString();
                             String address = reg_address1.getText().toString();
                             String Postcode = reg_postcode.getText().toString();
-                            UserAccountHelper helperClass = new UserAccountHelper(name, email, number, address,Postcode);
-                            reference.child(number).setValue(helperClass);
+                            UserAccountHelper helperClass = new UserAccountHelper(name, email, address,Postcode);
+                            reference.child("Details").child(number).setValue(helperClass);
                             Intent a = new Intent(User_Create_Account.this, User_VerifyID_Screen.class);
                             startActivity(a);
                         }else{

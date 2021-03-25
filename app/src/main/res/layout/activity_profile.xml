@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".profile"
+    android:orientation="vertical"
+    android:background="#0d2b5f">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="horizontal"
+        android:padding="25dp">
+
+        <ImageView
+            android:id="@+id/roll_back"
+            android:layout_width="44dp"
+            android:layout_height="70dp"
+            android:clickable="true"
+            android:alpha="0.5"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_backarrow"
+            />
+
+        <TextView
+            android:layout_width="323dp"
+            android:layout_height="74dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/regular"
+            android:gravity="center"
+            android:text="PROFILE"
+            android:paddingRight="50dp"
+            android:textColor="@android:color/white"
+            android:textSize="34sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="299dp"
+        android:layout_marginTop="-20dp"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="80dp"
+            android:src="@drawable/avatar" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:text="Joe White"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:layout_width="207dp"
+                android:layout_height="58dp"
+                android:background="#00000000"
+                android:clickable="true"
+                android:text="Details"
+                android:fontFamily="@font/medium"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="207dp"
+                android:layout_height="58dp"
+                android:background="#00000000"
+                android:text="wallet"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="207dp"
+                android:layout_height="58dp"
+                android:background="#00000000"
+                android:text="log out"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

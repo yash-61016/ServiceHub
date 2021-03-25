@@ -1,6 +1,7 @@
 package uk.ac.tees.w9336459.servicehub;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -34,7 +37,7 @@ public class User_Login extends AppCompatActivity {
     // buttons for generating OTP and verifying OTP
     private Button login;
 
-    TextView goTo_createAc;
+    TextView goTo_createAc,forgetpwd;
 
 
     private FirebaseAuth.AuthStateListener mAuthstatelistener;
@@ -49,6 +52,7 @@ public class User_Login extends AppCompatActivity {
         password = findViewById(R.id.U_L_passwordenter);
         login = findViewById(R.id.U_L_LoginInbt);
         goTo_createAc = findViewById(R.id.U_LoginAc);
+        forgetpwd = findViewById(R.id.U_L_ForgetPassword);
 
         mAuthstatelistener = (firebaseAuth -> {
             FirebaseUser mFbuser = mAuth.getCurrentUser();
@@ -65,9 +69,6 @@ public class User_Login extends AppCompatActivity {
         login.setOnClickListener((v) -> {
             String email = emailid.getText().toString();
             String pwd = password.getText().toString();
-           // FirebaseDatabase db= FirebaseDatabase.getInstance();
-           // DatabaseReference reference = db.getReference("Users");
-          //  String emailId = reference.child(User_Create_Account.reg_email.getText().toString()).toString();
 
             if (email.isEmpty()) {
                 emailid.setError("FIELD CANNOT BE EMPTY/INCORRECT EMAIL");
@@ -88,6 +89,8 @@ public class User_Login extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(User_Login.this, "Logged In Successfully!!", Toast.LENGTH_SHORT).show();
                         Intent intToHome = new Intent(getApplicationContext(), U_MainScreen.class);
+                        startActivity(intToHome);
+                        finish();
 
                     } else {
                         Toast.makeText(User_Login.this, "Error Occured! Please Login Again!!"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -106,6 +109,42 @@ public class User_Login extends AppCompatActivity {
 
         });
 
+        forgetpwd.setOnClickListener((V)->{
+
+            final TextInputEditText resetmail = new TextInputEditText(V.getContext());
+            final AlertDialog.Builder pwdResetDialog = new AlertDialog.Builder(V.getContext());
+            pwdResetDialog.setTitle("Reset Password?");
+            pwdResetDialog.setMessage("Enter the Email to Recieve a Reset Link");
+            pwdResetDialog.setView(resetmail);
+
+            pwdResetDialog.setPositiveButton("Yes", (dialogInterface, i) -> {
+                // extract the link and send the email
+
+                String mail = resetmail.getText().toString();
+                mAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(User_Login.this, "Reset Link Sent to Yourr Mail. " ,Toast.LENGTH_SHORT).show();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(User_Login.this,"Error ! Reset Link is not Sent" + e.getMessage(),Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
+
+            }) ;
+
+            pwdResetDialog.setNegativeButton("No", (dialogInterface, i) -> {
+                // close the dialog
+            });
+            pwdResetDialog.create().show();
+
+        });
+
     }
     @Override
     protected void onStart(){
@@ -116,7 +155,5 @@ public class User_Login extends AppCompatActivity {
             currentUser.reload();
         }
     }
-
-
 
 }

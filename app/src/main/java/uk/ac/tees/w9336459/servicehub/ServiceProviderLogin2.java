@@ -1,5 +1,7 @@
 package uk.ac.tees.w9336459.servicehub;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,7 +30,7 @@ public class ServiceProviderLogin2 extends AppCompatActivity {
     // buttons for generating OTP and verifying OTP
     private Button splogin;
 
-    TextView goTo_createAc;
+    TextView goTo_createAc, forgetpwd;
 
     private FirebaseAuth.AuthStateListener mAuthstatelistener;
     @Override
@@ -40,7 +44,7 @@ public class ServiceProviderLogin2 extends AppCompatActivity {
         password = findViewById(R.id.SP_SPL2passwordTXT);
         splogin = findViewById(R.id.SP_SPL2login);
         goTo_createAc = findViewById(R.id.Sp_LoginAc);
-
+        forgetpwd = findViewById(R.id.sp_L_ForgetPassword);
         mAuthstatelistener = (firebaseAuth -> {
                 FirebaseUser mFbuser = mAuth.getCurrentUser();
                 if (mFbuser != null) {
@@ -87,6 +91,42 @@ public class ServiceProviderLogin2 extends AppCompatActivity {
             Intent i = new Intent(ServiceProviderLogin2.this, ServiceProviderNewAccount.class);
             startActivity(i);
             finish();
+
+        });
+
+        forgetpwd.setOnClickListener((V)->{
+
+            final TextInputEditText resetmail = new TextInputEditText(V.getContext());
+            final AlertDialog.Builder pwdResetDialog = new AlertDialog.Builder(V.getContext());
+            pwdResetDialog.setTitle("Reset Password?");
+            pwdResetDialog.setMessage("Enter the Email to Recieve a Reset Link");
+            pwdResetDialog.setView(resetmail);
+
+            pwdResetDialog.setPositiveButton("Yes", (dialogInterface, i) -> {
+                // extract the link and send the email
+
+                String mail = resetmail.getText().toString();
+                mAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(ServiceProviderLogin2.this, "Reset Link Sent to Yourr Mail. " ,Toast.LENGTH_SHORT).show();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ServiceProviderLogin2.this,"Error ! Reset Link is not Sent" + e.getMessage(),Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
+
+            }) ;
+
+            pwdResetDialog.setNegativeButton("No", (dialogInterface, i) -> {
+                // close the dialog
+            });
+            pwdResetDialog.create().show();
 
         });
 

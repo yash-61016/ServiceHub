@@ -6,8 +6,8 @@ public class ServiceProviderHelperClass {
     public ServiceProviderHelperClass() {
     }
 
-    public ServiceProviderHelperClass(String name,String email, String mobileNumber, String address, String PostCode, String accountNumber, String sortCode) {
-        this.name = name;
+    public ServiceProviderHelperClass(String name,String email, String address, String PostCode, String accountNumber, String sortCode) {
+
         this.mobileNumber = mobileNumber;
         this.address = address;
         this.postcode = PostCode;
