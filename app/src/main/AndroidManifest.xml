@@ -13,11 +13,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".Tiles.personal_grooming_offered"></activity>
+        <activity android:name=".Tiles.party_event_service_offered" />
+        <activity android:name=".Tiles.movers_shifters_services_offered" />
+        <activity android:name=".Tiles.home_service_offered" />
+        <activity android:name=".Tiles.health_services_offered" />
+        <activity android:name=".Tiles.mover_shifters_service_tile" />
+        <activity android:name=".Tiles.personal_grooming_service_tile" />
+        <activity android:name=".Tiles.party_event_service_tile" />
+        <activity android:name=".Tiles.home_services_tile" />
+        <activity android:name=".Tiles.health_service_tile" />
+        <activity android:name=".Tiles.electronic_service_offered" />
+        <activity android:name=".ServiceProviderMainScreen" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".ServiceProviderMainScreen"/>
-        <activity android:name=".U_MainScreen" />
-        <activity android:name=".menubtn"/>
-        <activity android:name=".profile"/>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".U_MainScreen" >
+
+        </activity>
+        <activity android:name=".Tiles.electronic_tile" />
+        <activity android:name=".help" />
+        <activity android:name=".menubtn" />
+        <activity android:name=".profile" />
         <activity android:name=".ServiceProviderLogin2" />
         <activity android:name=".ServiceProviderNewAccountVerify" />
         <activity android:name=".ServiceProviderNewAccount" />
@@ -28,10 +48,7 @@
         <activity android:name=".User_Login" />
         <activity android:name=".UserSignUp" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
     </application>
 

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".help"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="91dp"
+            android:background="#192560"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="62dp"
+                android:layout_height="67dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="25dp"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
+            <TextView
+                android:layout_width="285dp"
+                android:layout_marginStart="-13dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:fontFamily="@font/medium"
+                android:text="Help"
+                android:textColor="@color/white"
+                android:textSize="50sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:text="F.A.Q"
+            android:paddingLeft="15dp"
+            android:paddingTop="11dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#064720"
+            android:background="@color/white"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_marginStart="-10dp"
+            android:layout_width="match_parent"
+            android:layout_height="775dp"
+            android:background="@color/white"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </LinearLayout>
+</ScrollView>

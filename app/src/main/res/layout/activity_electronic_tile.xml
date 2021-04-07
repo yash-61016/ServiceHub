@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Tiles.electronic_tile"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="126dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="77dp"
+                android:layout_height="71dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:src="@drawable/ic_baseline_notes_24" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="74dp"
+                android:layout_height="79dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="14dp"
+                android:layout_marginRight="14dp"
+                android:paddingTop="25dp"
+                android:src="@drawable/avatar"
+                app:civ_border_color="#4CAF50"
+                app:civ_border_width="3dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="259dp"
+            android:layout_marginTop="-40dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="171dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/laptop_tile" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:layout_marginTop="-15dp"
+                android:text="Electronic Repairs"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="686dp"
+            android:background="@drawable/corner_radius">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/ET_bt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="0.40"
+                    android:background="@drawable/laptop_pc_tile"
+                    android:src="#00207E1D" />
+
+                <ImageButton
+                    android:id="@+id/ET_bt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="0.40"
+                    android:background="@drawable/telivision_tile"
+                    android:src="#00207E1D" />
+
+                <ImageButton
+                    android:id="@+id/ET_bt3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="0.40"
+                    android:layout_marginTop="3dp"
+                    android:src="#00207E1D"
+                    android:background="@drawable/music_system_tile" />
+
+                <ImageButton
+                    android:id="@+id/ET_bt4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="0.40"
+                    android:layout_marginTop="3dp"
+                    android:src="#00207E1D"
+                    android:background="@drawable/smartphone_tile" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</ScrollView>

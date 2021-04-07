@@ -49,7 +49,7 @@ public class ServiceProviderLogin2 extends AppCompatActivity {
                 FirebaseUser mFbuser = mAuth.getCurrentUser();
                 if (mFbuser != null) {
                     Toast.makeText(ServiceProviderLogin2.this, "You are logged in!!", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(ServiceProviderLogin2.this, U_MainScreen.class);
+                    Intent i = new Intent(ServiceProviderLogin2.this, ServiceProviderMainScreen.class);
                     startActivity(i);
                 } else {
                     Toast.makeText(ServiceProviderLogin2.this, "Please Login", Toast.LENGTH_SHORT).show();
@@ -58,10 +58,7 @@ public class ServiceProviderLogin2 extends AppCompatActivity {
         splogin.setOnClickListener((v) -> {
                 String email = emailid.getText().toString();
                 String pwd = password.getText().toString();
-                FirebaseDatabase db= FirebaseDatabase.getInstance();
-                DatabaseReference reference = db.getReference("ServiceProviders");
-                String emailId = reference.orderByChild("email").toString();
-                String pd = reference.orderByChild("password").toString();
+
                 if (email.isEmpty()) {
                     emailid.setError("FIELD CANNOT BE EMPTY/INCORRECT EMAIL");
                     emailid.requestFocus();
@@ -70,12 +67,14 @@ public class ServiceProviderLogin2 extends AppCompatActivity {
                     password.requestFocus();
                 } else if (email.isEmpty() && pwd.isEmpty()) {
                     Toast.makeText(ServiceProviderLogin2.this, "FIELDS ARE EMPTY!!!", Toast.LENGTH_SHORT).show();
-                } else if (!(email.isEmpty() && pwd.isEmpty())||(emailId.matches(email))) {
+                } else if (!(email.isEmpty() && pwd.isEmpty())||(email.matches(email))) {
 
-                    mAuth.signInWithEmailAndPassword(emailId, pwd).addOnCompleteListener(ServiceProviderLogin2.this, task -> {
+                    mAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(ServiceProviderLogin2.this, task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(ServiceProviderLogin2.this, "Logged In Successfully!!", Toast.LENGTH_SHORT).show();
-                            Intent intToHome = new Intent(getApplicationContext(), U_MainScreen.class);
+                            Intent intToHome = new Intent(getApplicationContext(), ServiceProviderMainScreen.class);
+                            startActivity(intToHome);
+                            finish();
 
                         } else {
                             Toast.makeText(ServiceProviderLogin2.this, "Error Occured! Please Login Again!!"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();

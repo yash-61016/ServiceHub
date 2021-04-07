@@ -148,6 +148,8 @@ public class ServiceProviderNewAccount extends AppCompatActivity {
                             reference.child("Details").child(number).setValue(helperClass);
                             Intent a = new Intent(ServiceProviderNewAccount.this, ServiceProviderNewAccountVerify.class);
                             startActivity(a);
+                        }else{
+                            Toast.makeText(ServiceProviderNewAccount.this,"Error Occured!!Signup Unsuccessful",Toast.LENGTH_LONG).show();
                         }
                     }
                 });

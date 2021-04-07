@@ -5,4 +5,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat" color="@color/black">
+        <item name="colorControlNormal">@color/duskyellow</item>
+    </style>
 </resources>

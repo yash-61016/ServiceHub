@@ -29,6 +29,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.UUID;
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
+
 public class profile extends AppCompatActivity {
     int SELECT_PHOTO=1;
     Uri uri;
@@ -68,7 +70,7 @@ public class profile extends AppCompatActivity {
 
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getApplicationContext(), UserSignUp.class));
-            finish();
+            getParent().finish();
 
         });
     }
