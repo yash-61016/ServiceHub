@@ -1,9 +1,5 @@
 package uk.ac.tees.w9336459.servicehub;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,13 +13,20 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.Query;
 
-import  uk.ac.tees.w9336459.servicehub.Tiles.electronic_tile;
+import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import uk.ac.tees.w9336459.servicehub.Tiles.electronic_tile;
 import uk.ac.tees.w9336459.servicehub.Tiles.health_service_tile;
 import uk.ac.tees.w9336459.servicehub.Tiles.home_services_tile;
 import uk.ac.tees.w9336459.servicehub.Tiles.mover_shifters_service_tile;
@@ -38,17 +41,21 @@ public class U_MainScreen extends AppCompatActivity {
     Button Er_bt , hs_bt, hos_bt, mbt, p_and_ebt,ps_bt , ms_bt;
     ImageView profile_btn;
 
+
+
     private EditText mSearchField;
     private ImageButton mSearchBtn;
 
     private RecyclerView mResultList;
 
     private  FirebaseDatabase database;
-    private DatabaseReference mUserDatabase ;
+    private DatabaseReference mServiceProviderDatabse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_u__main_screen);
+
+        mServiceProviderDatabse = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
 
         sc = findViewById(R.id.Scroll);
         sc.setVerticalScrollBarEnabled(true);
@@ -105,13 +112,13 @@ public class U_MainScreen extends AppCompatActivity {
             startActivity(i);
         });
 
-        mUserDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        mServiceProviderDatabse = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
 
 
         mSearchField = (EditText) findViewById(R.id.U_Ms_search);
         mSearchBtn = (ImageButton) findViewById(R.id.search_btn);
 
-        mResultList = (RecyclerView) findViewById(R.id.result_list);
+        mResultList = (RecyclerView) findViewById(R.id.result);
         mResultList.setHasFixedSize(true);
         mResultList.setLayoutManager(new LinearLayoutManager(this));
 
@@ -140,26 +147,27 @@ public class U_MainScreen extends AppCompatActivity {
     private void firebaseUserSearch(String searchText) {
 
         Toast.makeText(U_MainScreen.this, "Started Search", Toast.LENGTH_LONG).show();
-
-        Query firebaseSearchQuery = mUserDatabase.orderByChild("name").startAt(searchText).endAt(searchText + "\uf8ff");
+        Query firebaseSerchQuery = mServiceProviderDatabse.orderByChild("Name").startAt(searchText).endAt(searchText + "\uf8ff");
 
         FirebaseRecyclerAdapter<services_serviceproviders, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<services_serviceproviders, UsersViewHolder>(
-
                 services_serviceproviders.class,
                 R.layout.list_layout,
                 UsersViewHolder.class,
-                firebaseSearchQuery
-
-
+                mServiceProviderDatabse
         ) {
+
+            ArrayList<String> Name_list, Skills_list, profile_picture_list;
             @Override
             protected void populateViewHolder(UsersViewHolder usersViewHolder, services_serviceproviders services_serviceproviders, int i) {
-                usersViewHolder.setDetails(getApplicationContext(), services_serviceproviders.getName(), services_serviceproviders.getStatus(), services_serviceproviders.getImage());
+
+                this.Name_list.add(services_serviceproviders.getName());
+                this.profile_picture_list.add(services_serviceproviders.getProfile_picture());
+                this.Skills_list.add(services_serviceproviders.getSkills());
+                usersViewHolder.setDetails(getApplicationContext(),this.Name_list,this.Skills_list,this.profile_picture_list);
+
             }
         };
-
         mResultList.setAdapter(firebaseRecyclerAdapter);
-
     }
 
 
@@ -177,18 +185,19 @@ public class U_MainScreen extends AppCompatActivity {
 
         }
 
-        public void setDetails(Context ctx, String userName, String userStatus, String userImage){
+        public void setDetails(Context ctx, ArrayList<String> serviceProviderName, ArrayList<String> serviceProvider_Skills, ArrayList<String> serviceProviderProfilePicture){
 
-            TextView user_name = (TextView) mView.findViewById(R.id.name_text);
-            TextView user_status = (TextView) mView.findViewById(R.id.status_text);
-            ImageView user_image = (ImageView) mView.findViewById(R.id.profile_image);
-
-
-            user_name.setText(userName);
-            user_status.setText(userStatus);
+            TextView serviceProvider_name = (TextView) mView.findViewById(R.id.name_text);
+            TextView serviceProvider_skills = (TextView) mView.findViewById(R.id.skills_text);
+            CircleImageView serviceProvider_profilePicture = (CircleImageView) mView.findViewById(R.id.profile_picture);
 
 
-            Glide.with(ctx).load(userImage).into(user_image);
+            serviceProvider_name.setText((CharSequence) serviceProviderName);
+            serviceProvider_skills.setText((CharSequence) serviceProvider_Skills);
+
+            Glide.with(ctx).load(serviceProviderProfilePicture).into(serviceProvider_profilePicture);
+
+
 
 
         }

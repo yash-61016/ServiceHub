@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".SP_MS_JobsFragment">
+
+    <TextView
+        android:id="@+id/SP_MS_myJobsTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bold"
+        android:text="My Jobs"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="432dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8.5dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_MS_myJobsTXT">
+
+        <RadioButton
+            android:id="@+id/work_in_progress"
+            android:layout_width="214dp"
+            android:layout_height="24dp"
+            android:background="@drawable/radio_selected"
+            android:button="@drawable/selected"
+            android:checked="true"
+            android:fontFamily="@font/light"
+            android:text="Work in progress"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_selected"
+            android:textSize="15sp"></RadioButton>
+
+        <RadioButton
+            android:id="@+id/post_work"
+            android:layout_width="214dp"
+            android:layout_height="24dp"
+            android:background="@drawable/radio_selected"
+            android:button="@drawable/selected"
+            android:fontFamily="@font/light"
+            android:text="Post Jobs"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_selected"
+            android:textSize="15sp"></RadioButton>
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

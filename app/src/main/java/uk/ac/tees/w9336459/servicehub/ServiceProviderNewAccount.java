@@ -37,7 +37,7 @@ public class ServiceProviderNewAccount extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        loginhome = findViewById(R.id.SP_CA_LoginInbt);
+        loginhome = findViewById(R.id.SP_CA_Donebt);
         goTo_Login = findViewById(R.id.Sp_CreateAc);
 
         reg_f_name = findViewById(R.id.SP_CA_FirstName);
@@ -109,20 +109,22 @@ public class ServiceProviderNewAccount extends AppCompatActivity {
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
                 reg_postcode.setBackground(dr);
-            }else if(reg_account.length()==0 )
-            {
+            }else if(reg_account.length()>0)
+            {   if(reg_account.length()!=8){
                 reg_account.requestFocus();
-                reg_account.setError("FIELD CANNOT BE EMPTY");
+                reg_account.setError("PLEASE ENTER CORRECT ACCOUNT NUMBER");
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
                 reg_account.setBackground(dr);
-            }else if(reg_sortcode.length()==0 )
-            {
+            }
+            }else if(reg_sortcode.length()!=6 )
+            {   if(reg_sortcode.length()!=8){
                 reg_sortcode.requestFocus();
-                reg_sortcode.setError("FIELD CANNOT BE EMPTY");
+                reg_sortcode.setError("PLEASE ENTER CORRECT SORT CODE");
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
                 reg_sortcode.setBackground(dr);
+            }
             }
             else
             {

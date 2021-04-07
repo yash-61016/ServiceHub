@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_picture"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        app:srcCompat="@mipmap/person_four" />
+        android:src="@mipmap/person_four" />
 
     <TextView
         android:id="@+id/name_text"
@@ -22,21 +22,21 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:layout_toEndOf="@+id/profile_image"
+        android:layout_toEndOf="@+id/profile_picture"
         android:fontFamily="@font/bold"
         android:text="Username"
         android:textColor="#555555"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/status_text"
+        android:id="@+id/skills_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name_text"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/profile_image"
+        android:layout_toEndOf="@+id/profile_picture"
         android:fontFamily="@font/bold"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
         android:textColor="#999999"

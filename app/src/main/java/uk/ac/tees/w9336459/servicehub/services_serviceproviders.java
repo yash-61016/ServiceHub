@@ -2,40 +2,39 @@ package uk.ac.tees.w9336459.servicehub;
 
 public class services_serviceproviders {
 
-    public String name, image, status;
+    private String Name, profile_picture, Skills;
 
-    public services_serviceproviders(){
+    public services_serviceproviders(String name, String profile_picture, String skills) {
+        Name = name;
+        this.profile_picture = profile_picture;
+        Skills = skills;
+    }
 
+    public services_serviceproviders() {
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        Name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getProfile_picture() {
+        return profile_picture;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setProfile_picture(String profile_picture) {
+        this.profile_picture = profile_picture;
     }
 
-    public String getStatus() {
-        return status;
+    public String getSkills() {
+        return Skills;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public services_serviceproviders(String name, String image, String status) {
-        this.name = name;
-        this.image = image;
-        this.status = status;
+    public void setSkills(String skills) {
+        Skills = skills;
     }
 }
 

@@ -33,56 +33,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/menubtn" />
 
-    <TextView
-        android:id="@+id/SP_MS_myJobsTXT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:fontFamily="@font/bold"
-        android:text="My Jobs"
-        android:textColor="@color/black"
-        android:textSize="35sp"
-        app:layout_constraintEnd_toStartOf="@+id/SP_MS_profile_image"
-        app:layout_constraintHorizontal_bias="0.518"
-        app:layout_constraintStart_toEndOf="@+id/SP_MS_menu"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-        android:layout_width="431dp"
-        android:layout_height="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SP_MS_myJobsTXT"
-        app:layout_constraintVertical_bias="0.081">
-
-        <RadioButton
-            android:id="@+id/work_in_progress"
-            android:layout_width="214dp"
-            android:layout_height="24dp"
-            android:background="@drawable/radio_selected"
-            android:button="@drawable/selected"
-            android:fontFamily="@font/light"
-            android:text="Work in progress"
-            android:textAlignment="center"
-            android:textColor="@drawable/text_selected"
-            android:textSize="15sp"></RadioButton>
-
-        <RadioButton
-            android:id="@+id/post_work"
-            android:layout_width="214dp"
-            android:layout_height="24dp"
-            android:background="@drawable/radio_selected"
-            android:button="@drawable/selected"
-            android:fontFamily="@font/light"
-            android:text="Post Jobs"
-            android:textAlignment="center"
-            android:textColor="@drawable/text_selected"
-            android:textSize="15sp"></RadioButton>
-    </RadioGroup>
-
-    <RadioGroup
+        android:id="@+id/radioGroup2"
         android:layout_width="260dp"
         android:layout_height="37dp"
         android:background="@drawable/sp_jobs_messeges"
@@ -94,31 +47,38 @@
         app:layout_constraintVertical_bias="0.92">
 
         <RadioButton
-            android:id="@+id/SP_MS_Jobs"
+            android:id="@+id/SP_MS_jobsBtn"
             android:layout_width="wrap_content"
             android:layout_height="37dp"
+            android:layout_gravity="center"
+            android:background="@drawable/sp_jobs_messeges_selector"
             android:button="@drawable/jobs"
-            android:background="@drawable/sp_jobs_messeges_selector"
-            android:layout_gravity="center" />
+            android:checked="true"
+            android:onClick="ChangeFragment" />
+
         <RadioButton
-            android:id="@+id/SP_MS_msgs"
+            android:id="@+id/SP_MS_msgsBtn"
             android:layout_width="wrap_content"
             android:layout_height="37dp"
-            android:button="@drawable/message"
+            android:layout_gravity="center"
             android:background="@drawable/sp_jobs_messeges_selector"
-            android:layout_gravity="center"/>
+            android:button="@drawable/message"
+            android:onClick="ChangeFragment" />
 
 
     </RadioGroup>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
 
-
+    <fragment
+        android:id="@+id/SP_MS_fragment"
+        android:name="uk.ac.tees.w9336459.servicehub.SP_MS_JobsFragment"
+        android:layout_width="426dp"
+        android:layout_height="676dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_MS_profile_image" />
 
 
 

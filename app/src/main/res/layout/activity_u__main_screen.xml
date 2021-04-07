@@ -233,13 +233,5 @@
         </LinearLayout>
     </ScrollView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/result_list"
-        android:layout_width="match_parent"
-        android:layout_height="87dp"
-        android:layout_below="@+id/U_Ms_search"
-        android:visibility="gone"
-        tools:layout_editor_absoluteX="90dp"
-        tools:layout_editor_absoluteY="24dp"
-        tools:listitem="@layout/list_layout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
