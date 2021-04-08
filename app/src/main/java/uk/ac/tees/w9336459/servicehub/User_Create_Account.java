@@ -69,6 +69,7 @@ public class User_Create_Account extends AppCompatActivity {
 
         loginhome.setOnClickListener((v)->
         {
+
             rootNode = FirebaseDatabase.getInstance();
             reference = rootNode.getReference("Users");
 
@@ -130,21 +131,31 @@ public class User_Create_Account extends AppCompatActivity {
                 mAuth.createUserWithEmailAndPassword(reg_email.getText().toString(),reg_password.getText().toString()).addOnCompleteListener(User_Create_Account.this,new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        String ext = "";
+                        String ext_check="";
+                        String newNum = "";
+
                         if(task.isSuccessful()){
                             Toast.makeText(User_Create_Account.this,"Validation Successful",Toast.LENGTH_LONG).show();
                             String new_email = "";
-                            String name =  reg_f_name.getText().toString() + " " + reg_l_name.getText().toString();
-                            if(reg_email.getText().toString().contains(".com")){
+                            String Name =  reg_f_name.getText().toString() + " " + reg_l_name.getText().toString();
+                            int index_check = reg_email.getText().toString().lastIndexOf(".");
+                            ext_check = reg_email.getText().toString().substring(index_check, index_check+3);
+                            if (reg_email.getText().toString().contains(ext_check)) {
 
-                                int index = reg_email.getText().toString().indexOf(".");
-                                new_email = reg_email.getText().toString().substring(0,index);
+                                int index = reg_email.getText().toString().lastIndexOf(".");
+                                new_email = reg_email.getText().toString().substring(0, index);
+                                ext = reg_email.getText().toString().substring(index);
                             }
-                            String email = new_email.concat(".com");
-                            String number = reg_mobile.getText().toString();
-                            String address = reg_address1.getText().toString();
+                            String Email = new_email.concat(ext);
+                            if(reg_mobile.getText().toString().startsWith("0")) {
+                                newNum = reg_mobile.getText().toString().substring(1);
+                            }
+                            String Number = newNum;
+                            String Address = reg_address1.getText().toString();
                             String Postcode = reg_postcode.getText().toString();
-                            UserAccountHelper helperClass = new UserAccountHelper(name, email, address,Postcode);
-                            reference.child("Details").child(number).setValue(helperClass);
+                            UserAccountHelper helperClass = new UserAccountHelper(Name, Number , Address ,Postcode , Email);
+                            reference.child("Details").child(Number).setValue(helperClass);
                             Intent a = new Intent(User_Create_Account.this, User_VerifyID_Screen.class);
                             startActivity(a);
                         }else{

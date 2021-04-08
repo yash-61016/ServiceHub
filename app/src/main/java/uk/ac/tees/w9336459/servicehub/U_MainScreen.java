@@ -12,18 +12,28 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import uk.ac.tees.w9336459.servicehub.User_Create_Account.*;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import uk.ac.tees.w9336459.servicehub.Tiles.electronic_tile;
@@ -40,15 +50,11 @@ public class U_MainScreen extends AppCompatActivity {
     TextView Name, title;
     Button Er_bt , hs_bt, hos_bt, mbt, p_and_ebt,ps_bt , ms_bt;
     ImageView profile_btn;
-
-
-
     private EditText mSearchField;
     private ImageButton mSearchBtn;
 
     private RecyclerView mResultList;
 
-    private  FirebaseDatabase database;
     private DatabaseReference mServiceProviderDatabse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +68,6 @@ public class U_MainScreen extends AppCompatActivity {
         layout = findViewById(R.id.layout_grid);
         Name = findViewById(R.id.U_Ms_name);
         title = findViewById(R.id.U_Ms_title);
-
-
 
         Er_bt = findViewById(R.id.U_Ms_ElectronicRepairs);
         hs_bt = findViewById(R.id.U_Ms_Health);
@@ -112,13 +116,32 @@ public class U_MainScreen extends AppCompatActivity {
             startActivity(i);
         });
 
+
+
+        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        String uid=user.getUid();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child("Details").child(uid).child("name");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Read from the database
+                    String value = dataSnapshot.getValue(String.class);
+                    Name.setText(value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         mServiceProviderDatabse = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
 
-
-        mSearchField = (EditText) findViewById(R.id.U_Ms_search);
-        mSearchBtn = (ImageButton) findViewById(R.id.search_btn);
-
-        mResultList = (RecyclerView) findViewById(R.id.result);
+        mSearchField = findViewById(R.id.U_Ms_search);
+        mSearchBtn = findViewById(R.id.search_btn);
+        mResultList = findViewById(R.id.result);
         mResultList.setHasFixedSize(true);
         mResultList.setLayoutManager(new LinearLayoutManager(this));
 
@@ -187,9 +210,9 @@ public class U_MainScreen extends AppCompatActivity {
 
         public void setDetails(Context ctx, ArrayList<String> serviceProviderName, ArrayList<String> serviceProvider_Skills, ArrayList<String> serviceProviderProfilePicture){
 
-            TextView serviceProvider_name = (TextView) mView.findViewById(R.id.name_text);
-            TextView serviceProvider_skills = (TextView) mView.findViewById(R.id.skills_text);
-            CircleImageView serviceProvider_profilePicture = (CircleImageView) mView.findViewById(R.id.profile_picture);
+            TextView serviceProvider_name = mView.findViewById(R.id.name_text);
+            TextView serviceProvider_skills = mView.findViewById(R.id.skills_text);
+            CircleImageView serviceProvider_profilePicture = mView.findViewById(R.id.profile_picture);
 
 
             serviceProvider_name.setText((CharSequence) serviceProviderName);
@@ -202,5 +225,8 @@ public class U_MainScreen extends AppCompatActivity {
 
         }
 
+
     }
+
+
 }

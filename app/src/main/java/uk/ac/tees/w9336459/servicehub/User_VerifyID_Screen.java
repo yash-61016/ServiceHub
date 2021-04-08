@@ -60,6 +60,8 @@ public class User_VerifyID_Screen extends AppCompatActivity {
         this.edtPhone.setText(User_Create_Account.reg_mobile.getText().toString());
 
 
+
+
         // setting onclick listner for generate OTP button.
         generateOTPBtn1.setOnClickListener(v -> {
 
@@ -107,7 +109,7 @@ public class User_VerifyID_Screen extends AppCompatActivity {
                         // if the code is correct and the task is successful
                         // we are sending our user to new activity.
 
-                        Intent i = new Intent(User_VerifyID_Screen.this, U_MainScreen.class);
+                        Intent i = new Intent(User_VerifyID_Screen.this, User_Login.class);
                         startActivity(i);
                         finish();
 

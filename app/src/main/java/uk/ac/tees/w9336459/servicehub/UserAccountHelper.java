@@ -1,69 +1,59 @@
 package uk.ac.tees.w9336459.servicehub;
 
 public class UserAccountHelper {
-    String name;
-    String number;
-    String address;
-    String postcode;
-    String email;
-
-    public String getPostcode() {
-        return postcode;
-    }
-
-    public void setPostcde(String postcode) {
-        this.postcode = postcode;
-    }
-
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-
-    public String getName() {
-        return name;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
+    String Name, Number , Address ,Postcode , Email;
 
 
     public UserAccountHelper() {
 
     }
-    public UserAccountHelper(String name,String email, String address,String Postcode) {
-        this.name = name;
-        this.address = address;
-        this.postcode = Postcode;
-        this.email = email;
 
+    public String getName() {
+        return Name;
+    }
+
+    public String getNumber() {
+        return Number;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public String getPostcode() {
+        return Postcode;
+    }
+
+    public String getEmail() {
+        return Email;
     }
 
 
+    public void setName(String Name) {
+        this.Name = Name;
+    }
 
+    public void setNumber(String Number) {
+        this.Number = Number;
+    }
+
+    public void setAddress(String Address) {
+        this.Address = Address;
+    }
+
+    public void setPostcode(String PostCode) {
+        this.Postcode = PostCode;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
+    public UserAccountHelper(String Name, String Number, String Address, String PostCode, String Email) {
+        this.Name = Name;
+        this.Number = Number;
+        this.Address = Address;
+        this.Postcode = PostCode;
+        this.Email = Email;
+    }
 }

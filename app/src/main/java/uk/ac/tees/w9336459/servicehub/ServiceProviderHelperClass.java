@@ -1,79 +1,76 @@
 package uk.ac.tees.w9336459.servicehub;
 
 public class ServiceProviderHelperClass {
-    String name,mobileNumber,address,email,accountNumber,sortCode,postcode;
+    String Name,Number,Address,Email,AccountNumber,SortCode,Postcode;
 
     public ServiceProviderHelperClass() {
     }
 
-    public ServiceProviderHelperClass(String name,String email, String address, String PostCode, String accountNumber, String sortCode) {
-
-        this.mobileNumber = mobileNumber;
-        this.address = address;
-        this.postcode = PostCode;
-        this.email = email;
-        this.accountNumber = accountNumber;
-        this.sortCode = sortCode;
-
-    }
-
-
-    public String getPostcode() {
-        return postcode;
-    }
-
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
+    public ServiceProviderHelperClass(String name, String number,
+                                      String address, String email, String accountNumber,
+                                      String sortCode, String postcode) {
+        Name = name;
+        Number = number;
+        Address = address;
+        Email = email;
+        AccountNumber = accountNumber;
+        SortCode = sortCode;
+        Postcode = postcode;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
-    public String getMobileNumber() {
-        return mobileNumber;
+    public String getNumber() {
+        return Number;
     }
 
     public String getAddress() {
-        return address;
+        return Address;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public String getAccountNumber() {
-        return accountNumber;
+        return AccountNumber;
     }
 
     public String getSortCode() {
-        return sortCode;
+        return SortCode;
     }
 
+    public String getPostcode() {
+        return Postcode;
+    }
 
     public void setName(String name) {
-        this.name = name;
+        Name = name;
     }
 
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
+    public void setNumber(String number) {
+        Number = number;
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        Address = address;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        Email = email;
     }
 
     public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
+        AccountNumber = accountNumber;
     }
 
     public void setSortCode(String sortCode) {
-        this.sortCode = sortCode;
+        SortCode = sortCode;
     }
 
-
+    public void setPostcode(String postcode) {
+        Postcode = postcode;
+    }
 }

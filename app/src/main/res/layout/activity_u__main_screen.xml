@@ -46,8 +46,8 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="266dp"
         android:fontFamily="@font/bold"
-
-        android:text="Hey Joe,"
+        android:hint="Hey Joe,"
+        android:textColorHint="@color/Grey"
         android:textColor="@color/black"
         android:textSize="26sp"
         app:layout_constraintBottom_toTopOf="@+id/U_Ms_title"
