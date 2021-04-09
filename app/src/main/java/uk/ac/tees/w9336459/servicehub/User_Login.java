@@ -65,7 +65,7 @@ public class User_Login extends AppCompatActivity {
             if (mFbuser != null) {
                 Toast.makeText(User_Login.this, "You are logged in!!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(User_Login.this, U_MainScreen.class);
-                i.putExtra("name", name);
+
                 startActivity(i);
             } else {
                 Toast.makeText(User_Login.this, "Please Login", Toast.LENGTH_SHORT).show();
@@ -99,7 +99,7 @@ public class User_Login extends AppCompatActivity {
 
                         Toast.makeText(User_Login.this, "Logged In Successfully!!", Toast.LENGTH_SHORT).show();
                         Intent intToHome = new Intent(getApplicationContext(), U_MainScreen.class);
-                        intToHome.putExtra("name", name);
+
                         startActivity(intToHome);
                         finishActivity(0);
 

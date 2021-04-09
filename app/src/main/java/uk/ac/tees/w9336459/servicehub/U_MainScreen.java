@@ -119,8 +119,9 @@ public class U_MainScreen extends AppCompatActivity {
 
 
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-        String uid=user.getUid();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child("Details").child(uid).child("name");
+        String EmailChildID = decodeUserEmail(user.getEmail());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child("Details").child(EmailChildID).child("name");
+        Toast.makeText(U_MainScreen.this, "Login Successful", Toast.LENGTH_LONG).show();
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -226,6 +227,9 @@ public class U_MainScreen extends AppCompatActivity {
         }
 
 
+    }
+    static String decodeUserEmail(String userEmail) {
+        return userEmail.replace(".", ",");
     }
 
 

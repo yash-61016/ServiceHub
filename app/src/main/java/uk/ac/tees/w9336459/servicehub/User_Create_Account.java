@@ -155,7 +155,8 @@ public class User_Create_Account extends AppCompatActivity {
                             String Address = reg_address1.getText().toString();
                             String Postcode = reg_postcode.getText().toString();
                             UserAccountHelper helperClass = new UserAccountHelper(Name, Number , Address ,Postcode , Email);
-                            reference.child("Details").child(Number).setValue(helperClass);
+                            String EmailChildID = encodeUserEmail(Email);
+                            reference.child("Details").child(EmailChildID).setValue(helperClass);
                             Intent a = new Intent(User_Create_Account.this, User_VerifyID_Screen.class);
                             startActivity(a);
                         }else{
@@ -174,5 +175,8 @@ public class User_Create_Account extends AppCompatActivity {
         });
     }
 
+    static String encodeUserEmail(String userEmail) {
+        return userEmail.replace(".", ",");
+    }
 
 }
