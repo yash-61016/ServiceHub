@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:src="@mipmap/person_four" />
+        android:src="@drawable/avatar" />
 
     <TextView
         android:id="@+id/name_text"

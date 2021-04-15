@@ -1,20 +1,22 @@
 package uk.ac.tees.w9336459.servicehub.Model;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * Created by AkshayeJH on 15/12/17.
  */
 
 public class Users {
 
-    public String name, image, skills;
+    public String name, profilepicture, skills;
 
     public Users() {
 
     }
 
-    public Users(String name, String image, String skills) {
+    public Users(String name, String profile_picture, String skills) {
         this.name = name;
-        this.image = image;
+        this.profilepicture = profile_picture;
         this.skills = skills;
     }
 
@@ -26,12 +28,12 @@ public class Users {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getProfilepicture() {
+        return profilepicture;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setProfilepicture(String profile_picture) {
+        this.profilepicture = profile_picture;
     }
 
     public String getSkills() {

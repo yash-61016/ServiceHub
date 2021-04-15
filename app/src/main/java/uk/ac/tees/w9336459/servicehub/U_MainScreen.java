@@ -1,6 +1,8 @@
 package uk.ac.tees.w9336459.servicehub;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.graphics.drawable.Drawable;
@@ -24,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +38,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.core.Context;
 import com.squareup.picasso.Picasso;
 
 
@@ -63,6 +65,7 @@ public class U_MainScreen extends AppCompatActivity {
     static private CircleImageView profileimageview;
     private DatabaseReference mServiceProviderDatabse, mref;
     private FirebaseAuth mAuth;
+    private Query firebasequery;
 
 
     @Override
@@ -128,21 +131,20 @@ public class U_MainScreen extends AppCompatActivity {
         });
 
 
-        searchtext = findViewById(R.id.U_Ms_search);
-        mSearchBtn = (ImageButton) findViewById(R.id.search_btn);
 
+        searchtext = (EditText)findViewById(R.id.U_Ms_search);
+        mSearchBtn = (ImageButton) findViewById(R.id.search_btn);
         mResultList = (RecyclerView) findViewById(R.id.result_list);
         mResultList.setHasFixedSize(true);
-
         mResultList.setLayoutManager(new LinearLayoutManager(this));
-
         mSearchBtn.setOnClickListener(view -> {
 
-            String searchText = searchtext.getText().toString();
+
+
 
             mResultList.setVisibility(View.VISIBLE);
             sc.setVisibility(View.INVISIBLE);
-            firebaseUserSearch(searchText);
+            firebaseUserSearch(searchtext.getText().toString());
 
 
         });
@@ -175,10 +177,9 @@ public class U_MainScreen extends AppCompatActivity {
             }
         });
 
+       // mServiceProviderDatabse = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
+
     }
-
-
-
 
 
 
@@ -189,16 +190,38 @@ public class U_MainScreen extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(U_MainScreen.this);
+        builder.setMessage("Do you want to exit ?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                moveTaskToBack(true);
+            }
+        });
+        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.cancel();
+            }
+
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+
     }
 
 
     // View Holder Class
     public void firebaseUserSearch(String searchText) {
         Toast.makeText(U_MainScreen.this, "Started Search", Toast.LENGTH_LONG).show();
-
-        mServiceProviderDatabse = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
-
+      //  Query firebasequery = mServiceProviderDatabse.orderByChild("name").startAt(searchText).endAt(searchText+"\uf8ff");
+        mServiceProviderDatabse = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("name").equalTo(String.valueOf(searchText.toLowerCase()));
         FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, UsersViewHolder>(
 
                 Users.class,
@@ -209,7 +232,10 @@ public class U_MainScreen extends AppCompatActivity {
         ) {
             @Override
             protected void populateViewHolder(UsersViewHolder usersViewHolder, Users users, int i) {
-                usersViewHolder.setDetails(users.getName(), users.getSkills(), users.getImage());
+                if(users.getProfilepicture()==null){
+                    users.setProfilepicture("@drawable/avatar");
+                }
+                usersViewHolder.setDetails(users.getName(), users.getSkills(), users.getProfilepicture());
             }
         };
 
@@ -224,7 +250,7 @@ public class U_MainScreen extends AppCompatActivity {
             mView = itemView;
         }
 
-        public void setDetails(String userName, String userStatus, String userImage) {
+        public void setDetails( String userName, String userStatus, String userImage) {
 
             TextView user_name = (TextView) mView.findViewById(R.id.name_text);
             TextView user_skills = (TextView) mView.findViewById(R.id.skills_text);
