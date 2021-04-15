@@ -50,7 +50,6 @@ public class User_VerifyID_Screen extends AppCompatActivity {
         // of our FirebaseAuth.
         mAuth = FirebaseAuth.getInstance();
 
-
         // initializing variables for button and Edittext.
         edtPhone = findViewById(R.id.U_NAV_entenumber);
         edtOTP1 = findViewById(R.id.U_NAV_NumberSendCode1);
@@ -91,9 +90,11 @@ public class User_VerifyID_Screen extends AppCompatActivity {
                     // a message to user to enter OTP
                     Toast.makeText(User_VerifyID_Screen.this, "Please enter OTP", Toast.LENGTH_SHORT).show();
                 } else {
+                    // check if email verified
                     // if OTP field is not empty calling
                     // method to verify the OTP.
                     verifyCode(edtOTP1.getText().toString());
+
                 }
             }
             
@@ -194,5 +195,10 @@ public class User_VerifyID_Screen extends AppCompatActivity {
             // calling sign in method.
             signInWithCredential(credential);
         }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 
 }

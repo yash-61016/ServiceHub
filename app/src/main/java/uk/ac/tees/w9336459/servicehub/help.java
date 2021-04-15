@@ -42,4 +42,6 @@ public class help extends AppCompatActivity {
         versionsList.add(new Versions("refund policy","on cancellation of a request ,refund will be initiated and payment may take 5 to 7 working days"));
         versionsList.add(new Versions("how to pay` for the service?","you can by cash or by mobile transfer to the service provider after the service"));
     }
+
+
 }

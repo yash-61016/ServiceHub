@@ -3,6 +3,9 @@ package uk.ac.tees.w9336459.servicehub;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -44,10 +47,12 @@ public class User_Create_Account extends AppCompatActivity {
     TextInputEditText reg_postcode;
     Button loginhome;
     TextView goTo_Login;
+    ProgressDialog pd;
 
     FirebaseAuth mAuth;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +72,14 @@ public class User_Create_Account extends AppCompatActivity {
         reg_password = findViewById(R.id.U_CA_Password);
         reg_v_password = findViewById(R.id.U_CA_VerifyPassword);
 
+        pd = new ProgressDialog(this);
+        pd.setTitle("Loading");
+        pd.setMessage("Please wait......");
+
+
         loginhome.setOnClickListener((v)->
         {
-
+            pd.show();// progress bar
             rootNode = FirebaseDatabase.getInstance();
             reference = rootNode.getReference("Users");
 
@@ -110,8 +120,9 @@ public class User_Create_Account extends AppCompatActivity {
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
                 reg_password.setBackground(dr);
+
             }else if(  reg_v_password.length()<=7||!(reg_v_password.getText().toString().matches("(.*[0-9].*)"))
-                    ||!(reg_v_password.getText().toString().matches("(.*[A-Z].*)"))) {
+                    ||!(reg_v_password.getText().toString().matches("(.*[A-Z].*)"))||!reg_v_password.getText().toString().matches(reg_password.getText().toString())) {
                 reg_v_password.requestFocus();
                 reg_v_password.setError("FIELD CANNOT BE EMPTY/ 8 characters in length, 1 Uppercase Letter,1 Lowercase Letter, 1 Number, and no symbols");
                 Resources res = getResources();
@@ -128,40 +139,52 @@ public class User_Create_Account extends AppCompatActivity {
             else
             {
 
-                mAuth.createUserWithEmailAndPassword(reg_email.getText().toString(),reg_password.getText().toString()).addOnCompleteListener(User_Create_Account.this,new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        String ext = "";
-                        String ext_check="";
-                        String newNum = "";
 
-                        if(task.isSuccessful()){
-                            Toast.makeText(User_Create_Account.this,"Validation Successful",Toast.LENGTH_LONG).show();
-                            String new_email = "";
-                            String Name =  reg_f_name.getText().toString() + " " + reg_l_name.getText().toString();
-                            int index_check = reg_email.getText().toString().lastIndexOf(".");
-                            ext_check = reg_email.getText().toString().substring(index_check, index_check+3);
-                            if (reg_email.getText().toString().contains(ext_check)) {
+                mAuth.createUserWithEmailAndPassword(reg_email.getText().toString(),reg_password.getText().toString()).addOnCompleteListener(User_Create_Account.this, task -> {
+                    String ext = "";
+                    String ext_check="";
+                    String newNum = "";
+                    pd.hide();
+                    if(task.isSuccessful()){
 
-                                int index = reg_email.getText().toString().lastIndexOf(".");
-                                new_email = reg_email.getText().toString().substring(0, index);
-                                ext = reg_email.getText().toString().substring(index);
-                            }
-                            String Email = new_email.concat(ext);
-                            if(reg_mobile.getText().toString().startsWith("0")) {
-                                newNum = reg_mobile.getText().toString().substring(1);
-                            }
-                            String Number = newNum;
-                            String Address = reg_address1.getText().toString();
-                            String Postcode = reg_postcode.getText().toString();
-                            UserAccountHelper helperClass = new UserAccountHelper(Name, Number , Address ,Postcode , Email);
-                            String EmailChildID = encodeUserEmail(Email);
-                            reference.child("Details").child(EmailChildID).setValue(helperClass);
-                            Intent a = new Intent(User_Create_Account.this, User_VerifyID_Screen.class);
-                            startActivity(a);
-                        }else{
-                            Toast.makeText(User_Create_Account.this,"Error Occured!!Signup Unsuccessful",Toast.LENGTH_LONG).show();
+                        String new_email = "";
+                        String Name =  reg_f_name.getText().toString() + " " + reg_l_name.getText().toString();
+                        int index_check = reg_email.getText().toString().lastIndexOf(".");
+                        ext_check = reg_email.getText().toString().substring(index_check, index_check+3);
+                        if (reg_email.getText().toString().contains(ext_check)) {
+
+                            int index = reg_email.getText().toString().lastIndexOf(".");
+                            new_email = reg_email.getText().toString().substring(0, index);
+                            ext = reg_email.getText().toString().substring(index);
                         }
+                        String Email = new_email.concat(ext);
+                        if(reg_mobile.getText().toString().startsWith("0")) {
+                            newNum = reg_mobile.getText().toString().substring(1);
+                        }
+                        String Number = newNum;
+                        String Address = reg_address1.getText().toString();
+                        String Postcode = reg_postcode.getText().toString();
+                        UserAccountHelper helperClass = new UserAccountHelper(Name, Number , Address ,Postcode , Email);
+                        String EmailChildID = encodeUserEmail(Email);
+                        reference.child("Details").child(EmailChildID).setValue(helperClass);
+
+                        mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()) {
+                                    Toast.makeText(User_Create_Account.this, "User Registered Successfully, Please verify Email!!!", Toast.LENGTH_LONG).show();
+
+                                    Intent a = new Intent(User_Create_Account.this, User_VerifyID_Screen.class);
+                                    startActivity(a);
+                                }else{
+                                    Toast.makeText(User_Create_Account.this,"Error Occured!!Signup Unsuccessful",Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+
+
+                    }else{
+                        Toast.makeText(User_Create_Account.this,"Error Occured!!Signup Unsuccessful",Toast.LENGTH_LONG).show();
                     }
                 });
             }

@@ -4,67 +4,91 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.app.ProgressDialog;
 import android.content.Intent;
+
 import android.graphics.Bitmap;
-import android.graphics.Path;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
-import android.view.View;
+
+import android.util.Base64;
+import android.util.LruCache;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.snackbar.Snackbar;
+
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+import com.google.firebase.storage.StorageTask;
+import com.squareup.picasso.Picasso;
+import com.theartofdev.edmodo.cropper.CropImage;
 
+
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.UUID;
+import java.util.HashMap;
+import java.util.concurrent.ThreadPoolExecutor;
 
-import static com.google.android.material.internal.ContextUtils.getActivity;
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class profile extends AppCompatActivity {
-    int SELECT_PHOTO=1;
-    Uri uri;
-    ImageView imageView , rollback;
-    Button Log_out;
-    private FirebaseStorage storage;
-    private StorageReference myref;
+
+    static private CircleImageView profileimageview , createimage;
+    private Button details ,Log_out , wallet;
+    private TextView profilename;
+
+    private  DatabaseReference mref;
+    private FirebaseAuth mAuth;
+
+    private Uri uri;
+    private String myUri = "",  email = "";
+
+    private StorageTask uploadtask;
+    private StorageReference strProfileRef;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        imageView=findViewById(R.id.circle_image);
-        rollback = findViewById(R.id.roll_back);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        email = U_MainScreen.decodeUserEmail(user.getEmail());
+        mAuth = FirebaseAuth.getInstance();
+        mref = FirebaseDatabase.getInstance().getReference().child("Users").child("Details");
+        strProfileRef = FirebaseStorage.getInstance().getReference().child("Profile Pic");
+
+        profileimageview =  findViewById(R.id.circle_image);
+        profilename = findViewById(R.id.ProfileName);
+        createimage = findViewById(R.id.changeimage);
+        details = findViewById(R.id.Details);
         Log_out = findViewById(R.id.logout);
 
-        storage = FirebaseStorage.getInstance();
-        myref = storage.getReference();
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent,SELECT_PHOTO);
-                finish();
-            }
+        createimage.setOnClickListener((v)->{
+            uploadProfileImage();
+            CropImage.activity().setAspectRatio(1,1).start(profile.this);
+
+
         });
 
-        rollback.setOnClickListener((V)->{
-            Intent i = new Intent(profile.this,U_MainScreen.class );
-            startActivity(i);
-            finish();
-        });
 
         Log_out.setOnClickListener((V)->{
 
@@ -72,48 +96,99 @@ public class profile extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), UserSignUp.class));
             getParent().finish();
 
+
+        });
+
+        details.setOnClickListener((v)->{
+
+            Intent User_details = new Intent(profile.this, User_Details.class);
+            startActivity(User_details);
+            getParent().finish();
+        });
+
+        getUserinfo();
+
+    }
+
+    private void getUserinfo() {
+        mref.child(email).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists() && snapshot.getChildrenCount()>0){
+                    String name = snapshot.child("name").getValue(String.class);
+                    profilename.setText(name);
+
+                    if(snapshot.hasChild("image")){
+                        String image = snapshot.child("image").getValue().toString();
+                        Picasso.get().load(image).into(profileimageview);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==SELECT_PHOTO && resultCode==RESULT_OK && data!=null && data.getData()!=null ){
-            uri=data.getData();
-            try {
-                Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-                imageView.setImageBitmap(bitmap);
-                UploadPicture();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data!= null)
+        {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            uri = result.getUri();
+
+            profileimageview.setImageURI(uri);
+        }else{
+            Toast.makeText(profile.this,"Error Loading the Image!! , Try Again!", Toast.LENGTH_LONG).show();
         }
     }
 
-    private void UploadPicture() {
+    private void uploadProfileImage() {
+
         final ProgressDialog pd = new ProgressDialog(this);
-        pd.setTitle("Uploading Image.....");
+        pd.setTitle("Set your profile");
+        pd.setMessage("Please wait, while we are setting your data...");
         pd.show();
 
-        final String randamkey = UUID.randomUUID().toString();
-        StorageReference ref = myref.child("image/"+ randamkey);
+        if(uri != null){
+           final StorageReference fileRef = strProfileRef
+           .child(mAuth.getCurrentUser().getUid()+".jpg");
 
-        ref.putFile(uri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Snackbar.make(findViewById(android.R.id.content), "Image Uploaded..",Snackbar.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
+           uploadtask = fileRef.putFile(uri);
 
-                        Toast.makeText(getApplicationContext(),"Failed to upload", Toast.LENGTH_SHORT).show();
-                    }
-                });
+           uploadtask.continueWithTask(new Continuation() {
+               @Override
+               public Object then(@NonNull Task task) throws Exception {
+                   if(!task.isSuccessful()){
+                       throw  task.getException();
+                   }
+                   return fileRef.getDownloadUrl();
+               }
+           }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+               @Override
+               public void onComplete(@NonNull Task<Uri> task) {
+                   if (task.isSuccessful()){
+                       Uri downloadUrl = task.getResult();
+                       myUri = downloadUrl.toString();
 
+                       HashMap<String, Object> userMap = new HashMap<>();
+                       userMap.put("image",myUri);
+
+                       mref.child(email).updateChildren(userMap);
+
+                       pd.dismiss();
+
+                   }
+               }
+           });
+        }else{
+            pd.dismiss();
+            Toast.makeText(this, "Image not selected", Toast.LENGTH_SHORT).show();
+        }
     }
+
 }

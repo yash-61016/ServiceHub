@@ -67,6 +67,7 @@ public class User_Login extends AppCompatActivity {
                 Intent i = new Intent(User_Login.this, U_MainScreen.class);
 
                 startActivity(i);
+                finishActivity(1);
             } else {
                 Toast.makeText(User_Login.this, "Please Login", Toast.LENGTH_SHORT).show();
             }
@@ -95,13 +96,15 @@ public class User_Login extends AppCompatActivity {
 
                 mAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(User_Login.this, task -> {
                     if (task.isSuccessful()) {
-
-
-                        Toast.makeText(User_Login.this, "Logged In Successfully!!", Toast.LENGTH_SHORT).show();
-                        Intent intToHome = new Intent(getApplicationContext(), U_MainScreen.class);
-
-                        startActivity(intToHome);
-                        finishActivity(0);
+                        if(mAuth.getCurrentUser().isEmailVerified()) {
+                            Toast.makeText(User_Login.this, "Logged In Successfully!!", Toast.LENGTH_SHORT).show();
+                            Intent intToHome = new Intent(getApplicationContext(), U_MainScreen.class);
+                            startActivity(intToHome);
+                            finishActivity(1);
+                        }else{
+                            Toast.makeText(User_Login.this, "Logged In Failed!! Email not verified", Toast.LENGTH_SHORT).show();
+                            mAuth.getCurrentUser().sendEmailVerification();
+                        }
 
                     } else {
                         Toast.makeText(User_Login.this, "Error Occured! Please Login Again!!"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();

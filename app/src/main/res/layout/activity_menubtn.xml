@@ -74,13 +74,25 @@
             android:textSize="25sp" />
 
         <Button
+            android:id="@+id/U_M_contactUs"
+
+            android:layout_width="211dp"
+            android:layout_height="71dp"
+            android:layout_gravity="start"
+            android:background="#00000000"
+            android:paddingStart="25sp"
+            android:text="Contact Us"
+            android:textSize="25sp" />
+
+        <Button
             android:id="@+id/U_M_help"
             android:layout_width="165dp"
             android:layout_height="78dp"
             android:layout_gravity="start"
             android:background="#00000000"
             android:text="help"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            />
 
     </LinearLayout>
 </LinearLayout>
