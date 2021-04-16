@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.database.CursorJoiner;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +33,7 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +46,9 @@ import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.lang.reflect.Member;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import uk.ac.tees.w9336459.servicehub.Model.Users;
@@ -74,7 +80,7 @@ public class U_MainScreen extends AppCompatActivity {
         setContentView(R.layout.activity_u__main_screen);
 
 
-        ;
+        mServiceProviderDatabse = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Profile");
 
         sc = findViewById(R.id.Scroll);
         sc.setVerticalScrollBarEnabled(true);
@@ -144,7 +150,7 @@ public class U_MainScreen extends AppCompatActivity {
 
             mResultList.setVisibility(View.VISIBLE);
             sc.setVisibility(View.INVISIBLE);
-            firebaseUserSearch(searchtext.getText().toString());
+            firebaseUserSearch(searchtext.getText().toString().toLowerCase());
 
 
         });
@@ -221,25 +227,25 @@ public class U_MainScreen extends AppCompatActivity {
     public void firebaseUserSearch(String searchText) {
         Toast.makeText(U_MainScreen.this, "Started Search", Toast.LENGTH_LONG).show();
       //  Query firebasequery = mServiceProviderDatabse.orderByChild("name").startAt(searchText).endAt(searchText+"\uf8ff");
-        mServiceProviderDatabse = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("name").equalTo(String.valueOf(searchText.toLowerCase()));
-        FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, UsersViewHolder>(
 
-                Users.class,
-                R.layout.list_layout,
-                UsersViewHolder.class,
-                mServiceProviderDatabse
+        Query fbq = mServiceProviderDatabse.orderByChild("name").startAt(searchText).endAt(searchText+'\uf8ff');
 
-        ) {
-            @Override
-            protected void populateViewHolder(UsersViewHolder usersViewHolder, Users users, int i) {
-                if(users.getProfilepicture()==null){
-                    users.setProfilepicture("@drawable/avatar");
+            FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, UsersViewHolder>(
+
+                    Users.class,
+                    R.layout.list_layout,
+                    UsersViewHolder.class,
+                    fbq
+
+            ) {
+                @Override
+                protected void populateViewHolder(UsersViewHolder usersViewHolder, Users users, int i) {
+
+                    usersViewHolder.setDetails(users.getName(), users.getSkills(), users.getProfilepicture());
                 }
-                usersViewHolder.setDetails(users.getName(), users.getSkills(), users.getProfilepicture());
-            }
-        };
+            };
 
-        mResultList.setAdapter(firebaseRecyclerAdapter);
+            mResultList.setAdapter(firebaseRecyclerAdapter);
     }
 
     public static class UsersViewHolder extends RecyclerView.ViewHolder {

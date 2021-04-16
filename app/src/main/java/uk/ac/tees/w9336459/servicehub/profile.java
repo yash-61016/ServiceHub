@@ -5,7 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
@@ -15,6 +17,7 @@ import android.provider.MediaStore;
 
 import android.util.Base64;
 import android.util.LruCache;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -92,12 +95,36 @@ public class profile extends AppCompatActivity {
 
         Log_out.setOnClickListener((V)->{
 
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(getApplicationContext(), UserSignUp.class));
-            getParent().finish();
+            final AlertDialog.Builder builder=new AlertDialog.Builder(profile.this);
+            builder.setMessage("Do you want to Logout ?");
+            builder.setCancelable(true);
+            builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent=new Intent(profile.this,User_Login.class);
+                    startActivity(intent);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                }
+            });
+            builder.setPositiveButton("No",new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialogInterface,int i){
+
+                    dialogInterface.cancel();
+                }
+
+            });
+
+            AlertDialog alertDialog=builder.create();
+            alertDialog.show();
 
 
         });
+
+
 
         details.setOnClickListener((v)->{
 
