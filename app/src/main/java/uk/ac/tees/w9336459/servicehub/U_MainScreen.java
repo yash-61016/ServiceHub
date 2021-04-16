@@ -145,12 +145,9 @@ public class U_MainScreen extends AppCompatActivity {
         mResultList.setLayoutManager(new LinearLayoutManager(this));
         mSearchBtn.setOnClickListener(view -> {
 
-
-
-
             mResultList.setVisibility(View.VISIBLE);
             sc.setVisibility(View.INVISIBLE);
-            firebaseUserSearch(searchtext.getText().toString().toLowerCase());
+            firebaseUserSearch(searchtext.getText().toString().toUpperCase());
 
 
         });
@@ -228,7 +225,7 @@ public class U_MainScreen extends AppCompatActivity {
         Toast.makeText(U_MainScreen.this, "Started Search", Toast.LENGTH_LONG).show();
       //  Query firebasequery = mServiceProviderDatabse.orderByChild("name").startAt(searchText).endAt(searchText+"\uf8ff");
 
-        Query fbq = mServiceProviderDatabse.orderByChild("name").startAt(searchText).endAt(searchText+'\uf8ff');
+        Query fbq = mServiceProviderDatabse.orderByChild("skills").startAt(searchText).endAt(searchText+'\uf8ff');
 
             FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, UsersViewHolder>(
 
