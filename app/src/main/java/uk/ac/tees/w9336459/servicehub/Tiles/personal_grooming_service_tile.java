@@ -14,7 +14,7 @@ import uk.ac.tees.w9336459.servicehub.R;
 public class personal_grooming_service_tile extends AppCompatActivity {
 
     ImageView titleImage;
-    static ImageButton hairs, massage, manicure, facial_makeup;
+    static ImageButton hairsdresser, massage, manicure, facial_makeup;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -23,33 +23,40 @@ public class personal_grooming_service_tile extends AppCompatActivity {
         setContentView(R.layout.activity_personal_grooming_service_tile);
         titleImage = findViewById(R.id.TitleImage);
 
-        hairs = findViewById(R.id.hair_dressing);
+        hairsdresser = findViewById(R.id.hair_dresser);
         massage = findViewById(R.id.massage);
         manicure = findViewById(R.id.manicure);
         facial_makeup = findViewById(R.id.facial);
 
-        hairs.setOnClickListener((v)->{
-
+        hairsdresser.setOnClickListener((v)->{
+            String title = "Hairdresser";
             Intent i = new Intent(personal_grooming_service_tile.this, personal_grooming_offered.class);
-            i.putExtra("resId", R.drawable.hair_dressing_tile);
+            i.putExtra("resId", R.drawable.pg_hairdressing);
+            i.putExtra("title",title);
             startActivity(i);
             finishActivity(0);
         });
         massage.setOnClickListener((v)->{
+            String title = "Masseuse";
             Intent i = new Intent(personal_grooming_service_tile.this, personal_grooming_offered.class);
-            i.putExtra("resId", R.drawable.massages_tile);
+            i.putExtra("resId", R.drawable.pg_massage);
+            i.putExtra("title",title);
             startActivity(i);
             finishActivity(0);
         });
         manicure.setOnClickListener((v)->{
+            String title = "Manicure and Pedicure";
             Intent i = new Intent(personal_grooming_service_tile.this, personal_grooming_offered.class);
-            i.putExtra("resId", R.drawable.manicure_pedicure_tile);
+            i.putExtra("resId", R.drawable.pg_manicureandpedicure);
+            i.putExtra("title",title);
             startActivity(i);
             finishActivity(0);
         });
         facial_makeup.setOnClickListener((v)->{
+            String title = "Facial and Makeup";
             Intent i = new Intent(personal_grooming_service_tile.this, personal_grooming_offered.class);
-            i.putExtra("resId", R.drawable.facial_makeup_tile);
+            i.putExtra("resId", R.drawable.pg_facial);
+            i.putExtra("title",title);
             startActivity(i);
             finishActivity(0);
         });

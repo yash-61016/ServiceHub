@@ -28,15 +28,18 @@ public class party_event_service_tile extends AppCompatActivity {
 
 
         wedding_planning.setOnClickListener((v)->{
-
+            String title = "Wedding Planner";
             Intent i = new Intent(party_event_service_tile.this, party_event_service_offered.class);
-            i.putExtra("resId", R.drawable.wedding_planner_tile);
+            i.putExtra("resId", R.drawable.pae_weddingplanners);
+            i.putExtra("title",title);
             startActivity(i);
             finishActivity(0);
         });
         other_services.setOnClickListener((v)->{
+            String title = "Other Events";
             Intent i = new Intent(party_event_service_tile.this, party_event_service_offered.class);
-            i.putExtra("resId", R.drawable.other_events_tile);
+            i.putExtra("resId", R.drawable.pae_otherevents);
+            i.putExtra("title",title);
             startActivity(i);
             finishActivity(0);
         });

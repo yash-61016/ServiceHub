@@ -29,15 +29,18 @@ public class mover_shifters_service_tile extends AppCompatActivity {
 
 
         home_shifting.setOnClickListener((v)->{
-
+            String title = "Home Shifting";
             Intent i = new Intent(mover_shifters_service_tile.this, movers_shifters_services_offered.class);
-            i.putExtra("resId", R.drawable.house_shifting_tile);
+            i.putExtra("resId", R.drawable.mas_homeshifting);
+            i.putExtra("title",title);
             startActivity(i);
             finishActivity(0);
         });
         home_delivery.setOnClickListener((v)->{
+            String title = "Home delivery";
             Intent i = new Intent(mover_shifters_service_tile.this, movers_shifters_services_offered.class);
-            i.putExtra("resId", R.drawable.home_delivery_tile);
+            i.putExtra("resId", R.drawable.mas_homedelivery);
+            i.putExtra("title",title);
             startActivity(i);
             finishActivity(0);
         });

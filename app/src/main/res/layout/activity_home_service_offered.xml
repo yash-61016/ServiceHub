@@ -28,24 +28,33 @@
 
 
         </RelativeLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="259dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/TitleImage"
-                android:layout_width="match_parent"
-                android:layout_height="161dp"
-                android:background="@drawable/painting_tile"/>
+                android:id="@+id/U_HS_titleImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/hm_painting" />
+            <TextView
+                android:id="@+id/U_HS_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/medium"
+                android:layout_gravity="center"
+                android:text="Service Offered"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <ScrollView
-            android:layout_marginTop="-90dp"
-            android:layout_width="match_parent"
-            android:layout_height="525dp"
-            >
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,10 +67,10 @@
                     android:layout_height="wrap_content"
                     tools:context=".Tiles.electronic_service_offered">
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/providerRecyclerView"
+                        android:id="@+id/U_HS_recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        tools:listitem="@layout/service_offered_layout_view"
+                        tools:listitem="@layout/list_layout"
                        />
                 </FrameLayout>
 

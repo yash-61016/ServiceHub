@@ -24,19 +24,9 @@
                 android:layout_alignParentLeft="true"
                 android:src="@drawable/ic_baseline_notes_24"
                 android:paddingTop="10dp"
-                android:paddingLeft="10dp"></ImageView>
+                android:paddingLeft="10dp"/>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="97dp"
-                android:layout_height="100dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="14dp"
-                android:layout_marginRight="14dp"
-                android:paddingTop="25dp"
-                android:src="@drawable/avatar"
-                app:civ_border_color="#4CAF50"
-                app:civ_border_width="3dp" />
+
         </RelativeLayout>
 
         <LinearLayout
@@ -63,7 +53,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="686dp"
+            android:layout_height="500dp"
             android:background="@drawable/corner_radius">
 
             <LinearLayout
@@ -95,13 +85,6 @@
                     android:background="#00207E1D"
                     android:src="@drawable/painting_tile" />
 
-                <ImageButton
-                    android:id="@+id/other"
-                    android:layout_width="match_parent"
-                    android:layout_height="155dp"
-                    android:layout_weight="0.40"
-                    android:background="#00207E1D"
-                    android:src="@drawable/other_housekeeping_tile" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

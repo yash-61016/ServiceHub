@@ -26,17 +26,7 @@
                 android:paddingTop="10dp"
                 android:src="@drawable/ic_baseline_notes_24" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="74dp"
-                android:layout_height="79dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="14dp"
-                android:layout_marginRight="14dp"
-                android:paddingTop="25dp"
-                android:src="@drawable/avatar"
-                app:civ_border_color="#4CAF50"
-                app:civ_border_width="3dp" />
+
         </RelativeLayout>
 
         <LinearLayout
@@ -75,7 +65,7 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/ET_bt1"
+                    android:id="@+id/ET_laptop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -85,7 +75,7 @@
                     android:src="#00207E1D" />
 
                 <ImageButton
-                    android:id="@+id/ET_bt2"
+                    android:id="@+id/ET_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -94,7 +84,7 @@
                     android:src="#00207E1D" />
 
                 <ImageButton
-                    android:id="@+id/ET_bt3"
+                    android:id="@+id/ET_musicsystem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -104,7 +94,7 @@
                     android:background="@drawable/music_system_tile" />
 
                 <ImageButton
-                    android:id="@+id/ET_bt4"
+                    android:id="@+id/ET_smartphone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"

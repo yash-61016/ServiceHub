@@ -15,7 +15,7 @@ public class health_service_tile extends AppCompatActivity {
 
 
     ImageView titleImage;
-    static ImageButton diet, yoga, psychotherpy ;
+    static ImageButton dietitian, yoga, psychotherapist;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -25,27 +25,32 @@ public class health_service_tile extends AppCompatActivity {
 
         titleImage = findViewById(R.id.TitleImage);
 
-        diet = findViewById(R.id.diet);
+        dietitian = findViewById(R.id.diet);
         yoga = findViewById(R.id.yoga);
-        psychotherpy = findViewById(R.id.psychotherpy);
+        psychotherapist = findViewById(R.id.psychotherpy);
 
 
-        diet.setOnClickListener((v)->{
-
+        dietitian.setOnClickListener((v)->{
+            String title = "Dietitian";
             Intent i = new Intent(health_service_tile.this, health_services_offered.class);
-            i.putExtra("resId", R.drawable.dietian_tile);
+            i.putExtra("resId", R.drawable.haw_dietitian);
+            i.putExtra("title",title);
             startActivity(i);
             finishActivity(0);
         });
         yoga.setOnClickListener((v)->{
+            String title = "Yoga and Fitness";
             Intent i = new Intent(health_service_tile.this, health_services_offered.class);
-            i.putExtra("resId", R.drawable.yoga_fitness_tile);
+            i.putExtra("resId", R.drawable.haw_yogaandfitness);
+            i.putExtra("title",title);
             startActivity(i);
             finishActivity(0);
         });
-        psychotherpy.setOnClickListener((v)->{
+        psychotherapist.setOnClickListener((v)->{
+            String title = "Psychotherapist";
             Intent i = new Intent(health_service_tile.this, health_services_offered.class);
-            i.putExtra("resId", R.drawable.psychotherapist_tile);
+            i.putExtra("resId", R.drawable.haw_psychotherapist);
+            i.putExtra("title",title);
             startActivity(i);
             finishActivity(0);
         });

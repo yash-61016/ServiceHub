@@ -5,36 +5,27 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 
-import android.database.CursorJoiner;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import android.os.Parcelable;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,15 +36,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 
-import java.io.Serializable;
-import java.lang.reflect.Member;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-import uk.ac.tees.w9336459.servicehub.Model.Users;
+import uk.ac.tees.w9336459.servicehub.Model.ServiceProviders;
 import uk.ac.tees.w9336459.servicehub.Tiles.electronic_tile;
 import uk.ac.tees.w9336459.servicehub.Tiles.health_service_tile;
 import uk.ac.tees.w9336459.servicehub.Tiles.home_services_tile;
@@ -141,8 +125,6 @@ public class U_MainScreen extends AppCompatActivity {
 
 
         searchtext = (EditText)findViewById(R.id.U_Ms_search);
-
-
         mSearchBtn = (ImageButton) findViewById(R.id.search_btn);
         mResultList = (RecyclerView) findViewById(R.id.result_list);
         mResultList.setHasFixedSize(true);
@@ -240,18 +222,18 @@ public class U_MainScreen extends AppCompatActivity {
         Toast.makeText(U_MainScreen.this, "Started Search", Toast.LENGTH_LONG).show();
       //  Query firebasequery = mServiceProviderDatabse.orderByChild("name").startAt(searchText).endAt(searchText+"\uf8ff");
 
-        Query fbq = mServiceProviderDatabse.orderByChild("name").startAt(searchText).endAt(searchText+'\uf8ff');
+        Query fbq = mServiceProviderDatabse.orderByChild("skills").startAt(searchText).endAt(searchText+'\uf8ff');
 
-            FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, UsersViewHolder>(
+            FirebaseRecyclerAdapter<ServiceProviders, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ServiceProviders, UsersViewHolder>(
 
-                    Users.class,
+                    ServiceProviders.class,
                     R.layout.list_layout,
                     UsersViewHolder.class,
                     fbq
 
             ) {
                 @Override
-                protected void populateViewHolder(UsersViewHolder usersViewHolder, Users users, int i) {
+                protected void populateViewHolder(UsersViewHolder usersViewHolder, ServiceProviders users, int i) {
 
                     usersViewHolder.setDetails(users.getName(), users.getSkills(), users.getProfilepicture());
                 }

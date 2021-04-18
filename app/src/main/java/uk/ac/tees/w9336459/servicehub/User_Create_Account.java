@@ -83,8 +83,17 @@ public class User_Create_Account extends AppCompatActivity {
             rootNode = FirebaseDatabase.getInstance();
             reference = rootNode.getReference("Users");
 
-            if(reg_f_name.length()==0 )
+
+
+            if(reg_f_name.length()==0)
             {
+                reg_f_name.requestFocus();
+                reg_f_name.setError("FIELD CANNOT BE EMPTY");
+                Resources res = getResources();
+                Drawable dr = res.getDrawable(R.drawable.border);
+                reg_f_name.setBackground(dr);
+
+            }else if(reg_f_name.length()==0 ){
                 reg_f_name.requestFocus();
                 reg_f_name.setError("FIELD CANNOT BE EMPTY");
                 Resources res = getResources();
@@ -146,9 +155,20 @@ public class User_Create_Account extends AppCompatActivity {
                     String newNum = "";
                     pd.hide();
                     if(task.isSuccessful()){
+                        String f_name  =  reg_f_name.getText().toString();
+                        char f_name_char1;
+                        f_name_char1 =f_name.charAt(0);
+                        f_name_char1 = Character.toUpperCase(f_name_char1);
+                        f_name.replace(f_name.charAt(0),f_name_char1);
+
+                        String l_name  =  reg_l_name.getText().toString();
+                        char l_name_char1;
+                        l_name_char1 =l_name.charAt(0);
+                        l_name_char1 = Character.toUpperCase(l_name_char1);
+                        l_name.replace(l_name.charAt(0),l_name_char1);
 
                         String new_email = "";
-                        String Name =  reg_f_name.getText().toString() + " " + reg_l_name.getText().toString();
+                        String Name =  f_name + " " + l_name;
                         int index_check = reg_email.getText().toString().lastIndexOf(".");
                         ext_check = reg_email.getText().toString().substring(index_check, index_check+3);
                         if (reg_email.getText().toString().contains(ext_check)) {
