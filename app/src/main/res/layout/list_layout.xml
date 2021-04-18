@@ -41,4 +41,6 @@
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
         android:textColor="#999999"
         android:textSize="14sp" />
+
+
 </RelativeLayout>

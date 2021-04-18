@@ -76,7 +76,7 @@ public class profile extends AppCompatActivity {
         email = U_MainScreen.decodeUserEmail(user.getEmail());
         mAuth = FirebaseAuth.getInstance();
         mref = FirebaseDatabase.getInstance().getReference().child("Users").child("Details");
-        strProfileRef = FirebaseStorage.getInstance().getReference().child("Profile Pic");
+        strProfileRef = FirebaseStorage.getInstance().getReference().child("ProfilePic");
 
         profileimageview =  findViewById(R.id.circle_image);
         profilename = findViewById(R.id.ProfileName);
@@ -86,7 +86,7 @@ public class profile extends AppCompatActivity {
 
 
         createimage.setOnClickListener((v)->{
-            uploadProfileImage();
+
             CropImage.activity().setAspectRatio(1,1).start(profile.this);
 
 
@@ -145,8 +145,8 @@ public class profile extends AppCompatActivity {
                     String name = snapshot.child("name").getValue(String.class);
                     profilename.setText(name);
 
-                    if(snapshot.hasChild("image")){
-                        String image = snapshot.child("image").getValue().toString();
+                    if(snapshot.hasChild("ProfilePic")){
+                        String image = snapshot.child("ProfilePic").getValue().toString();
                         Picasso.get().load(image).into(profileimageview);
                     }
                 }
@@ -167,8 +167,8 @@ public class profile extends AppCompatActivity {
         {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             uri = result.getUri();
-
             profileimageview.setImageURI(uri);
+            uploadProfileImage();
         }else{
             Toast.makeText(profile.this,"Error Loading the Image!! , Try Again!", Toast.LENGTH_LONG).show();
         }
@@ -182,8 +182,7 @@ public class profile extends AppCompatActivity {
         pd.show();
 
         if(uri != null){
-           final StorageReference fileRef = strProfileRef
-           .child(mAuth.getCurrentUser().getUid()+".jpg");
+           final StorageReference fileRef = strProfileRef.child(mAuth.getCurrentUser().getUid()+".jpg");
 
            uploadtask = fileRef.putFile(uri);
 
@@ -195,23 +194,20 @@ public class profile extends AppCompatActivity {
                    }
                    return fileRef.getDownloadUrl();
                }
-           }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-               @Override
-               public void onComplete(@NonNull Task<Uri> task) {
-                   if (task.isSuccessful()){
-                       Uri downloadUrl = task.getResult();
-                       myUri = downloadUrl.toString();
+           })
+                   .addOnCompleteListener((OnCompleteListener<Uri>) task -> {
+                       if (task.isSuccessful()){
+                           Uri downloadUrl = task.getResult();
+                           myUri = downloadUrl.toString();
 
-                       HashMap<String, Object> userMap = new HashMap<>();
-                       userMap.put("image",myUri);
+                          // HashMap<String, Object> userMap = new HashMap<>();
+                          // userMap.put("image",myUri);
 
-                       mref.child(email).updateChildren(userMap);
+                           mref.child(email).push().setValue(myUri);
+                           pd.dismiss();
 
-                       pd.dismiss();
-
-                   }
-               }
-           });
+                       }
+                   });
         }else{
             pd.dismiss();
             Toast.makeText(this, "Image not selected", Toast.LENGTH_SHORT).show();

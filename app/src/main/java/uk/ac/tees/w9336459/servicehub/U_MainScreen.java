@@ -21,6 +21,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,6 +48,7 @@ import com.squareup.picasso.Picasso;
 import java.io.Serializable;
 import java.lang.reflect.Member;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -80,7 +82,7 @@ public class U_MainScreen extends AppCompatActivity {
         setContentView(R.layout.activity_u__main_screen);
 
 
-        mServiceProviderDatabse = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Profile");
+        mServiceProviderDatabse = FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Profile");
 
         sc = findViewById(R.id.Scroll);
         sc.setVerticalScrollBarEnabled(true);
@@ -139,15 +141,22 @@ public class U_MainScreen extends AppCompatActivity {
 
 
         searchtext = (EditText)findViewById(R.id.U_Ms_search);
+
+
         mSearchBtn = (ImageButton) findViewById(R.id.search_btn);
         mResultList = (RecyclerView) findViewById(R.id.result_list);
         mResultList.setHasFixedSize(true);
         mResultList.setLayoutManager(new LinearLayoutManager(this));
         mSearchBtn.setOnClickListener(view -> {
 
-            mResultList.setVisibility(View.VISIBLE);
-            sc.setVisibility(View.INVISIBLE);
-            firebaseUserSearch(searchtext.getText().toString().toUpperCase());
+            if(searchtext.getText().toString() == null){
+                mResultList.setVisibility(View.INVISIBLE);
+                sc.setVisibility(View.VISIBLE);
+            }else {
+                mResultList.setVisibility(View.VISIBLE);
+                sc.setVisibility(View.INVISIBLE);
+                firebaseUserSearch(searchtext.getText().toString().toUpperCase());
+            }
 
 
         });
@@ -168,6 +177,7 @@ public class U_MainScreen extends AppCompatActivity {
                     String value = dataSnapshot.child("name").getValue(String.class);
                     Name.setText(value);
                     if (dataSnapshot.hasChild("image")) {
+
                         String image = dataSnapshot.child("image").getValue().toString();
                         Picasso.get().load(image).into(profileimageview);
                     }
@@ -187,6 +197,8 @@ public class U_MainScreen extends AppCompatActivity {
 
 
 
+
+
     static String decodeUserEmail(String userEmail) {
         return userEmail.replace(".", ",");
     }
@@ -194,28 +206,31 @@ public class U_MainScreen extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(U_MainScreen.this);
-        builder.setMessage("Do you want to exit ?");
-        builder.setCancelable(true);
-        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+        if(searchtext.isFocused() ) {
+            startActivity(new Intent(this, U_MainScreen.class));
+        }else {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(U_MainScreen.this);
+            builder.setMessage("Do you want to exit ?");
+            builder.setCancelable(true);
+            builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
 
-                moveTaskToBack(true);
-            }
-        });
-        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+                    moveTaskToBack(true);
+                }
+            });
+            builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
 
-                dialogInterface.cancel();
-            }
+                    dialogInterface.cancel();
+                }
 
-        });
+            });
 
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
 
     }
 
@@ -225,7 +240,7 @@ public class U_MainScreen extends AppCompatActivity {
         Toast.makeText(U_MainScreen.this, "Started Search", Toast.LENGTH_LONG).show();
       //  Query firebasequery = mServiceProviderDatabse.orderByChild("name").startAt(searchText).endAt(searchText+"\uf8ff");
 
-        Query fbq = mServiceProviderDatabse.orderByChild("skills").startAt(searchText).endAt(searchText+'\uf8ff');
+        Query fbq = mServiceProviderDatabse.orderByChild("name").startAt(searchText).endAt(searchText+'\uf8ff');
 
             FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, UsersViewHolder>(
 
@@ -253,7 +268,7 @@ public class U_MainScreen extends AppCompatActivity {
             mView = itemView;
         }
 
-        public void setDetails( String userName, String userStatus, String userImage) {
+        public void setDetails( String userName, String userskills, String userImage) {
 
             TextView user_name = (TextView) mView.findViewById(R.id.name_text);
             TextView user_skills = (TextView) mView.findViewById(R.id.skills_text);
@@ -261,7 +276,7 @@ public class U_MainScreen extends AppCompatActivity {
 
 
             user_name.setText(userName);
-            user_skills.setText(userStatus);
+            user_skills.setText(userskills);
 
             Picasso.get().load(userImage).into(user_image);
 

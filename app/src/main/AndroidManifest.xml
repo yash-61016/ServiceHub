@@ -19,6 +19,9 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name="uk.ac.tees.w9336459.servicehub.U_MainScreen"
+            android:windowSoftInputMode="adjustPan"/>
 
         <activity android:name=".Tiles.personal_grooming_offered" />
         <activity android:name=".Tiles.party_event_service_offered" />
@@ -32,7 +35,7 @@
         <activity android:name=".Tiles.health_service_tile" />
         <activity android:name=".Tiles.electronic_service_offered" />
         <activity android:name=".ServiceProviderMainScreen"></activity>
-        <activity android:name=".U_MainScreen"/>
+
         <activity android:name=".Tiles.electronic_tile" />
         <activity android:name=".help" />
 
