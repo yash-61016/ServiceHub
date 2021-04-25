@@ -92,7 +92,7 @@ public class health_services_offered extends AppCompatActivity {
         }else if(service.equals("Psychotherapist")){
             readUsers("Psychotherapist");
         }else if(service.equals("Yoga and Fitness")){
-            readUsers("Yoga and Fitness");
+            readUsers("Yoga and Fitness Trainer");
         }
     }
     public void readUsers(String services){

@@ -82,8 +82,8 @@ public class movers_shifters_services_offered extends AppCompatActivity {
 
         if(service.equals("Home Shifting")){
             readUsers("Home Shifting");
-        }else if(service.equals("Home Shifting")){
-            readUsers("Home Shifting");
+        }else if(service.equals("Home Delivery")){
+            readUsers("Home Delivery");
         }
     }
 

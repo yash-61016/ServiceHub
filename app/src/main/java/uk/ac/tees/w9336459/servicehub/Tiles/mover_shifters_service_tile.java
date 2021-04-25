@@ -38,7 +38,7 @@ public class mover_shifters_service_tile extends AppCompatActivity {
             finishActivity(0);
         });
         home_delivery.setOnClickListener((v)->{
-            String title = "Home delivery";
+            String title = "Home Delivery";
             Intent i = new Intent(mover_shifters_service_tile.this, movers_shifters_services_offered.class);
             i.putExtra("resId", R.drawable.mas_homedelivery);
             i.putExtra("title",title);

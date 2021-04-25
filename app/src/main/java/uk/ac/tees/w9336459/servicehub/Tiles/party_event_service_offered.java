@@ -76,8 +76,7 @@ public class party_event_service_offered extends AppCompatActivity {
                 mResultList.setLayoutManager(new LinearLayoutManager(this));
                 //mref = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
                 Toast.makeText(this, "Select the providers2", Toast.LENGTH_LONG).show();
-                ChangeRecyclerView("Birthday Planner");
-                ChangeRecyclerView("Funeral Planner");
+                ChangeRecyclerView("Other Events");
                 mResultList.setVisibility(View.VISIBLE);
             }
         }
@@ -110,7 +109,12 @@ public class party_event_service_offered extends AppCompatActivity {
                     assert serviceProviders!=null;
                     assert firebaseUser!=null;
 
-                    if(services.equals(serviceProviders.getSkills())){
+                    if(services.equals("Other Events") &&
+                            (serviceProviders.getSkills().equals("Birthday Planner") ||
+                             serviceProviders.getSkills().equals("Funeral Planner"))){
+                        mSP.add(serviceProviders);
+                    }
+                    else if(services.equals(serviceProviders.getSkills())){
                         mSP.add(serviceProviders);
                     }
                     //pbar.setVisibility(GONE);
