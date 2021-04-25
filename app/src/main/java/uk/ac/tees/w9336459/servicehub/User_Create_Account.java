@@ -41,10 +41,8 @@ public class User_Create_Account extends AppCompatActivity {
     TextInputEditText reg_l_name;
     static TextInputEditText reg_mobile;
     static  TextInputEditText reg_email;
-    TextInputEditText reg_address1;
     TextInputEditText reg_password;
     TextInputEditText reg_v_password;
-    TextInputEditText reg_postcode;
     Button loginhome;
     TextView goTo_Login;
     ProgressDialog pd;
@@ -53,6 +51,7 @@ public class User_Create_Account extends AppCompatActivity {
     FirebaseDatabase rootNode;
     DatabaseReference reference;
 
+    String newNum = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +66,6 @@ public class User_Create_Account extends AppCompatActivity {
         reg_l_name = findViewById(R.id.U_CA_LastName);
         reg_email =  findViewById(R.id.U_CA_Email);
         reg_mobile = findViewById(R.id.U_CA_number);
-        reg_address1 =findViewById(R.id.U_CA_Address);
-        reg_postcode = findViewById(R.id.U_CA_postcode);
         reg_password = findViewById(R.id.U_CA_Password);
         reg_v_password = findViewById(R.id.U_CA_VerifyPassword);
 
@@ -114,13 +111,6 @@ public class User_Create_Account extends AppCompatActivity {
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
                 reg_mobile.setBackground(dr);
-            }else if(reg_address1.length()==0 )
-            {
-                reg_address1.requestFocus();
-                reg_address1.setError("FIELD CANNOT BE EMPTY");
-                Resources res = getResources();
-                Drawable dr = res.getDrawable(R.drawable.border);
-                reg_address1.setBackground(dr);
             }else if(reg_password.length()<=7||!(reg_password.getText().toString().matches("(.*[0-9].*)"))
                     ||!(reg_password.getText().toString().matches("(.*[A-Z].*)")))
             {
@@ -137,22 +127,13 @@ public class User_Create_Account extends AppCompatActivity {
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
                 reg_v_password.setBackground(dr);
-            }else if(reg_postcode.length()==0 )
-            {
-                reg_postcode.requestFocus();
-                reg_postcode.setError("FIELD CANNOT BE EMPTY");
-                Resources res = getResources();
-                Drawable dr = res.getDrawable(R.drawable.border);
-                reg_postcode.setBackground(dr);
             }
             else
             {
-
-
                 mAuth.createUserWithEmailAndPassword(reg_email.getText().toString(),reg_password.getText().toString()).addOnCompleteListener(User_Create_Account.this, task -> {
                     String ext = "";
                     String ext_check="";
-                    String newNum = "";
+
                     pd.hide();
                     if(task.isSuccessful()){
                         String f_name  =  reg_f_name.getText().toString();
@@ -178,15 +159,21 @@ public class User_Create_Account extends AppCompatActivity {
                             ext = reg_email.getText().toString().substring(index);
                         }
                         String Email = new_email.concat(ext);
-                        if(reg_mobile.getText().toString().startsWith("0")) {
+                        if (reg_mobile.getText().toString().startsWith("0")) {
                             newNum = reg_mobile.getText().toString().substring(1);
+                        }else if (reg_mobile.getText().toString().startsWith("+44")){
+                            newNum = reg_mobile.getText().toString().substring(3);
+                        }else{
+                            newNum = reg_mobile.getText().toString();
                         }
-                        String Number = newNum;
-                        String Address = reg_address1.getText().toString();
-                        String Postcode = reg_postcode.getText().toString();
-                        UserAccountHelper helperClass = new UserAccountHelper(Name, Number , Address ,Postcode , Email);
-                        String EmailChildID = encodeUserEmail(Email);
-                        reference.child("Details").child(EmailChildID).setValue(helperClass);
+                       // UserAccountHelper helperClass = new UserAccountHelper(Name, newNum , Address ,Postcode , Email);
+                      //  String EmailChildID = encodeUserEmail(Email);
+                     //   reference.child("Details").child(EmailChildID).setValue(helperClass);
+                        final Bundle bundle = new Bundle();
+                        bundle.putString("firstname",f_name);
+                        bundle.putString("lastname",l_name);
+                        bundle.putString("emailid",Email);
+                        bundle.putString("phonenum",newNum);
 
                         mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -194,8 +181,10 @@ public class User_Create_Account extends AppCompatActivity {
                                 if(task.isSuccessful()) {
                                     Toast.makeText(User_Create_Account.this, "User Registered Successfully, Please verify Email!!!", Toast.LENGTH_LONG).show();
 
-                                    Intent a = new Intent(User_Create_Account.this, User_VerifyID_Screen.class);
-                                    startActivity(a);
+                                    Intent intent = new Intent(User_Create_Account.this, User_VerifyID_Screen.class);
+                                    intent.putExtra("phonenumber", newNum);
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
                                 }else{
                                     Toast.makeText(User_Create_Account.this,"Error Occured!!Signup Unsuccessful",Toast.LENGTH_LONG).show();
                                 }
@@ -220,6 +209,16 @@ public class User_Create_Account extends AppCompatActivity {
 
     static String encodeUserEmail(String userEmail) {
         return userEmail.replace(".", ",");
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(mAuth.getCurrentUser() != null){
+            //already login
+        }
     }
 
 }

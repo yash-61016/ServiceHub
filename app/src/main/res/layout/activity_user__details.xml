@@ -8,13 +8,15 @@
     tools:context=".User_Details">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="434dp"
+        android:layout_height="747dp"
         android:layout_marginBottom="49dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.705">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -50,7 +52,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/user_profilepic"
+                android:id="@+id/User_profilepic"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginStart="22dp"
@@ -68,32 +70,35 @@
                 android:id="@+id/User_email"
                 android:layout_width="128dp"
                 android:layout_height="52dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="98dp"
-                android:layout_marginEnd="193dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="78dp"
+                android:layout_marginEnd="286dp"
                 android:layout_marginBottom="4dp"
+                android:alpha="0.7"
                 android:fontFamily="@font/medium"
                 android:paddingStart="15dp"
                 android:text="Email"
                 android:textColor="@color/white"
                 android:textSize="30dp"
                 app:layout_constraintBottom_toTopOf="@+id/User_emailchange"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/User_name" />
 
-            <TextView
+            <EditText
                 android:id="@+id/User_emailchange"
                 android:layout_width="250dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="23dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="73dp"
                 android:layout_marginTop="4dp"
-                android:hint="jatinaneja2000@gmail.com"
+                android:layout_marginEnd="161dp"
+                android:background="@color/blue"
+                android:clickable="false"
                 android:paddingStart="10dp"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/User_number"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/User_email" />
 
@@ -101,32 +106,37 @@
                 android:id="@+id/User_number"
                 android:layout_width="128dp"
                 android:layout_height="52dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="193dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="286dp"
                 android:layout_marginBottom="1dp"
+                android:alpha="0.7"
                 android:fontFamily="@font/medium"
                 android:paddingStart="15dp"
                 android:text="Number"
                 android:textColor="@color/white"
                 android:textSize="30dp"
                 app:layout_constraintBottom_toTopOf="@+id/User_numberchange"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/User_emailchange"
                 app:layout_editor_absoluteX="20dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/User_numberchange"
                 android:layout_width="241dp"
-                android:layout_height="42dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="1dp"
-                android:hint="7388307668"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="73dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="173dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/blue"
+                android:clickable="false"
                 android:paddingStart="15dp"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/User_Address"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/User_number"
                 app:layout_editor_absoluteX="20dp"
@@ -136,8 +146,10 @@
                 android:id="@+id/User_Address"
                 android:layout_width="128dp"
                 android:layout_height="52dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="284dp"
+                android:alpha="0.7"
                 android:fontFamily="@font/medium"
                 android:paddingStart="15dp"
                 android:text="Address"
@@ -149,114 +161,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/User_numberchange"
                 app:layout_editor_absoluteX="20dp" />
 
-            <TextView
+            <EditText
                 android:id="@+id/User_addresschange"
                 android:layout_width="241dp"
-                android:layout_height="53dp"
-                android:layout_marginStart="20dp"
-                android:hint="7 Holly Street Middlesbrough TS12EW"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="73dp"
+                android:layout_marginEnd="173dp"
+                android:layout_marginBottom="1dp"
+                android:background="@color/blue"
+                android:clickable="false"
                 android:paddingStart="15dp"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@+id/User_password"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/User_Address"
                 app:layout_editor_absoluteX="20dp"
                 app:layout_editor_absoluteY="560dp" />
 
-
-            <TextView
-                android:id="@+id/User_password"
-                android:layout_width="156dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="165dp"
-                android:fontFamily="@font/medium"
-                android:paddingStart="15dp"
-                android:text="Password"
-                android:textColor="@color/white"
-                android:textSize="30dp"
-                app:layout_constraintBottom_toTopOf="@+id/User_passwordchange"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton4"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/User_addresschange"
-                app:layout_editor_absoluteX="20dp"
-                app:layout_editor_absoluteY="616dp" />
-
-            <TextView
-                android:id="@+id/User_passwordchange"
-                android:layout_width="199dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:hint="**********"
-                android:inputType="textPassword"
-                android:paddingStart="15dp"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton4"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/User_password"
-                app:layout_editor_absoluteX="20dp"
-                app:layout_editor_absoluteY="655dp" />
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="67dp"
-                android:layout_marginTop="123dp"
-                android:layout_marginEnd="51dp"
-                android:background="@color/blue"
-                android:src="@drawable/imagechange2_foreground"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/User_emailchange"
-                app:layout_constraintTop_toBottomOf="@+id/user_profilepic" />
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="57dp"
-                android:layout_marginEnd="51dp"
-                android:background="@color/blue"
-                android:src="@drawable/imagechange2_foreground"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/User_numberchange"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
-
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="62dp"
-                android:layout_marginEnd="51dp"
-                android:layout_marginBottom="60dp"
-                android:background="@color/blue"
-                android:src="@drawable/imagechange2_foreground"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/User_addresschange"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
-
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="122dp"
-                android:layout_marginEnd="51dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/blue"
-                android:src="@drawable/imagechange2_foreground"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/User_passwordchange"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

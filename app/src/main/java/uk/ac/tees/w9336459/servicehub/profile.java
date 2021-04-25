@@ -26,7 +26,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -49,11 +52,13 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static uk.ac.tees.w9336459.servicehub.U_MainScreen.decodeUserEmail;
+
 
 public class profile extends AppCompatActivity {
 
     static private CircleImageView profileimageview , createimage;
-    private Button details ,Log_out , wallet;
+    private Button details ,Log_out , changepassword;
     private TextView profilename;
 
     private  DatabaseReference mref;
@@ -73,17 +78,44 @@ public class profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        email = U_MainScreen.decodeUserEmail(user.getEmail());
+        email = decodeUserEmail(user.getEmail());
         mAuth = FirebaseAuth.getInstance();
-        mref = FirebaseDatabase.getInstance().getReference().child("Users").child("Details");
+        mref = FirebaseDatabase.getInstance().getReference().child("Users").child("Details").child(email);
         strProfileRef = FirebaseStorage.getInstance().getReference().child("ProfilePic");
 
         profileimageview =  findViewById(R.id.circle_image);
         profilename = findViewById(R.id.ProfileName);
         createimage = findViewById(R.id.changeimage);
+        changepassword = findViewById(R.id.changpassword);
         details = findViewById(R.id.Details);
         Log_out = findViewById(R.id.logout);
 
+        String EmailChildID = decodeUserEmail(user.getEmail());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child("Details").child(EmailChildID);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Read from the database
+                String fname = dataSnapshot.child("firstname").getValue(String.class);
+                String lname = dataSnapshot.child("lastname").getValue(String.class);
+                profilename.setText(fname+" "+lname);
+
+                if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
+                    if(dataSnapshot.child("image").getValue().toString().equals("null")){
+                        Picasso.get().load(R.drawable.avatar).into(profileimageview);
+                    }
+                    else  {
+                        String image = dataSnapshot.child("image").getValue().toString();
+                        Picasso.get().load(image).into(profileimageview);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         createimage.setOnClickListener((v)->{
 
@@ -130,7 +162,41 @@ public class profile extends AppCompatActivity {
 
             Intent User_details = new Intent(profile.this, User_Details.class);
             startActivity(User_details);
-            getParent().finish();
+            finish();
+        });
+
+        changepassword.setOnClickListener((v)->{
+
+            final TextInputEditText resetmail = new TextInputEditText(v.getContext());
+            final androidx.appcompat.app.AlertDialog.Builder pwdResetDialog = new androidx.appcompat.app.AlertDialog.Builder(v.getContext());
+            pwdResetDialog.setTitle("Reset Password?");
+            pwdResetDialog.setMessage("Enter the Email to Recieve a Reset Link");
+            pwdResetDialog.setView(resetmail);
+
+            pwdResetDialog.setPositiveButton("Yes", (dialogInterface, i) -> {
+                // extract the link and send the email
+
+                String mail = resetmail.getText().toString();
+                mAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(profile.this, "Reset Link Sent to Yourr Mail. " ,Toast.LENGTH_SHORT).show();
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(profile.this,"Error ! Reset Link is not Sent" + e.getMessage(),Toast.LENGTH_LONG).show();
+
+                    }
+                });
+            }) ;
+
+            pwdResetDialog.setNegativeButton("No", (dialogInterface, i) -> {
+                // close the dialog
+            });
+            pwdResetDialog.create().show();
+
         });
 
         getUserinfo();
@@ -203,7 +269,7 @@ public class profile extends AppCompatActivity {
                           // HashMap<String, Object> userMap = new HashMap<>();
                           // userMap.put("image",myUri);
 
-                           mref.child(email).push().setValue(myUri);
+                           mref.child("image").setValue(myUri);
                            pd.dismiss();
 
                        }
@@ -213,5 +279,10 @@ public class profile extends AppCompatActivity {
             Toast.makeText(this, "Image not selected", Toast.LENGTH_SHORT).show();
         }
     }
+    @Override
+    public void onBackPressed(){
+    startActivity(new Intent(this, U_MainScreen.class));
+    }
+
 
 }

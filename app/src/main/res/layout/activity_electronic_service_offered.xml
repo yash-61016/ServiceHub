@@ -66,9 +66,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/U_ES_recyclerView"
                         android:layout_width="match_parent"
-                        android:isScrollContainer="false"
                         android:layout_height="wrap_content"
-                        tools:listitem="@layout/list_layout"/>
+                        tools:listitem="@layout/list_layout" />
                 </LinearLayout>
              </ScrollView>
     </LinearLayout>

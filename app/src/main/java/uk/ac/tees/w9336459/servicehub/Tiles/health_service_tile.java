@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -55,5 +56,11 @@ public class health_service_tile extends AppCompatActivity {
             finishActivity(0);
         });
 
+    }
+
+    public void onServiceClick(View view) {
+
+        Intent intent = new Intent(health_service_tile.this,health_services_offered.class);
+        startActivity(intent);
     }
 }

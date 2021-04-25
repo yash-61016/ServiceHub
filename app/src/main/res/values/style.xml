@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string-array name="skills">
+        <item>Select Profession</item>
+        <item>Laptop and Desktop Repairing</item>
+        <item>Television Repairing</item>
+        <item>Smartphone Repairing</item>
+        <item>Music System Repairing</item>
+        <item>Interior Designing</item>
+        <item>Plumbing</item>
+        <item>Painting</item>
+        <item>Hair Dressing (For Men)</item>
+        <item>Hair Dressing (For Women)</item>
+        <item>Hair Dressing (Unisex)</item>
+        <item>Masseuse</item>
+        <item>Manicure and Pedicure</item>
+        <item>Facial and Makeup Artist</item>
+        <item>Home Delivery</item>
+        <item>Home Shifting</item>
+        <item>Wedding Planner</item>
+        <item>Birthday Planner</item>
+        <item>Funeral Planner</item>
+        <item>Dietitian</item>
+        <item>Yoga and Fitness Trainer</item>
+        <item>Psychotherapist</item>
+    </string-array>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@android:color/black</item>
+        <item name="colorPrimaryDark">@android:color/black</item>
+        <item name="colorAccent">#454545</item>
     </style>
 
-    <style name="RatingBar" parent="Theme.AppCompat" color="@color/black">
-        <item name="colorControlNormal">@color/duskyellow</item>
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@android:color/black</item>
+        <item name="colorControlActivated">@android:color/holo_orange_dark</item>
     </style>
+
 </resources>

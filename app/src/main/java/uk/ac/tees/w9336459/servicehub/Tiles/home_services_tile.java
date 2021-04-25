@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -53,5 +54,10 @@ public class home_services_tile extends AppCompatActivity {
             startActivity(i);
             finishActivity(0);
         });
+    }
+    public void onServiceClick(View view) {
+
+        Intent intent = new Intent(home_services_tile.this,electronic_service_offered.class);
+        startActivity(intent);
     }
 }

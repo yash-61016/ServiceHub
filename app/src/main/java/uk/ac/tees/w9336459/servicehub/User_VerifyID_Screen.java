@@ -41,6 +41,8 @@ public class User_VerifyID_Screen extends AppCompatActivity {
     // string for storing our verification ID
     String verificationId;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class User_VerifyID_Screen extends AppCompatActivity {
         // below line is for getting instance
         // of our FirebaseAuth.
         mAuth = FirebaseAuth.getInstance();
+        String phonenum = getIntent().getStringExtra("phonenumber");
 
         // initializing variables for button and Edittext.
         edtPhone = findViewById(R.id.U_NAV_entenumber);
@@ -56,7 +59,7 @@ public class User_VerifyID_Screen extends AppCompatActivity {
         verifyOTPBtn = findViewById(R.id.U_NAV_Done);
         generateOTPBtn1 = findViewById(R.id.U_NAV_NumberSendCode);
 
-        this.edtPhone.setText(User_Create_Account.reg_mobile.getText().toString());
+        this.edtPhone.setText(phonenum);
 
 
 
@@ -109,8 +112,10 @@ public class User_VerifyID_Screen extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // if the code is correct and the task is successful
                         // we are sending our user to new activity.
-
-                        Intent i = new Intent(User_VerifyID_Screen.this, User_Login.class);
+                        Bundle userbundle = getIntent().getExtras();
+                        Intent i = new Intent(User_VerifyID_Screen.this, asklocation.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        i.putExtras(userbundle);
                         startActivity(i);
                         finish();
 

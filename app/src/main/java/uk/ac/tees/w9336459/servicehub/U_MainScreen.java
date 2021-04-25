@@ -7,6 +7,7 @@ import android.content.Intent;
 
 import android.os.Bundle;
 
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,7 +38,7 @@ import com.squareup.picasso.Picasso;
 
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import uk.ac.tees.w9336459.servicehub.Model.ServiceProviders;
+import uk.ac.tees.w9336459.servicehub.Model.ServiceProviders2;
 import uk.ac.tees.w9336459.servicehub.Tiles.electronic_tile;
 import uk.ac.tees.w9336459.servicehub.Tiles.health_service_tile;
 import uk.ac.tees.w9336459.servicehub.Tiles.home_services_tile;
@@ -66,7 +67,7 @@ public class U_MainScreen extends AppCompatActivity {
         setContentView(R.layout.activity_u__main_screen);
 
 
-        mServiceProviderDatabse = FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Profile");
+        mServiceProviderDatabse = FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Details");
 
         sc = findViewById(R.id.Scroll);
         sc.setVerticalScrollBarEnabled(true);
@@ -156,10 +157,12 @@ public class U_MainScreen extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Read from the database
                 if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
-                    String value = dataSnapshot.child("name").getValue(String.class);
-                    Name.setText(value);
-                    if (dataSnapshot.hasChild("image")) {
-
+                    String value = dataSnapshot.child("firstname").getValue(String.class);
+                    Name.setText("Hey, "+value);
+                    if(dataSnapshot.child("image").getValue().toString().equals("null")){
+                        Picasso.get().load(R.drawable.avatar).into(profileimageview);
+                    }
+                    else  {
                         String image = dataSnapshot.child("image").getValue().toString();
                         Picasso.get().load(image).into(profileimageview);
                     }
@@ -172,21 +175,16 @@ public class U_MainScreen extends AppCompatActivity {
             }
         });
 
-       // mServiceProviderDatabse = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
 
     }
 
-
-
-
-
-
-    static String decodeUserEmail(String userEmail) {
+    public static String decodeUserEmail(String userEmail) {
         return userEmail.replace(".", ",");
     }
 
     @Override
     public void onBackPressed() {
+
 
         if(searchtext.isFocused() ) {
             startActivity(new Intent(this, U_MainScreen.class));
@@ -194,21 +192,8 @@ public class U_MainScreen extends AppCompatActivity {
             final AlertDialog.Builder builder = new AlertDialog.Builder(U_MainScreen.this);
             builder.setMessage("Do you want to exit ?");
             builder.setCancelable(true);
-            builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                    moveTaskToBack(true);
-                }
-            });
-            builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                    dialogInterface.cancel();
-                }
-
-            });
+            builder.setNegativeButton("Yes", (dialogInterface, i) -> moveTaskToBack(true));
+            builder.setPositiveButton("No", (dialogInterface, i) -> dialogInterface.cancel());
 
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
@@ -224,18 +209,18 @@ public class U_MainScreen extends AppCompatActivity {
 
         Query fbq = mServiceProviderDatabse.orderByChild("skills").startAt(searchText).endAt(searchText+'\uf8ff');
 
-            FirebaseRecyclerAdapter<ServiceProviders, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ServiceProviders, UsersViewHolder>(
+            FirebaseRecyclerAdapter<ServiceProviders2, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ServiceProviders2, UsersViewHolder>(
 
-                    ServiceProviders.class,
+                    ServiceProviders2.class,
                     R.layout.list_layout,
                     UsersViewHolder.class,
                     fbq
 
             ) {
                 @Override
-                protected void populateViewHolder(UsersViewHolder usersViewHolder, ServiceProviders users, int i) {
+                protected void populateViewHolder(UsersViewHolder usersViewHolder, ServiceProviders2 users, int i) {
 
-                    usersViewHolder.setDetails(users.getName(), users.getSkills(), users.getProfilepicture());
+                    usersViewHolder.setDetails(users.getFirstname(),users.getLastname(), users.getSkills(), users.getProfilepicture());
                 }
             };
 
@@ -250,17 +235,18 @@ public class U_MainScreen extends AppCompatActivity {
             mView = itemView;
         }
 
-        public void setDetails( String userName, String userskills, String userImage) {
+        public void setDetails( String fName,String lname, String skills, String Image) {
 
-            TextView user_name = (TextView) mView.findViewById(R.id.name_text);
-            TextView user_skills = (TextView) mView.findViewById(R.id.skills_text);
-            CircleImageView user_image = mView.findViewById(R.id.profile_picture);
+            TextView sp_f_name = (TextView) mView.findViewById(R.id.name_text1);
+            TextView sp_l_name = (TextView) mView.findViewById(R.id.name_text2);
+            TextView sp_skills = (TextView) mView.findViewById(R.id.skills_text);
+            CircleImageView sp_image = mView.findViewById(R.id.profile_picture);
 
 
-            user_name.setText(userName);
-            user_skills.setText(userskills);
-
-            Picasso.get().load(userImage).into(user_image);
+            sp_skills.setText(skills);
+            sp_f_name.setText(fName);
+            sp_l_name.setText(lname);
+            Picasso.get().load(Image).into(sp_image);
 
         }
 

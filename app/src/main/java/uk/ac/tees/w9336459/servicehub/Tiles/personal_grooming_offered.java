@@ -8,18 +8,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
-import uk.ac.tees.w9336459.servicehub.Model.ServiceProviders;
+import uk.ac.tees.w9336459.servicehub.Model.ListAdapter;
+import uk.ac.tees.w9336459.servicehub.Model.ServiceProviders2;
 import uk.ac.tees.w9336459.servicehub.R;
+import uk.ac.tees.w9336459.servicehub.U_MainScreen;
 
 public class personal_grooming_offered extends AppCompatActivity {
 
@@ -27,12 +38,16 @@ public class personal_grooming_offered extends AppCompatActivity {
     TextView title;
     private DatabaseReference mref;
     private RecyclerView mResultList;
+    private ListAdapter useradapter;
+    private List<ServiceProviders2> mSP;
+    ProgressBar pbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_grooming_offered);
+        mSP = new ArrayList<>();
         titleimage= findViewById(R.id.U_PG_titleImg);
         title = findViewById(R.id.U_PG_title);
 
@@ -46,7 +61,7 @@ public class personal_grooming_offered extends AppCompatActivity {
                 mResultList = (RecyclerView) findViewById(R.id.U_PG_recyclerView);
                 mResultList.setHasFixedSize(true);
                 mResultList.setLayoutManager(new LinearLayoutManager(this));
-                mref = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
+                //mref = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
                 Toast.makeText(this, "Select the providers1", Toast.LENGTH_LONG).show();
                 ChangeRecyclerView("Hairdresser");
                 mResultList.setVisibility(View.VISIBLE);
@@ -54,7 +69,7 @@ public class personal_grooming_offered extends AppCompatActivity {
                 mResultList = (RecyclerView) findViewById(R.id.U_PG_recyclerView);
                 mResultList.setHasFixedSize(true);
                 mResultList.setLayoutManager(new LinearLayoutManager(this));
-                mref = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
+                //mref = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
                 Toast.makeText(this, "Select the providers2", Toast.LENGTH_LONG).show();
                 ChangeRecyclerView("Masseuse");
                 mResultList.setVisibility(View.VISIBLE);
@@ -62,7 +77,7 @@ public class personal_grooming_offered extends AppCompatActivity {
                 mResultList = (RecyclerView) findViewById(R.id.U_PG_recyclerView);
                 mResultList.setHasFixedSize(true);
                 mResultList.setLayoutManager(new LinearLayoutManager(this));
-                mref = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
+                //mref = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
                 Toast.makeText(this, "Select the providers2", Toast.LENGTH_LONG).show();
                 ChangeRecyclerView("Manicure and Pedicure");
                 mResultList.setVisibility(View.VISIBLE);
@@ -70,7 +85,7 @@ public class personal_grooming_offered extends AppCompatActivity {
                 mResultList = (RecyclerView) findViewById(R.id.U_PG_recyclerView);
                 mResultList.setHasFixedSize(true);
                 mResultList.setLayoutManager(new LinearLayoutManager(this));
-                mref = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
+                //mref = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Profile");
                 Toast.makeText(this, "Select the providers2", Toast.LENGTH_LONG).show();
                 ChangeRecyclerView("Facial and Makeup");
                 mResultList.setVisibility(View.VISIBLE);
@@ -78,47 +93,59 @@ public class personal_grooming_offered extends AppCompatActivity {
         }
     }
 
-    private void ChangeRecyclerView(String service) {
-        Query fbq = mref.orderByChild("skills").startAt(service).endAt(service+'\uf8ff');
+    public void ChangeRecyclerView(String service){
 
-        FirebaseRecyclerAdapter<ServiceProviders, personal_grooming_offered.ServiceProviderViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ServiceProviders, personal_grooming_offered.ServiceProviderViewHolder>(
 
-                ServiceProviders.class,
-                R.layout.list_layout,
-                personal_grooming_offered.ServiceProviderViewHolder.class,
-                fbq
+        if(service.equals("Hairdresser")){
+            readUsers("Hair");
+        }else if(service.equals("Masseuse")){
+            readUsers("Masseuse");
+        }else if(service.equals("Manicure and Pedicure")){
+            readUsers("Manicure and Pedicure");
+        }else if(service.equals("Facial and Makeup")){
+            readUsers("Facial and Makeup Artist");
+        }
+    }
 
-        ) {
+
+    public void readUsers(String services){
+
+        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference commandsRef = rootRef.child("ServiceProviders").child("Details");
+        ValueEventListener eventListener= new ValueEventListener() {
             @Override
-            protected void populateViewHolder(personal_grooming_offered.ServiceProviderViewHolder usersViewHolder, ServiceProviders users, int i) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mSP.clear();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    ServiceProviders2 serviceProviders = snapshot.getValue(ServiceProviders2.class);
 
-                usersViewHolder.setDetails(users.getName(), users.getSkills(), users.getProfilepicture());
+                    assert serviceProviders!=null;
+                    assert firebaseUser!=null;
+
+                    if(services.equals("Hair") &&
+                            (serviceProviders.getSkills().equals("Hair Dressing (For Men)") ||
+                            serviceProviders.getSkills().equals("Hair Dressing (For Women)") ||
+                            serviceProviders.getSkills().equals("Hair Dressing (Unisex)"))){
+                        mSP.add(serviceProviders);
+                    }
+                    else if(services.equals(serviceProviders.getSkills())){
+                        mSP.add(serviceProviders);
+                        }
+
+
+                    //pbar.setVisibility(GONE);
+                }
+                Bundle b = getIntent().getExtras();
+                useradapter = new ListAdapter(personal_grooming_offered.this,mSP);
+                mResultList.setAdapter(useradapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         };
-
-        mResultList.setAdapter(firebaseRecyclerAdapter);
-    }
-    public static class ServiceProviderViewHolder extends RecyclerView.ViewHolder {
-
-        View mView;
-
-        public ServiceProviderViewHolder(@NonNull View itemView) {
-            super(itemView);
-            mView = itemView;
-        }
-
-        public void setDetails(String userName, String userskills, String userImage) {
-
-            TextView user_name = (TextView) mView.findViewById(R.id.name_text);
-            TextView user_skills = (TextView) mView.findViewById(R.id.skills_text);
-            CircleImageView user_image = mView.findViewById(R.id.profile_picture);
-
-
-            user_name.setText(userName);
-            user_skills.setText(userskills);
-            Picasso.get().load(userImage).into(user_image);
-
-
-        }
+        commandsRef.addListenerForSingleValueEvent(eventListener);
     }
 }

@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ServiceProviderLogin2 extends AppCompatActivity {
 
+
     // variable for FirebaseAuth class
     private FirebaseAuth mAuth;
 
@@ -49,7 +50,9 @@ public class ServiceProviderLogin2 extends AppCompatActivity {
                 FirebaseUser mFbuser = mAuth.getCurrentUser();
                 if (mFbuser != null) {
                     Toast.makeText(ServiceProviderLogin2.this, "You are logged in!!", Toast.LENGTH_SHORT).show();
+                    final String dp = getIntent().getStringExtra("downloadUrlPP");
                     Intent i = new Intent(ServiceProviderLogin2.this, ServiceProviderMainScreen.class);
+                    i.putExtra("downloadUrlPP",dp);
                     startActivity(i);
                 } else {
                     Toast.makeText(ServiceProviderLogin2.this, "Please Login", Toast.LENGTH_SHORT).show();
@@ -72,9 +75,10 @@ public class ServiceProviderLogin2 extends AppCompatActivity {
                     mAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(ServiceProviderLogin2.this, task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(ServiceProviderLogin2.this, "Logged In Successfully!!", Toast.LENGTH_SHORT).show();
+                            final String dp = getIntent().getStringExtra("downloadUrlPP");
                             Intent intToHome = new Intent(getApplicationContext(), ServiceProviderMainScreen.class);
+                            intToHome.putExtra("downloadUrlPP",dp);
                             startActivity(intToHome);
-                            finish();
 
                         } else {
                             Toast.makeText(ServiceProviderLogin2.this, "Error Occured! Please Login Again!!"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();

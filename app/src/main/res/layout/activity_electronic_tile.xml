@@ -65,6 +65,7 @@
                 android:orientation="vertical">
 
                 <ImageButton
+                    android:onClick="onServiceClick"
                     android:id="@+id/ET_laptop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,9 +73,11 @@
                     android:layout_marginBottom="5dp"
                     android:layout_weight="0.40"
                     android:background="@drawable/laptop_pc_tile"
-                    android:src="#00207E1D" />
+                    android:src="#00207E1D"
+                    tools:ignore="HardcodedText,RtlSymmetry,SpUsage,UnusedAttribute" />
 
                 <ImageButton
+                    android:onClick="onServiceClick"
                     android:id="@+id/ET_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -84,6 +87,7 @@
                     android:src="#00207E1D" />
 
                 <ImageButton
+                    android:onClick="onServiceClick"
                     android:id="@+id/ET_musicsystem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -94,6 +98,7 @@
                     android:background="@drawable/music_system_tile" />
 
                 <ImageButton
+                    android:onClick="onServiceClick"
                     android:id="@+id/ET_smartphone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

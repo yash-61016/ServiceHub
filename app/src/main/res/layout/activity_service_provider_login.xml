@@ -1,128 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-
-<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="500dp"
-    android:background="@drawable/welcome_bg"
-    android:resizeable="true"
-    android:smallScreens="true"
-    android:normalScreens="true"
-    android:largeScreens="true"
-    android:anyDensity="true"
-    tools:context=".ServiceProviderLogin">
-
-
-    <TextView
-        android:id="@+id/SP_SPLsignInAsA"
-        android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="53dp"
-        android:fontFamily="@font/bold"
-        android:text="Sign in as a"
-        android:textColor="@color/white"
-        android:textSize="45sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@drawable/welcome_bg"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:anyDensity="true"
+        tools:context=".ServiceProviderLogin">
 
-    <TextView
-        android:id="@+id/SP_SPLasASP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/bold"
-        android:text="Service Provider"
-        android:textColor="@color/white"
-        android:textSize="44sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SP_SPLsignInAsA" />
 
-    <Button
-        android:id="@+id/SP_SPLlogin"
-        android:layout_width="154dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="230dp"
-        android:layout_marginBottom="29dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/medium"
-        android:gravity="center"
-        android:text="Login"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/SP_SPLcreateAccount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SP_SPLasASP" />
+        <TextView
+            android:id="@+id/U_SignUpTitle"
+            android:layout_width="370dp"
+            android:layout_height="115dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="96dp"
+            android:layout_marginBottom="220dp"
+            android:fontFamily="@font/bold"
+            android:text="      Sign in as\n Service Prvider "
+            android:textColor="@color/white"
+            android:textSize="48sp"
+            app:layout_constraintBottom_toTopOf="@+id/SP_SPLlogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/SP_SPLcreateAccount"
-        android:layout_width="342dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="9dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/medium"
-        android:gravity="center"
-        android:text="Create Account"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/SP_SPLoR"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SP_SPLlogin" />
+        <Button
+            android:id="@+id/SP_SPLlogin"
+            android:layout_width="119dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="119dp"
+            android:layout_marginEnd="119dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/medium"
+            android:gravity="center"
+            android:text="Login"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/SP_SPLcreateAccount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/U_SignUpTitle" />
 
-    <TextView
-        android:id="@+id/SP_SPLoR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:fontFamily="@font/medium"
-        android:text="Or"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/SP_SPLloginWithGoogle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SP_SPLcreateAccount" />
+        <Button
+            android:id="@+id/SP_SPLcreateAccount"
+            android:layout_width="342dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/medium"
+            android:gravity="center"
+            android:text="@string/create_account"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/U_Sp_or"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SP_SPLlogin" />
 
-    <Button
-        android:id="@+id/SP_SPLloginWithGoogle"
-        android:layout_width="342dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/medium"
-        android:gravity="center"
-        android:text="Login with Google"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/SP_SPLskip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SP_SPLoR" />
+        <TextView
+            android:id="@+id/U_Sp_or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/bold"
+            android:text="OR"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/U_Sp_Loginwithegoogle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SP_SPLcreateAccount" />
 
-    <Button
-        android:id="@+id/SP_SPLskip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:alpha=".5"
-        android:background="#142B5C"
-        android:fontFamily="@font/medium"
-        android:text="Skip"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SP_SPLloginWithGoogle" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/U_Sp_Loginwithegoogle"
+            android:layout_width="342dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="21dp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/medium"
+            android:gravity="center"
+            android:text="LOGIN WITH GOOGLE"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/SP_SPLskip"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/U_Sp_or" />
+
+        <Button
+            android:id="@+id/SP_SPLskip"
+            android:layout_width="152dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginEnd="140dp"
+            android:layout_marginBottom="75dp"
+            android:alpha="0.5"
+            android:background="@drawable/skipbt"
+            android:fontFamily="@font/medium"
+            android:text="@string/skip"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/U_Sp_Loginwithegoogle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
