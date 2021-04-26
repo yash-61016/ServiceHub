@@ -134,7 +134,7 @@ public class profile extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     FirebaseAuth.getInstance().signOut();
-                    Intent intent=new Intent(profile.this,User_Login.class);
+                    Intent intent=new Intent(profile.this,welcome.class);
                     startActivity(intent);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

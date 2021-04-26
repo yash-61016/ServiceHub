@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import uk.ac.tees.w9336459.servicehub.Model.ListAdapter;
 import uk.ac.tees.w9336459.servicehub.Model.ServiceProviders2;
 import uk.ac.tees.w9336459.servicehub.R;
+import uk.ac.tees.w9336459.servicehub.Requests;
 import uk.ac.tees.w9336459.servicehub.U_MainScreen;
 
 import static android.view.View.GONE;
@@ -157,6 +159,12 @@ public class electronic_service_offered extends AppCompatActivity {
             }
         };
         commandsRef.addListenerForSingleValueEvent(eventListener);
+    }
+
+    public void sentrequestlist(View view){
+
+        Intent intent = new Intent(electronic_service_offered.this, Requests.class);
+        startActivity(intent);
     }
 
 

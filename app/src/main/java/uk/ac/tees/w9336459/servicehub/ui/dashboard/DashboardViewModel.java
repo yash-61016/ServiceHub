@@ -1,4 +1,4 @@
-package com.example.locale_lite.ui.dashboard;
+package uk.ac.tees.w9336459.servicehub.ui.dashboard;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

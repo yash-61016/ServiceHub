@@ -1,4 +1,4 @@
-package com.example.locale_lite.ui.dashboard;
+package uk.ac.tees.w9336459.servicehub.ui.dashboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -77,7 +77,7 @@ public class DashboardFragmentSP extends Fragment {
 
     private void chatList(){
         musers = new ArrayList<>();
-        database = FirebaseDatabase.getInstance().getReference("Customers");
+        database = FirebaseDatabase.getInstance().getReference("Users").child("Details");
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

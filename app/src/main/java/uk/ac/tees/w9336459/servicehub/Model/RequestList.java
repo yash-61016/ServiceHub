@@ -5,6 +5,15 @@ public class RequestList {
     public String id;
     public String status;
 
+    public RequestList(String id,String status)
+    {
+        this.id = id;
+        this.status = status;
+    }
+    public RequestList(){
+
+    }
+
     public String getStatus() {
         return status;
     }
@@ -13,12 +22,7 @@ public class RequestList {
         this.status = status;
     }
 
-    public RequestList(String id) {
-        this.id = id;
-    }
-    public RequestList(){
 
-    }
 
     public String getId() {
         return id;

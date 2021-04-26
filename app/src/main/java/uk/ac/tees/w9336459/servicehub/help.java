@@ -3,6 +3,7 @@ package uk.ac.tees.w9336459.servicehub;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -42,6 +43,12 @@ public class help extends AppCompatActivity {
         versionsList.add(new Versions("refund policy","on cancellation of a request ,refund will be initiated and payment may take 5 to 7 working days"));
         versionsList.add(new Versions("how to pay` for the service?","you can by cash or by mobile transfer to the service provider after the service"));
     }
+
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(this, menubtn.class));
+    }
+
 
 
 }

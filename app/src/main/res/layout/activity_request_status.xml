@@ -31,7 +31,8 @@
         android:id="@+id/request_list"
         android:clickable="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        tools:listitem="@layout/list_row">
 
     </androidx.recyclerview.widget.RecyclerView>
 

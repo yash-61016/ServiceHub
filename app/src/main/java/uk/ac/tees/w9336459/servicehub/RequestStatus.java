@@ -1,6 +1,7 @@
 package uk.ac.tees.w9336459.servicehub;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 import uk.ac.tees.w9336459.servicehub.Model.RequestList;
 import uk.ac.tees.w9336459.servicehub.Model.ShowRequestAdapter;
@@ -60,7 +62,7 @@ import static android.view.View.GONE;
 
             userList = new ArrayList<>();
 
-            database = FirebaseDatabase.getInstance().getReference("Request").child(ServiceProviderMainScreen.decodeUserEmail(fuser.getEmail()));
+            database = FirebaseDatabase.getInstance().getReference("RequestList").child(ServiceProviderMainScreen.decodeUserEmail(fuser.getEmail()));
             database.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -81,24 +83,26 @@ import static android.view.View.GONE;
 
         private void chatList() {
             musers = new ArrayList<>();
-            database = FirebaseDatabase.getInstance().getReference("Users");
 
-
-            database.addValueEventListener(new ValueEventListener() {
+            database = FirebaseDatabase.getInstance().getReference("Users").child("Details");
+            database.orderByChild("emailid").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     musers.clear();
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         Customers c = dataSnapshot1.getValue(Customers.class);
                         for (RequestList chatlist : userList) {
-                            if (c.getId().equals(chatlist.getId()) && chatlist.getStatus().equals(status)) {
+                            String id = ServiceProviderMainScreen.decodeUserEmail(chatlist.getId());
+                            if ((c.getEmailid()).equals(id)
+                                    && chatlist.getStatus().equals(status)) {
                                 musers.add(c);
                             }
                         }
-                        pbar.setVisibility(GONE);
+                       // pbar.setVisibility(GONE);
                     }
 
                     listAdapter = new ShowRequestAdapter(RequestStatus.this, musers,status);
+                    recyclerView.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(listAdapter);
                 }
 

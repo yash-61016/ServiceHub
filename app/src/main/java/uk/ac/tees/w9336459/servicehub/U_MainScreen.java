@@ -59,6 +59,7 @@ public class U_MainScreen extends AppCompatActivity {
     private DatabaseReference mServiceProviderDatabse, mref;
     private FirebaseAuth mAuth;
     private Query firebasequery;
+    String imageref ;
 
 
     @Override
@@ -89,6 +90,7 @@ public class U_MainScreen extends AppCompatActivity {
 
         ms_bt.setOnClickListener((v) -> {
             Intent a = new Intent(U_MainScreen.this, menubtn.class);
+            a.putExtra("profilepic",imageref);
             startActivity(a);
             finish();
         });
@@ -164,6 +166,7 @@ public class U_MainScreen extends AppCompatActivity {
                     }
                     else  {
                         String image = dataSnapshot.child("image").getValue().toString();
+                        imageref = image;
                         Picasso.get().load(image).into(profileimageview);
                     }
                 }
@@ -194,7 +197,7 @@ public class U_MainScreen extends AppCompatActivity {
             builder.setCancelable(true);
             builder.setNegativeButton("Yes", (dialogInterface, i) -> moveTaskToBack(true));
             builder.setPositiveButton("No", (dialogInterface, i) -> dialogInterface.cancel());
-
+            builder.setInverseBackgroundForced(true);
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
         }

@@ -7,9 +7,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class menubtn extends AppCompatActivity {
 
-    ImageView image;
+    CircleImageView profilepic;
     Button app_help , contact_us;
 
     @Override
@@ -18,6 +22,9 @@ public class menubtn extends AppCompatActivity {
         setContentView(R.layout.activity_menubtn);
         app_help = findViewById(R.id.U_M_help);
         contact_us = findViewById(R.id.U_M_contactUs);
+        profilepic = findViewById(R.id.profile_pic);
+        String image = getIntent().getStringExtra("profilepic");
+        Picasso.get().load(image).into(profilepic);
 
         app_help.setOnClickListener((v)->{
 
@@ -33,7 +40,18 @@ public class menubtn extends AppCompatActivity {
 
         });
 
+        profilepic.setOnClickListener((v)->{
+            Intent i = new Intent(this, profile.class);
+            startActivity(i);
+        });
+
+
 
     }
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(this, U_MainScreen.class));
+    }
+
 
 }

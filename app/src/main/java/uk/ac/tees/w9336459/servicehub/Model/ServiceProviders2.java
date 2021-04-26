@@ -179,11 +179,11 @@ public class ServiceProviders2 {
     }
 
 
-    public float getYearsOfExperience() {
+    public float getyearsofexperience() {
         return yearsofexperience;
     }
 
-    public void setYearsOfExperience(float yearsofexperience) {
+    public void setyearsofexperience(float yearsofexperience) {
         this.yearsofexperience = yearsofexperience;
     }
 

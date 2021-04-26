@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +59,7 @@ public class ShowActiveRequests extends AppCompatActivity {
 
         userid = getIntent().getStringExtra("userid");
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Customers").child(userid);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Details").child(ServiceProviderMainScreen.decodeUserEmail(userid));
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -67,8 +68,8 @@ public class ShowActiveRequests extends AppCompatActivity {
                 String mname = s.getFirstname() + " " + s.getLastname();
                 name.setText(mname);
                 job.setText(s.getPhonenum());
-                dp.setImageResource(R.drawable.cuslogo);
-                readMessage(firebaseUser.getUid(),userid);
+                Picasso.get().load(s.getImage()).into(dp);
+                //readMessage(firebaseUser.getUid(),userid);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

@@ -67,7 +67,7 @@ public class ShowPendingRequest extends AppCompatActivity {
 
         userid = getIntent().getStringExtra("userid");
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Customers").child(userid);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Details").child(ServiceProviderMainScreen.decodeUserEmail(userid));
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -76,8 +76,8 @@ public class ShowPendingRequest extends AppCompatActivity {
                 String mname = s.getFirstname() + " " + s.getLastname();
                 name.setText(mname);
                 job.setText(s.getPhonenum());
-                dp.setImageResource(R.drawable.cuslogo);
-                readMessage(firebaseUser.getUid(),userid);
+                Picasso.get().load(s.getImage()).into(dp);
+                readMessage(firebaseUser.getEmail(),userid);
             }
 
             @Override
@@ -86,7 +86,7 @@ public class ShowPendingRequest extends AppCompatActivity {
             }
         });
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Requestlist").child(firebaseUser.getUid());
+        databaseReference = FirebaseDatabase.getInstance().getReference("RequestList").child((ServiceProviderMainScreen.decodeUserEmail(firebaseUser.getEmail())));
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -120,7 +120,7 @@ public class ShowPendingRequest extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ShowPendingRequest.this,Chat.class);
                 intent.putExtra("userid",getIntent().getStringExtra("userid"));
-                intent.putExtra("type","Customer");
+                intent.putExtra("type","Users");
                 startActivity(intent);
 
             }});
@@ -141,11 +141,11 @@ public class ShowPendingRequest extends AppCompatActivity {
                 databaseReference.child(requestid)
                 .child("status").setValue("active");
 
-                databaseReference = FirebaseDatabase.getInstance().getReference("Requestlist");
+                databaseReference = FirebaseDatabase.getInstance().getReference("RequestList");
                 databaseReference.child(userid)
                         .child(firebaseUser.getUid()).child("status").setValue("active");
 
-                databaseReference = FirebaseDatabase.getInstance().getReference("Requestlist");
+                databaseReference = FirebaseDatabase.getInstance().getReference("RequestList");
                 databaseReference.child(firebaseUser.getUid())
                         .child(userid).child("status").setValue("active");
 
@@ -160,11 +160,11 @@ public class ShowPendingRequest extends AppCompatActivity {
                 databaseReference.child(requestid)
                         .child("status").setValue("declined");
 
-                databaseReference = FirebaseDatabase.getInstance().getReference("Requestlist");
+                databaseReference = FirebaseDatabase.getInstance().getReference("RequestList");
                 databaseReference.child(userid)
                         .child(firebaseUser.getUid()).child("status").setValue("declined");
 
-                databaseReference = FirebaseDatabase.getInstance().getReference("Requestlist");
+                databaseReference = FirebaseDatabase.getInstance().getReference("RequestList");
                 databaseReference.child(firebaseUser.getUid())
                         .child(userid).child("status").setValue("declined");
 

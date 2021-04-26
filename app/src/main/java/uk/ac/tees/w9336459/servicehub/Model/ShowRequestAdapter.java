@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.locale_lite.ui.dashboard.DashboardFragmentSP;
+import uk.ac.tees.w9336459.servicehub.ui.dashboard.DashboardFragmentSP;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -51,17 +51,17 @@ public class ShowRequestAdapter extends RecyclerView.Adapter<ShowRequestAdapter.
 
         final Customers c = musers.get(position);
         holder.username.setText(c.getFirstname()+" "+c.getLastname());
-        holder.profilepic.setImageResource(R.drawable.cuslogo);
+       // holder.profilepic.setImageResource(R.drawable.cuslogo);
         holder.phone.setText(c.getPhonenum());
 
         holder.itemView.setOnClickListener(v -> {
 
             if (status.equals("pending")) {
                 Intent intent = new Intent(mcontext, ShowPendingRequest.class);
-                intent.putExtra("type", "Customer");
+                intent.putExtra("type", "Users");
                 intent.putExtra("name", c.getFirstname() + " " + c.getLastname());
                 intent.putExtra("phone", c.getPhonenum());
-                intent.putExtra("userid", c.getId());
+                intent.putExtra("userid", c.getEmailid());
                 Bundle b = new Bundle();
                 b.putDouble("cusLat", c.getLatitude());
                 b.putDouble("cusLng", c.getLongitude());
@@ -70,10 +70,10 @@ public class ShowRequestAdapter extends RecyclerView.Adapter<ShowRequestAdapter.
             }
             if (status.equals("active")) {
                 Intent intent = new Intent(mcontext, ShowActiveRequests.class);
-                intent.putExtra("type", "Customer");
+                intent.putExtra("type", "Users");
                 intent.putExtra("name", c.getFirstname() + " " + c.getLastname());
                 intent.putExtra("phone", c.getPhonenum());
-                intent.putExtra("userid", c.getId());
+                intent.putExtra("userid", c.getEmailid());
                 Bundle b = new Bundle();
                 b.putDouble("cusLat", c.getLatitude());
                 b.putDouble("cusLng", c.getLongitude());
@@ -82,18 +82,18 @@ public class ShowRequestAdapter extends RecyclerView.Adapter<ShowRequestAdapter.
             }
             if (status.equals("active")) {
                 Intent intent = new Intent(mcontext, ShowActiveRequests.class);
-                intent.putExtra("type", "Customer");
+                intent.putExtra("type", "Users");
                 intent.putExtra("name", c.getFirstname() + " " + c.getLastname());
                 intent.putExtra("phone", c.getPhonenum());
-                intent.putExtra("userid", c.getId());
+                intent.putExtra("userid", c.getEmailid());
                 mcontext.startActivity(intent);
             }
             if (status.equals("completed")) {
                 Intent intent = new Intent(mcontext, ShowCompletedRequest.class);
-                intent.putExtra("type", "Customer");
+                intent.putExtra("type", "Users");
                 intent.putExtra("name", c.getFirstname() + " " + c.getLastname());
                 intent.putExtra("phone", c.getPhonenum());
-                intent.putExtra("userid", c.getId());
+                intent.putExtra("userid", c.getEmailid());
                 mcontext.startActivity(intent);
             }
 

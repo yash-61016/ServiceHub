@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.locale_lite.ui.dashboard.DashboardFragmentSP;
+import uk.ac.tees.w9336459.servicehub.ui.dashboard.DashboardFragmentSP;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

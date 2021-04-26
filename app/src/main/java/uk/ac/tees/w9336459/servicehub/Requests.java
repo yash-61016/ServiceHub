@@ -55,13 +55,14 @@ public class Requests extends AppCompatActivity {
 
         userList = new ArrayList<>();
 
-        database = FirebaseDatabase.getInstance().getReference("Request").child(U_MainScreen.decodeUserEmail(fuser.getEmail()));
+        database = FirebaseDatabase.getInstance().getReference("RequestList").child(U_MainScreen.decodeUserEmail(fuser.getEmail()));
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     RequestList chatlist = snapshot.getValue(RequestList.class);
+
                     userList.add(chatlist);
                 }
                 chatList();
@@ -76,7 +77,7 @@ public class Requests extends AppCompatActivity {
 
     private void chatList() {
         musers = new ArrayList<>();
-        database = FirebaseDatabase.getInstance().getReference("ServiceProviders");
+        database = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Details").child(ServiceProviderMainScreen.decodeUserEmail(fuser.getEmail()));
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -84,7 +85,7 @@ public class Requests extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     ServiceProviders2 c = dataSnapshot1.getValue(ServiceProviders2.class);
                     for (RequestList chatlist : userList) {
-                        if (c.getEmailid().equals(chatlist.getId())) {
+                        if (c.getEmailid().equals(ServiceProviderMainScreen.decodeUserEmail(chatlist.getId()))) {
                             musers.add(c);
                         }
                     }

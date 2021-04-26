@@ -9,13 +9,6 @@
     android:padding="10dp"
     tools:context=".Requests">
 
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="80dp"
-
-        android:id="@+id/logo_main"
-        android:layout_gravity="center"/>
-
 
     <TextView
         android:id="@+id/request_text"

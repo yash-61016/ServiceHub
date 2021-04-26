@@ -31,7 +31,6 @@ public class VersionAdapter extends RecyclerView.Adapter<VersionAdapter.VersionV
         Versions versions= versionsList.get(position);
         holder.QuestionTxt.setText(versions.getQuestion());
         holder.AnswerTxt.setText(versions.getAnswer());
-
         boolean isexpandable = versionsList.get(position).isExpandable();
         holder.ExpandableLayout.setVisibility(isexpandable ? View.VISIBLE: View.GONE);
 

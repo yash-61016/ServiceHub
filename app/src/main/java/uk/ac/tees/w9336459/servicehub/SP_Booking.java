@@ -355,7 +355,7 @@ private LinearLayout review, call, message, directions;
 
         reference.setValue(hashmap);
 
-        final DatabaseReference dataref = FirebaseDatabase.getInstance().getReference("Request")
+        final DatabaseReference dataref = FirebaseDatabase.getInstance().getReference("RequestList")
                 .child(ServiceProviderMainScreen.decodeUserEmail(fuser.getEmail()))
                 .child(ServiceProviderMainScreen.decodeUserEmail(spemailid));
 
@@ -376,7 +376,7 @@ private LinearLayout review, call, message, directions;
 
             }
         });
-        final DatabaseReference chatRef1 = FirebaseDatabase.getInstance().getReference("Request")
+        final DatabaseReference chatRef1 = FirebaseDatabase.getInstance().getReference("RequestList")
                 .child(ServiceProviderMainScreen.decodeUserEmail(spemailid)).child(ServiceProviderMainScreen.decodeUserEmail(fuser.getEmail()));
         chatRef1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

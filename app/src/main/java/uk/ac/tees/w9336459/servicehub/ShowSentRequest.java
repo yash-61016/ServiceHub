@@ -57,9 +57,9 @@ public class ShowSentRequest extends AppCompatActivity {
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if(type.equals("ServiceProvider")){
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child(userid);}
-        else {
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Details").child(ServiceProviderMainScreen.decodeUserEmail(userid));
+        } else {
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Details").child(ServiceProviderMainScreen.decodeUserEmail(userid));
         }
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -73,7 +73,7 @@ public class ShowSentRequest extends AppCompatActivity {
                     dp.setImageResource(R.drawable.avatar);
                 }
                 Picasso.get().load(s.getProfilepicture()).into(dp);
-                readMessage(firebaseUser.getUid(),userid,s.getProfilepicture());
+                readMessage(firebaseUser.getEmail(),userid,s.getProfilepicture());
             }
 
             @Override
@@ -86,6 +86,7 @@ public class ShowSentRequest extends AppCompatActivity {
 
     private void readMessage(final String myid, final String userid, final String imageurl){
         mchat = new ArrayList<>();
+
         databaseReference = FirebaseDatabase.getInstance().getReference("Requests");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

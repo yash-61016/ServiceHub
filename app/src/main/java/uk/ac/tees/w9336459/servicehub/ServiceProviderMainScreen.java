@@ -44,7 +44,8 @@ public class ServiceProviderMainScreen extends AppCompatActivity {
 
         String dp = getIntent().getStringExtra("downloadUrlPP");
         PP = findViewById(R.id.SP_MS_profile_image);
-        Picasso.get().load(dp).into(PP);
+
+        //Picasso.get().load(dp).into(PP);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Details").child(decodeUserEmail(user.getEmail()));
@@ -54,6 +55,10 @@ public class ServiceProviderMainScreen extends AppCompatActivity {
                 ServiceProviders2 c = dataSnapshot.getValue(ServiceProviders2.class);
                 spLat = c.getLatitude();
                 spLng = c.getLongitude();
+
+                String dp = c.getProfilepicture();
+                Picasso.get().load(dp).into(PP);
+
             }
 
             @Override

@@ -127,7 +127,7 @@ public class asklocationSP extends FragmentActivity implements OnMapReadyCallbac
                 String phonenum = bundle.getString("phonenum");
                 String skills = bundle.getString("skills");
                 String downloadUrlPP = bundle.getString("downloadUrlPP");
-                Float experience = bundle.getFloat("yearsOfExperience");
+                Float experience = bundle.getFloat("yearsofexperience");
                 String description = bundle.getString("description");
                 String SPaddress = address.getText().toString();
 
