@@ -99,6 +99,10 @@ public class ServiceProviderMainScreen extends AppCompatActivity {
             Intent intent = new Intent(ServiceProviderMainScreen.this,ServiceProvider_Menu.class);
             startActivity(intent);
         });
+        PP.setOnClickListener((v)->{
+            Intent intent = new Intent(ServiceProviderMainScreen.this,ServiceProvider_details.class);
+            startActivity(intent);
+        });
 
     }
     @Override
