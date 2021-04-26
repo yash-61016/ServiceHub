@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,6 +36,7 @@ public class ServiceProviderMainScreen extends AppCompatActivity {
     public static Double spLat, spLng;
     CircleImageView PP ;
     Button Request_active,Request_pending,Request_completed;
+    ImageButton menu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +94,11 @@ public class ServiceProviderMainScreen extends AppCompatActivity {
             startActivity(intent);
         });
 
+        menu = findViewById(R.id.SP_MS_menu);
+        menu.setOnClickListener((v)->{
+            Intent intent = new Intent(ServiceProviderMainScreen.this,ServiceProvider_Menu.class);
+            startActivity(intent);
+        });
 
     }
     @Override
@@ -112,22 +119,4 @@ public class ServiceProviderMainScreen extends AppCompatActivity {
         return userEmail.replace(".", ",");
     }
 
-//    public void ChangeFragment(View view){
-//        Fragment fragment;
-//
-//        if(view == findViewById(R.id.work_in_progress)){
-//            fragment = new SP_MS_ActiveJobsFragment();
-//            androidx.fragment.app.FragmentManager fm = getSupportFragmentManager();
-//            androidx.fragment.app.FragmentTransaction ft = fm.beginTransaction();
-//            ft.replace(R.id.SP_MS_fragment, fragment);
-//            ft.commit();
-//        }
-//        if(view == findViewById(R.id.post_work)){
-//            fragment = new SP_MS_PostJobsFragment();
-//            androidx.fragment.app.FragmentManager fm = getSupportFragmentManager();
-//            androidx.fragment.app.FragmentTransaction ft = fm.beginTransaction();
-//            ft.replace(R.id.SP_MS_fragment, fragment);
-//            ft.commit();
-//        }
-//    }
 }
