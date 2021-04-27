@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class UserSignUp extends AppCompatActivity {
 
-    Button login, create, skip;
+    Button login, create;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +17,7 @@ public class UserSignUp extends AppCompatActivity {
 
         login = findViewById(R.id.U_Sp_Login);
         create = findViewById(R.id.U_Sp_Createbt);
-        skip = findViewById(R.id.U_Sp_skipbt);
+
 
 
         login.setOnClickListener(view -> {
@@ -28,12 +28,7 @@ public class UserSignUp extends AppCompatActivity {
                 Intent a = new Intent(UserSignUp.this, User_Create_Account.class);
                 startActivity(a);
         });
-        skip.setOnClickListener((v)->{
 
-            Intent a = new Intent(UserSignUp.this , U_MainScreen.class);
-            startActivity(a);
-
-        });
 
     }
 }

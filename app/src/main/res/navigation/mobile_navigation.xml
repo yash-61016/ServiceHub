@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/menubtn">
+
+    <activity
+        android:id="@+id/menubtn"
+        android:name="uk.ac.tees.w9336459.servicehub.menubtn"
+        android:label="activity_menubtn"
+        tools:layout="@layout/activity_menubtn" >
+        <action
+            android:id="@+id/action_menubtn_to_help"
+            app:destination="@id/help" />
+    </activity>
+    <activity
+        android:id="@+id/help"
+        android:name="uk.ac.tees.w9336459.servicehub.help"
+        android:label="activity_help"
+        tools:layout="@layout/activity_help" >
+        <action
+            android:id="@+id/action_help_to_menubtn"
+            app:destination="@id/menubtn" />
+    </activity>
+</navigation>

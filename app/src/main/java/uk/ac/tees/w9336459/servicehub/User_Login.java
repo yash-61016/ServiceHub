@@ -21,8 +21,11 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class User_Login extends AppCompatActivity {
@@ -30,14 +33,17 @@ public class User_Login extends AppCompatActivity {
     // variable for FirebaseAuth class
     private FirebaseAuth mAuth;
 
+
     // variable for our text input
     // field for phone and OTP.
     private TextInputEditText emailid,password;
 
     // buttons for generating OTP and verifying OTP
     private Button login;
+    private DatabaseReference mref;
 
     TextView goTo_createAc,forgetpwd;
+    String name = "";
 
 
     private FirebaseAuth.AuthStateListener mAuthstatelistener;
@@ -59,7 +65,9 @@ public class User_Login extends AppCompatActivity {
             if (mFbuser != null) {
                 Toast.makeText(User_Login.this, "You are logged in!!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(User_Login.this, U_MainScreen.class);
+
                 startActivity(i);
+                finishActivity(1);
             } else {
                 Toast.makeText(User_Login.this, "Please Login", Toast.LENGTH_SHORT).show();
             }
@@ -69,6 +77,7 @@ public class User_Login extends AppCompatActivity {
         login.setOnClickListener((v) -> {
             String email = emailid.getText().toString();
             String pwd = password.getText().toString();
+
 
             if (email.isEmpty()) {
                 emailid.setError("FIELD CANNOT BE EMPTY/INCORRECT EMAIL");
@@ -87,10 +96,15 @@ public class User_Login extends AppCompatActivity {
 
                 mAuth.signInWithEmailAndPassword(email, pwd).addOnCompleteListener(User_Login.this, task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(User_Login.this, "Logged In Successfully!!", Toast.LENGTH_SHORT).show();
-                        Intent intToHome = new Intent(getApplicationContext(), U_MainScreen.class);
-                        startActivity(intToHome);
-                        finish();
+                        if(mAuth.getCurrentUser().isEmailVerified()) {
+                            Toast.makeText(User_Login.this, "Logged In Successfully!!", Toast.LENGTH_SHORT).show();
+                            Intent intToHome = new Intent(getApplicationContext(), U_MainScreen.class);
+                            startActivity(intToHome);
+                            finishActivity(1);
+                        }else{
+                            Toast.makeText(User_Login.this, "Logged In Failed!! Email not verified", Toast.LENGTH_SHORT).show();
+                            mAuth.getCurrentUser().sendEmailVerification();
+                        }
 
                     } else {
                         Toast.makeText(User_Login.this, "Error Occured! Please Login Again!!"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();

@@ -21,14 +21,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import uk.ac.tees.w9336459.servicehub.Model.ServiceProviders2;
+
+import static uk.ac.tees.w9336459.servicehub.U_MainScreen.decodeUserEmail;
+
 public class ServiceProviderNewAccount extends AppCompatActivity {
-    TextInputEditText reg_f_name, reg_l_name,reg_email, reg_address1, reg_password, reg_v_password,reg_postcode,reg_account,reg_sortcode;
+    TextInputEditText reg_f_name, reg_l_name,reg_email, reg_password, reg_v_password,reg_yearofexp;
     static TextInputEditText reg_mobile;
     Button loginhome;
     TextView goTo_Login;
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     FirebaseAuth mAuth;
+    String newNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +42,16 @@ public class ServiceProviderNewAccount extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        loginhome = findViewById(R.id.SP_CA_LoginInbt);
+        loginhome = findViewById(R.id.SP_CA_Donebt);
         goTo_Login = findViewById(R.id.Sp_CreateAc);
 
         reg_f_name = findViewById(R.id.SP_CA_FirstName);
         reg_l_name = findViewById(R.id.SP_CA_LastName);
         reg_email =  findViewById(R.id.SP_CA_Email);
         reg_mobile = findViewById(R.id.SP_CA_number);
-        reg_address1 =findViewById(R.id.SP_CA_Address);
-        reg_postcode = findViewById(R.id.SP_CA_Postcode);
         reg_password = findViewById(R.id.SP_CA_Password);
         reg_v_password = findViewById(R.id.SP_CA_VerifyPassword);
-        reg_account = findViewById(R.id.SP_CA_AccountNO);
-        reg_sortcode = findViewById(R.id.SP_CA_SortCode);
+        reg_yearofexp = findViewById(R.id.SP_CA_yearsofexp);
 
 
         loginhome.setOnClickListener((v)->
@@ -57,109 +59,122 @@ public class ServiceProviderNewAccount extends AppCompatActivity {
             rootNode = FirebaseDatabase.getInstance();
             reference = rootNode.getReference("ServiceProviders");
 
-            if(reg_f_name.length()==0 )
-            {
+            if (reg_f_name.length() == 0) {
                 reg_f_name.requestFocus();
                 reg_f_name.setError("FIELD CANNOT BE EMPTY");
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
                 reg_f_name.setBackground(dr);
 
-            }else if(reg_email.length()==0 || !reg_email.getText().toString().contains("@"))
-            {
+            } else if (reg_l_name.length() == 0) {
+                reg_l_name.requestFocus();
+                reg_l_name.setError("FIELD CANNOT BE EMPTY");
+                Resources res = getResources();
+                Drawable dr = res.getDrawable(R.drawable.border);
+                reg_l_name.setBackground(dr);
+
+            } else if (reg_email.length() == 0 || !reg_email.getText().toString().contains("@")) {
                 reg_email.requestFocus();
                 reg_email.setError("FIELD CANNOT BE EMPTY/ ENTER VALID TEXT");
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
                 reg_email.setBackground(dr);
-            }else if(reg_mobile.length()!=10)
-            {
+            } else if (reg_mobile.length() < 10) {
                 reg_mobile.requestFocus();
                 reg_mobile.setError("FIELD CANNOT BE EMPTY/ENTER VALID MOBILE NUMBER");
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
                 reg_mobile.setBackground(dr);
-            }else if(reg_address1.length()==0 )
-            {
-                reg_address1.requestFocus();
-                reg_address1.setError("FIELD CANNOT BE EMPTY");
-                Resources res = getResources();
-                Drawable dr = res.getDrawable(R.drawable.border);
-                reg_address1.setBackground(dr);
-            }else if(reg_password.length()<=7||!(reg_password.getText().toString().matches("(.*[0-9].*)"))
-                    ||!(reg_password.getText().toString().matches("(.*[A-Z].*)")))
-            {
+            }else if (reg_password.length() <= 7 || !(reg_password.getText().toString().matches("(.*[0-9].*)"))
+                    || !(reg_password.getText().toString().matches("(.*[A-Z].*)"))) {
                 reg_password.requestFocus();
                 reg_password.setError("FIELD CANNOT BE EMPTY");
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
                 reg_password.setBackground(dr);
-            }else if( reg_v_password.length()<=7||!(reg_v_password.getText().toString().matches("(.*[0-9].*)"))
-                    ||!(reg_v_password.getText().toString().matches("(.*[A-Z].*)")) )
-            {
+            } else if (reg_v_password.length() <= 7 || !(reg_v_password.getText().toString().matches("(.*[0-9].*)"))
+                    || !(reg_v_password.getText().toString().matches("(.*[A-Z].*)")) || !reg_v_password.getText().toString().matches(reg_password.getText().toString())) {
                 reg_v_password.requestFocus();
-                reg_v_password.setError("FIELD CANNOT BE EMPTY");
+                reg_v_password.setError("FIELD CANNOT BE EMPTY/ 8 characters in length, 1 Uppercase Letter,1 Lowercase Letter, 1 Number, and no symbols");
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
                 reg_v_password.setBackground(dr);
-            }else if(reg_postcode.length()==0  )
-            {
-                reg_postcode.requestFocus();
-                reg_postcode.setError("FIELD CANNOT BE EMPTY");
+            }  else if (reg_yearofexp.length() == 0 || (reg_yearofexp.getText().toString().matches("(.*[A-Z].*)")) || (reg_yearofexp.getText().toString().matches("(.*[a-z].*)"))) {
+                reg_yearofexp.requestFocus();
+                reg_yearofexp.setError("FIELD CANNOT BE EMPTY/ Enter a number");
                 Resources res = getResources();
                 Drawable dr = res.getDrawable(R.drawable.border);
-                reg_postcode.setBackground(dr);
-            }else if(reg_account.length()==0 )
-            {
-                reg_account.requestFocus();
-                reg_account.setError("FIELD CANNOT BE EMPTY");
-                Resources res = getResources();
-                Drawable dr = res.getDrawable(R.drawable.border);
-                reg_account.setBackground(dr);
-            }else if(reg_sortcode.length()==0 )
-            {
-                reg_sortcode.requestFocus();
-                reg_sortcode.setError("FIELD CANNOT BE EMPTY");
-                Resources res = getResources();
-                Drawable dr = res.getDrawable(R.drawable.border);
-                reg_sortcode.setBackground(dr);
-            }
-            else
-            {
-                mAuth.createUserWithEmailAndPassword(reg_email.getText().toString(),reg_password.getText().toString()).addOnCompleteListener(ServiceProviderNewAccount.this,new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(ServiceProviderNewAccount.this, "Validation Successful", Toast.LENGTH_LONG).show();
-                            String new_email = "";
-                            String name = reg_f_name.getText().toString() + reg_l_name.getText().toString();
-                            if (reg_email.getText().toString().contains(".com")) {
+                reg_yearofexp.setBackground(dr);
+            } else {
+                mAuth.createUserWithEmailAndPassword(reg_email.getText().toString(), reg_password.getText().toString()).addOnCompleteListener(ServiceProviderNewAccount.this, task -> {
+                    String ext = "";
+                    String ext_check = "";
 
-                                int index = reg_email.getText().toString().indexOf(".");
-                                new_email = reg_email.getText().toString().substring(0, index);
-                            }
-                            String email = new_email.concat(".com");
-                            String number = reg_mobile.getText().toString();
-                            String address = reg_address1.getText().toString();
-                            String Postcode = reg_postcode.getText().toString();
-                            String account = reg_account.getText().toString();
-                            String sortcode = reg_sortcode.getText().toString();
-                            ServiceProviderHelperClass helperClass = new ServiceProviderHelperClass(name, email, address, Postcode, account, sortcode);
-                            reference.child("Details").child(number).setValue(helperClass);
-                            Intent a = new Intent(ServiceProviderNewAccount.this, ServiceProviderNewAccountVerify.class);
-                            startActivity(a);
+                    if (task.isSuccessful()) {
+                        Toast.makeText(ServiceProviderNewAccount.this, "Validation Successful", Toast.LENGTH_LONG).show();
+                        String new_email = "";
+                        String fName = reg_f_name.getText().toString();
+                        String lName = reg_l_name.getText().toString();
+                        String Email = reg_email.getText().toString();
+                        if (reg_mobile.getText().toString().startsWith("0")) {
+                            newNum = reg_mobile.getText().toString().substring(1);
+                        }else if (reg_mobile.getText().toString().startsWith("+44")){
+                            newNum = reg_mobile.getText().toString().substring(3);
+                        }else{
+                            newNum = reg_mobile.getText().toString();
                         }
+                        String yearofexp = reg_yearofexp.getText().toString();
+
+                        final Bundle bundle = new Bundle();
+                        bundle.putString("firstname",fName);
+                        bundle.putString("lastname",lName);
+                        bundle.putString("emailid",Email);
+                        bundle.putString("phonenum",newNum);
+                        bundle.putString("yearsofexperience",yearofexp);
+
+
+                        mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                Toast.makeText(ServiceProviderNewAccount.this, "User Registered Successfully, Please verify Email!!!", Toast.LENGTH_LONG).show();
+                                Intent a = new Intent(ServiceProviderNewAccount.this, ServiceProviderNewAccountVerify.class);
+                                a.putExtra("number", newNum );
+                                a.putExtras(bundle);
+                                startActivity(a);
+                            } else {
+                                Toast.makeText(ServiceProviderNewAccount.this, "Error Occured!!Signup Unsuccessful", Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+
+                    } else {
+                        Toast.makeText(ServiceProviderNewAccount.this, "Error Occured!!Signup Unsuccessful", Toast.LENGTH_LONG).show();
                     }
+
                 });
             }
+
+            goTo_Login.setOnClickListener((view) -> {
+
+                Intent i = new Intent(ServiceProviderNewAccount.this, ServiceProviderLogin2.class);
+                startActivity(i);
+                finish();
+            });
+
         });
-
-        goTo_Login.setOnClickListener((v)->{
-
-            Intent i = new Intent(ServiceProviderNewAccount.this, ServiceProviderLogin2.class);
-            startActivity(i);
-            finish();
-        });
-
     }
+
+    static String encodeUserEmail (String userEmail){
+            return userEmail.replace(".", ",");
+        }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(mAuth.getCurrentUser() != null){
+            //already login
+        }
+    }
+
 }

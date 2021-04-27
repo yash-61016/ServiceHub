@@ -3,8 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="uk.ac.tees.w9336459.servicehub">
     <!-- Permissions for internet -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -13,11 +21,51 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".ServiceProvider_details"/>
+        <activity android:name=".ResetPassword" />
+        <activity android:name=".ServiceProvider_Menu" />
 
-        <activity android:name=".ServiceProviderMainScreen"/>
-        <activity android:name=".U_MainScreen" />
-        <activity android:name=".menubtn"/>
-        <activity android:name=".profile"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCEHN268350asLp0NC88QlDLBPJ1AgsIBU" />
+
+        <activity android:name=".SP_Booking" />
+        <activity android:name=".User_Details" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".U_MainScreen"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".Tiles.personal_grooming_offered" />
+        <activity android:name=".Requests"/>
+        <activity android:name=".Tiles.party_event_service_offered" />
+        <activity android:name=".Tiles.movers_shifters_services_offered" />
+        <activity android:name=".Tiles.home_service_offered" />
+        <activity android:name=".Tiles.health_services_offered" />
+        <activity android:name=".Tiles.mover_shifters_service_tile" />
+        <activity android:name=".Tiles.personal_grooming_service_tile" />
+        <activity android:name=".Tiles.party_event_service_tile" />
+        <activity android:name=".Tiles.home_services_tile" />
+        <activity android:name=".Tiles.health_service_tile" />
+        <activity android:name=".ShowPendingRequest" />
+        <activity android:name=".ShowActiveRequests" />
+        <activity android:name=".ShowCompletedRequest" />
+        <activity android:name=".RequestStatus" />
+        <activity android:name=".Tiles.electronic_service_offered" />
+        <activity android:name=".ServiceProviderMainScreen" />
+        <activity android:name=".Tiles.electronic_tile" />
+        <activity android:name=".help" />
+        <activity android:name=".asklocation" />
+        <activity android:name=".asklocationSP" />
+        <activity android:name=".ShowSentRequest" />
+        <activity android:name=".ProfileServiceProvider" />
+        <activity android:name=".contact_us" />
+
+        <activity android:name=".Chat" />
+        <activity android:name=".MapDirections" />
+        <activity android:name=".menubtn" />
+        <activity android:name=".profile" />
         <activity android:name=".ServiceProviderLogin2" />
         <activity android:name=".ServiceProviderNewAccountVerify" />
         <activity android:name=".ServiceProviderNewAccount" />
@@ -30,6 +78,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

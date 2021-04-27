@@ -2,6 +2,7 @@ package uk.ac.tees.w9336459.servicehub;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -38,4 +39,17 @@ public class welcome extends AppCompatActivity {
 
 
 }
+    @Override
+    public void onBackPressed() {
+
+            final AlertDialog.Builder builder = new AlertDialog.Builder(welcome.this);
+            builder.setMessage("Do you want to exit ?");
+            builder.setCancelable(true);
+            builder.setNegativeButton("Yes", (dialogInterface, i) -> moveTaskToBack(true));
+            builder.setPositiveButton("No", (dialogInterface, i) -> dialogInterface.cancel());
+            builder.setInverseBackgroundForced(true);
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+
+    }
 }

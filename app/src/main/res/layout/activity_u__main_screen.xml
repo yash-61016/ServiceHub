@@ -7,28 +7,34 @@
     android:background="@color/white"
     tools:context=".U_MainScreen">
 
+
     <Button
         android:id="@+id/U_Ms_Menubt"
         android:layout_width="45dp"
-        android:layout_height="30dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="719dp"
         android:background="@drawable/menubtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/profile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile"
         android:layout_width="80dp"
-        android:layout_height="56dp"
+        android:layout_height="80dp"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="211dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="44dp"
         android:layout_marginBottom="41dp"
         android:padding="10dp"
         android:src="@drawable/avatar"
         android:visibility="visible"
+        app:civ_border_color="@color/green"
+        app:civ_border_width="4dp"
         app:layout_constraintBottom_toTopOf="@+id/U_Ms_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/U_Ms_Menubt"
@@ -39,13 +45,14 @@
         android:layout_width="150dp"
         android:layout_height="35dp"
         android:layout_marginStart="75dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="266dp"
         android:fontFamily="@font/bold"
-        android:text="Hey Joe,"
-
+        android:hint="Hey Joe,"
         android:textColor="@color/black"
+        android:textColorHint="@color/Grey"
         android:textSize="26sp"
+        app:layout_constraintBottom_toTopOf="@+id/U_Ms_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_Ms_Menubt" />
@@ -61,24 +68,68 @@
         android:text="Choose what would you like to get done today,"
         android:textColor="@color/black"
         android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/U_Ms_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_Ms_name" />
 
 
-    <SearchView
+    <EditText
         android:id="@+id/U_Ms_search"
-        android:layout_width="346dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="41dp"
-        android:alpha="0.5"
-        android:background="@drawable/searchbar"
+        android:layout_width="275dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/search_layout"
+        android:ems="10"
+        android:fontFamily="@font/bold"
+        android:hint="Search here"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:textColor="#999999"
+        android:textColorHint="@color/Grey"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/Scroll"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_Ms_title" />
+
+
+    <ImageButton
+        android:id="@+id/search_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="42dp"
+        android:background="@android:color/background_light"
+        app:layout_constraintBottom_toTopOf="@+id/Scroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/U_Ms_search"
+        app:layout_constraintTop_toBottomOf="@+id/U_Ms_title"
+        app:srcCompat="@mipmap/search_button" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/result_list"
+        android:layout_width="429dp"
+        android:layout_height="552dp"
+        android:visibility="invisible"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="17dp"
+        android:isScrollContainer="false"
+        tools:listitem="@layout/list_layout"
+        app:layout_constraintTop_toTopOf="@id/Scroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/U_Ms_search" />
+
 
     <ScrollView
         android:id="@+id/Scroll"
@@ -86,6 +137,7 @@
         android:layout_width="418dp"
         android:layout_height="533dp"
         android:layout_marginStart="4dp"
+        android:isScrollContainer="false"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="4dp"
         android:clipToPadding="true"
@@ -105,6 +157,7 @@
 
         <LinearLayout
 
+            android:id="@+id/layout_grid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -173,5 +226,6 @@
 
         </LinearLayout>
     </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,4 +11,8 @@
     <color name="green">#4FA76D</color>
     <color name="cyan">#03DAC5</color>
     <color name="Grey">#45000000</color>
+    <color name="duskyellow">#ffc912</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
 </resources>

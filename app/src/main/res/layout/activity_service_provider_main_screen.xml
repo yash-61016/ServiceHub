@@ -4,27 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/signup_bg"
     tools:context=".ServiceProviderMainScreen"
     tools:layout_editor_absoluteY="25dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/SP_MS_profile_image"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
         android:src="@drawable/animoji"
+        app:civ_border_color="@color/blue"
+        app:civ_border_width="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.957"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.021" />
+        app:layout_constraintVertical_bias="0.002" />
 
     <ImageButton
         android:id="@+id/SP_MS_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="86dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="280dp"
         android:backgroundTint="#00FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/SP_MS_profile_image"
@@ -33,93 +35,67 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/menubtn" />
 
-    <TextView
-        android:id="@+id/SP_MS_myJobsTXT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:fontFamily="@font/bold"
-        android:text="My Jobs"
-        android:textColor="@color/black"
-        android:textSize="35sp"
-        app:layout_constraintEnd_toStartOf="@+id/SP_MS_profile_image"
-        app:layout_constraintHorizontal_bias="0.518"
-        app:layout_constraintStart_toEndOf="@+id/SP_MS_menu"
-        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/request_active"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="204dp"
+        android:background="@drawable/button"
+        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+        android:gravity="start|center_vertical"
+        android:paddingStart="15dp"
+        android:stateListAnimator="@null"
+        android:text="Active Request"
+        android:textAlignment="gravity"
+        android:textAllCaps="false"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_MS_profile_image" />
 
-    <RadioGroup
-        android:layout_width="431dp"
-        android:layout_height="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/request_pending"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/button"
+        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+        android:gravity="start|center_vertical"
+        android:paddingStart="15dp"
+        android:stateListAnimator="@null"
+        android:text="Pending Requests"
+        android:textAlignment="gravity"
+        android:textAllCaps="false"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SP_MS_myJobsTXT"
-        app:layout_constraintVertical_bias="0.081">
+        app:layout_constraintTop_toBottomOf="@+id/request_completed" />
 
-        <RadioButton
-            android:id="@+id/work_in_progress"
-            android:layout_width="214dp"
-            android:layout_height="24dp"
-            android:background="@drawable/radio_selected"
-            android:button="@drawable/selected"
-            android:fontFamily="@font/light"
-            android:text="Work in progress"
-            android:textAlignment="center"
-            android:textColor="@drawable/text_selected"
-            android:textSize="15sp"></RadioButton>
-
-        <RadioButton
-            android:id="@+id/post_work"
-            android:layout_width="214dp"
-            android:layout_height="24dp"
-            android:background="@drawable/radio_selected"
-            android:button="@drawable/selected"
-            android:fontFamily="@font/light"
-            android:text="Post Jobs"
-            android:textAlignment="center"
-            android:textColor="@drawable/text_selected"
-            android:textSize="15sp"></RadioButton>
-    </RadioGroup>
-
-    <RadioGroup
-        android:layout_width="260dp"
-        android:layout_height="37dp"
-        android:background="@drawable/sp_jobs_messeges"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/request_completed"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/button"
+        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+        android:gravity="start|center_vertical"
+        android:paddingStart="15dp"
+        android:stateListAnimator="@null"
+        android:text="Completed Requests"
+        android:textAlignment="gravity"
+        android:textAllCaps="false"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SP_MS_myJobsTXT"
-        app:layout_constraintVertical_bias="0.92">
-
-        <RadioButton
-            android:id="@+id/SP_MS_Jobs"
-            android:layout_width="wrap_content"
-            android:layout_height="37dp"
-            android:button="@drawable/jobs"
-            android:background="@drawable/sp_jobs_messeges_selector"
-            android:layout_gravity="center" />
-        <RadioButton
-            android:id="@+id/SP_MS_msgs"
-            android:layout_width="wrap_content"
-            android:layout_height="37dp"
-            android:button="@drawable/message"
-            android:background="@drawable/sp_jobs_messeges_selector"
-            android:layout_gravity="center"/>
-
-
-    </RadioGroup>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/request_active" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

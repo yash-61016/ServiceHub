@@ -15,23 +15,12 @@
         android:layout_height="115dp"
         android:layout_marginTop="5dp">
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="67dp"
-            android:layout_height="55dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:contentDescription="TODO"
-            android:paddingStart="5dp"
-            android:paddingLeft="5dp"
-            android:src="@drawable/ic_baseline_notes_24">
 
-        </ImageView>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_pic"
-            android:layout_width="80dp"
-            android:layout_height="56dp"
+            android:layout_width="101dp"
+            android:layout_height="74dp"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="3dp"
@@ -47,7 +36,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/booking"
+            android:id="@+id/U_M_booking"
             android:layout_width="221dp"
             android:layout_height="78dp"
             android:layout_gravity="start"
@@ -55,32 +44,27 @@
             android:text="Bookings"
             android:textSize="25sp" />
 
-        <Button
-            android:id="@+id/chatbox"
-            android:layout_width="213dp"
-            android:layout_height="69dp"
-            android:layout_gravity="start"
-            android:background="#00000000"
-            android:text="chat box"
-            android:textSize="25sp" />
 
         <Button
-            android:id="@+id/settings"
+            android:id="@+id/U_M_contactUs"
+
             android:layout_width="211dp"
-            android:layout_height="72dp"
+            android:layout_height="71dp"
             android:layout_gravity="start"
             android:background="#00000000"
-            android:text="settings"
+            android:paddingStart="25sp"
+            android:text="Contact Us"
             android:textSize="25sp" />
 
         <Button
-            android:id="@+id/help"
+            android:id="@+id/U_M_help"
             android:layout_width="165dp"
             android:layout_height="78dp"
             android:layout_gravity="start"
             android:background="#00000000"
             android:text="help"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            />
 
     </LinearLayout>
 </LinearLayout>

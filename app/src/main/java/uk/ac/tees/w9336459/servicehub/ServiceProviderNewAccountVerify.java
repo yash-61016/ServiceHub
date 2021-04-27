@@ -40,6 +40,7 @@ public class ServiceProviderNewAccountVerify extends AppCompatActivity {
     // string for storing our verification ID
     private String verificationId;
 
+    String numberid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,7 @@ public class ServiceProviderNewAccountVerify extends AppCompatActivity {
         // of our FirebaseAuth.
         mAuth = FirebaseAuth.getInstance();
 
+        numberid = getIntent().getStringExtra("number");
 
         // initializing variables for button and Edittext.
         edtPhone = findViewById(R.id.SP_NAV_entenumber);
@@ -57,46 +59,40 @@ public class ServiceProviderNewAccountVerify extends AppCompatActivity {
         verifyOTPBtn = findViewById(R.id.SP_NAV_Done);
         generateOTPBtn1 = findViewById(R.id.SP_NAV_NumberSendCode);
 
-        this.edtPhone.setText(ServiceProviderNewAccount.reg_mobile.getText().toString());
+        this.edtPhone.setText(numberid);
 
 
 
 
         // setting onclick listner for generate OTP button.
-        generateOTPBtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // below line is for checking weather the user
-                // has entered his mobile number or not.
-                if (TextUtils.isEmpty(edtPhone.getText().toString())) {
-                    // when mobile number text field is empty
-                    // displaying a toast message.
-                    Toast.makeText(ServiceProviderNewAccountVerify.this, "Please enter a valid phone number.", Toast.LENGTH_SHORT).show();
-                } else {
-                    // if the text field is not empty we are calling our
-                    // send OTP method for getting OTP from Firebase.
-                    String phone = "+44" + edtPhone.getText().toString();
-                    sendVerificationCode(phone);
-                }
+        generateOTPBtn1.setOnClickListener(v -> {
+            // below line is for checking weather the user
+            // has entered his mobile number or not.
+            if (TextUtils.isEmpty(edtPhone.getText().toString())) {
+                // when mobile number text field is empty
+                // displaying a toast message.
+                Toast.makeText(ServiceProviderNewAccountVerify.this, "Please enter a valid phone number.", Toast.LENGTH_SHORT).show();
+            } else {
+                // if the text field is not empty we are calling our
+                // send OTP method for getting OTP from Firebase.
+                String phone = "+44" + edtPhone.getText().toString();
+                sendVerificationCode(phone);
             }
         });
 
 
         // initializing on click listener
         // for verify otp button
-        verifyOTPBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // validating if the OTP text field is empty or not.
-                if (TextUtils.isEmpty(edtOTP1.getText().toString())) {
-                    // if the OTP text field is empty display
-                    // a message to user to enter OTP
-                    Toast.makeText(ServiceProviderNewAccountVerify.this, "Please enter OTP", Toast.LENGTH_SHORT).show();
-                } else {
-                    // if OTP field is not empty calling
-                    // method to verify the OTP.
-                    verifyCode(edtOTP1.getText().toString());
-                }
+        verifyOTPBtn.setOnClickListener(v -> {
+            // validating if the OTP text field is empty or not.
+            if (TextUtils.isEmpty(edtOTP1.getText().toString())) {
+                // if the OTP text field is empty display
+                // a message to user to enter OTP
+                Toast.makeText(ServiceProviderNewAccountVerify.this, "Please enter OTP", Toast.LENGTH_SHORT).show();
+            } else {
+                // if OTP field is not empty calling
+                // method to verify the OTP.
+                verifyCode(edtOTP1.getText().toString());
             }
         });
     }
@@ -105,22 +101,22 @@ public class ServiceProviderNewAccountVerify extends AppCompatActivity {
         // inside this method we are checking if
         // the code entered is correct or not.
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // if the code is correct and the task is successful
-                            // we are sending our user to new activity.
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        // if the code is correct and the task is successful
+                        // we are sending our user to new activity.
 
-                            Intent i = new Intent(ServiceProviderNewAccountVerify.this, U_MainScreen.class);
-                            startActivity(i);
-                            finish();
+                        Bundle userbundle = getIntent().getExtras();
+                        Intent i = new Intent(ServiceProviderNewAccountVerify.this, ProfileServiceProvider.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        i.putExtras(userbundle);
+                        startActivity(i);
+                        finish();
 
-                        } else {
-                            // if the code is not correct then we are
-                            // displaying an error message to the user.
-                            Toast.makeText(ServiceProviderNewAccountVerify.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                        }
+                    } else {
+                        // if the code is not correct then we are
+                        // displaying an error message to the user.
+                        Toast.makeText(ServiceProviderNewAccountVerify.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }
