@@ -32,7 +32,7 @@ import static uk.ac.tees.w9336459.servicehub.U_MainScreen.decodeUserEmail;
 
 public class User_Details extends AppCompatActivity {
      CircleImageView profileimageview;
-     EditText email,phone_num,profile_pic,address;
+     TextView email,phone_num,address;
      TextView Username;
 
 
