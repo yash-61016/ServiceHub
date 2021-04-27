@@ -224,6 +224,7 @@ public class U_MainScreen extends AppCompatActivity {
                 protected void populateViewHolder(UsersViewHolder usersViewHolder, ServiceProviders2 users, int i) {
 
                     usersViewHolder.setDetails(users.getFirstname(),users.getLastname(), users.getSkills(), users.getProfilepicture());
+
                 }
             };
 
