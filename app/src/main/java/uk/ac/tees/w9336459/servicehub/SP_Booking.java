@@ -1,6 +1,7 @@
 package uk.ac.tees.w9336459.servicehub;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -29,8 +30,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import com.squareup.picasso.Picasso;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -60,6 +63,7 @@ private LinearLayout review, call, message, directions;
     Button send;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
     private TimePickerDialog.OnTimeSetListener onTimeSetListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -290,7 +294,8 @@ private LinearLayout review, call, message, directions;
         paytm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "http://www.paytm.com";
+
+                String url = "http://www.paypal.com";
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
                 startActivity(i);
@@ -302,6 +307,7 @@ private LinearLayout review, call, message, directions;
             dialog.cancel();
         });
     }
+
     @Override
     public void onClick(View view) {
         if (view == call) {

@@ -12,19 +12,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import uk.ac.tees.w9336459.servicehub.ui.dashboard.DashboardFragmentSP;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import uk.ac.tees.w9336459.servicehub.Customers;
 import uk.ac.tees.w9336459.servicehub.R;
-import uk.ac.tees.w9336459.servicehub.SP_MS_ActiveJobsFragment;
 import uk.ac.tees.w9336459.servicehub.ShowActiveRequests;
 import uk.ac.tees.w9336459.servicehub.ShowCompletedRequest;
 import uk.ac.tees.w9336459.servicehub.ShowPendingRequest;
-
-import android.app.Fragment;
 
 
 public class ShowRequestAdapter extends RecyclerView.Adapter<ShowRequestAdapter.ViewHolder>{
@@ -51,7 +47,7 @@ public class ShowRequestAdapter extends RecyclerView.Adapter<ShowRequestAdapter.
 
         final Customers c = musers.get(position);
         holder.username.setText(c.getFirstname()+" "+c.getLastname());
-       // holder.profilepic.setImageResource(R.drawable.cuslogo);
+        Picasso.get().load(c.getImage()).into(holder.profilepic);
         holder.phone.setText(c.getPhonenum());
 
         holder.itemView.setOnClickListener(v -> {

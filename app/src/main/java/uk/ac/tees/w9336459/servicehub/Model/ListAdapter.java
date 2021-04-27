@@ -68,6 +68,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 intent.putExtra("totalRate", serviceProviders.getTotalrate());
                 intent.putExtra("avRate", serviceProviders.getAvrate());
                 intent.putExtra("emailID",serviceProviders.getEmailid());
+                intent.putExtra("skills",serviceProviders.getSkills());
                 Bundle b = new Bundle();
                 b.putDouble("spLat", serviceProviders.getLatitude());
                 b.putDouble("spLng", serviceProviders.getLongitude());
@@ -83,6 +84,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 intent.putExtra("totalRate", serviceProviders.getTotalrate());
                 intent.putExtra("avRate", serviceProviders.getAvrate());
                 intent.putExtra("emailID",serviceProviders.getEmailid());
+                intent.putExtra("skills",serviceProviders.getSkills());
                 Bundle b = new Bundle();
                 b.putDouble("spLat", serviceProviders.getLatitude());
                 b.putDouble("spLng", serviceProviders.getLongitude());
@@ -98,6 +100,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 intent.putExtra("totalRate", serviceProviders.getTotalrate());
                 intent.putExtra("avRate", serviceProviders.getAvrate());
                 intent.putExtra("emailID",serviceProviders.getEmailid());
+                intent.putExtra("skills",serviceProviders.getSkills());
                 Bundle b = new Bundle();
                 b.putDouble("spLat", serviceProviders.getLatitude());
                 b.putDouble("spLng", serviceProviders.getLongitude());
@@ -113,6 +116,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 intent.putExtra("totalRate", serviceProviders.getTotalrate());
                 intent.putExtra("avRate", serviceProviders.getAvrate());
                 intent.putExtra("emailID",serviceProviders.getEmailid());
+                intent.putExtra("skills",serviceProviders.getSkills());
                 Bundle b = new Bundle();
                 b.putDouble("spLat", serviceProviders.getLatitude());
                 b.putDouble("spLng", serviceProviders.getLongitude());
@@ -128,6 +132,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 intent.putExtra("totalRate", serviceProviders.getTotalrate());
                 intent.putExtra("avRate", serviceProviders.getAvrate());
                 intent.putExtra("emailID",serviceProviders.getEmailid());
+                intent.putExtra("skills",serviceProviders.getSkills());
                 Bundle b = new Bundle();
                 b.putDouble("spLat", serviceProviders.getLatitude());
                 b.putDouble("spLng", serviceProviders.getLongitude());
@@ -143,6 +148,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 intent.putExtra("totalRate", serviceProviders.getTotalrate());
                 intent.putExtra("avRate", serviceProviders.getAvrate());
                 intent.putExtra("emailID",serviceProviders.getEmailid());
+                intent.putExtra("skills",serviceProviders.getSkills());
                 Bundle b = new Bundle();
                 b.putDouble("spLat", serviceProviders.getLatitude());
                 b.putDouble("spLng", serviceProviders.getLongitude());

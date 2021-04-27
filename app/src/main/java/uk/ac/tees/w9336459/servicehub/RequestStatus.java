@@ -50,7 +50,7 @@ import static android.view.View.GONE;
             heading = findViewById(R.id.request_text);
             check = getIntent().getStringExtra("buttontext");
             heading.setText(check);
-            recyclerView = findViewById(R.id.request_list);
+            recyclerView = (RecyclerView) findViewById(R.id.request_list);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
