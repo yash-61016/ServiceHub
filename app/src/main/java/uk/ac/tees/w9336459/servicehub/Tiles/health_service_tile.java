@@ -15,7 +15,7 @@ import uk.ac.tees.w9336459.servicehub.R;
 public class health_service_tile extends AppCompatActivity {
 
 
-    ImageView titleImage;
+    ImageView titleImage,menubtn;
     static ImageButton dietitian, yoga, psychotherapist;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -29,6 +29,13 @@ public class health_service_tile extends AppCompatActivity {
         dietitian = findViewById(R.id.diet);
         yoga = findViewById(R.id.yoga);
         psychotherapist = findViewById(R.id.psychotherpy);
+        menubtn = findViewById(R.id.menu);
+
+        menubtn.setOnClickListener((v)->{
+            Intent a = new Intent(health_service_tile.this, uk.ac.tees.w9336459.servicehub.menubtn.class);
+            startActivity(a);
+            finish();
+        });
 
 
         dietitian.setOnClickListener((v)->{

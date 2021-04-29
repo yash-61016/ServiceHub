@@ -58,7 +58,7 @@ public class ServiceProvider_Menu extends AppCompatActivity {
     }
     public void changelocation(View v)
     {
-        Intent intent = new Intent(ServiceProvider_Menu.this,asklocationSP.class);
+        Intent intent = new Intent(ServiceProvider_Menu.this,ChangeLocationSP.class);
         startActivity(intent);
     }
     public void servicehistory(View v){

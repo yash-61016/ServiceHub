@@ -14,7 +14,7 @@ import uk.ac.tees.w9336459.servicehub.R;
 
 public class personal_grooming_service_tile extends AppCompatActivity {
 
-    ImageView titleImage;
+    ImageView titleImage, menubtn;
     static ImageButton hairsdresser, massage, manicure, facial_makeup;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -28,6 +28,13 @@ public class personal_grooming_service_tile extends AppCompatActivity {
         massage = findViewById(R.id.massage);
         manicure = findViewById(R.id.manicure);
         facial_makeup = findViewById(R.id.facial);
+        menubtn = findViewById(R.id.menu);
+
+        menubtn.setOnClickListener((v)->{
+            Intent a = new Intent(personal_grooming_service_tile.this, uk.ac.tees.w9336459.servicehub.menubtn.class);
+            startActivity(a);
+            finish();
+        });
 
         hairsdresser.setOnClickListener((v)->{
             String title = "Hairdresser";

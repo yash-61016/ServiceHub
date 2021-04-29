@@ -115,15 +115,7 @@ public class ShowPendingRequest extends AppCompatActivity {
                 startActivity(intent);
 
             }});
-        message.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ShowPendingRequest.this,Chat.class);
-                intent.putExtra("userid",getIntent().getStringExtra("userid"));
-                intent.putExtra("type","Users");
-                startActivity(intent);
 
-            }});
         directions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

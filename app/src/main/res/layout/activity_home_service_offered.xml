@@ -14,20 +14,7 @@
         <RelativeLayout
             android:layout_width="405dp"
             android:layout_height="90dp"
-            android:orientation="horizontal">
-
-
-            <ImageView
-                android:layout_width="88dp"
-                android:layout_height="70dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:src="@drawable/ic_baseline_notes_24"
-                android:paddingTop="10dp"
-                android:paddingLeft="10dp"/>
-
-
-        </RelativeLayout>
+            android:orientation="horizontal"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

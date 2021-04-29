@@ -14,7 +14,7 @@ import uk.ac.tees.w9336459.servicehub.R;
 
 public class party_event_service_tile extends AppCompatActivity {
 
-    ImageView titleImage;
+    ImageView titleImage, menubtn;
     static ImageButton wedding_planning, other_services;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -27,6 +27,13 @@ public class party_event_service_tile extends AppCompatActivity {
         wedding_planning = findViewById(R.id.wedding_planning);
         other_services = findViewById(R.id.other);
 
+        menubtn = findViewById(R.id.menu);
+
+        menubtn.setOnClickListener((v)->{
+            Intent a = new Intent(party_event_service_tile.this, uk.ac.tees.w9336459.servicehub.menubtn.class);
+            startActivity(a);
+            finish();
+        });
 
         wedding_planning.setOnClickListener((v)->{
             String title = "Wedding Planner";

@@ -22,6 +22,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+/**
+ * this class is to show service providers in recycler view
+ */
+
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     private Context mcontext;
@@ -29,7 +33,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     public ListAdapter(Context mcontext, List<ServiceProviders2> musers){
         this.musers = musers;
-        this.mcontext = mcontext;
+        this.mcontext = mcontext; // different class context
     }
 
     @Override
