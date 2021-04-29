@@ -16,12 +16,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/servicehublogo2"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/servicehublogo2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ServiceProvider_details"/>
+        <activity android:name=".ChangeLocationUser"></activity>
+        <activity android:name=".ChangeLocationSP" />
+        <activity android:name=".ServiceProvider_details" />
         <activity android:name=".ResetPassword" />
         <activity android:name=".ServiceProvider_Menu" />
 
@@ -38,7 +40,7 @@
             android:name=".U_MainScreen"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Tiles.personal_grooming_offered" />
-        <activity android:name=".Requests"/>
+        <activity android:name=".Requests" />
         <activity android:name=".Tiles.party_event_service_offered" />
         <activity android:name=".Tiles.movers_shifters_services_offered" />
         <activity android:name=".Tiles.home_service_offered" />
@@ -61,8 +63,6 @@
         <activity android:name=".ShowSentRequest" />
         <activity android:name=".ProfileServiceProvider" />
         <activity android:name=".contact_us" />
-
-        <activity android:name=".Chat" />
         <activity android:name=".MapDirections" />
         <activity android:name=".menubtn" />
         <activity android:name=".profile" />

@@ -23,7 +23,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/dp"
+                android:src="@drawable/avatar"
                 app:civ_border_width="4dp"
                 app:civ_border_color="@color/blue"/>
             <TextView
@@ -32,7 +32,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Jay Kumar"
+                android:text="Jay Prichette"
                 android:textColor="@color/black"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -58,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:clickable="true"
+                    android:layout_marginStart="40dp"
                     android:orientation="vertical">
                     <ImageView
                         android:layout_width="28dp"
@@ -116,27 +117,7 @@
                         android:textColor="@color/black"
                         android:text="Call"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:clickable="true"
-                    android:id="@+id/message"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_message_black_24dp"/>
-                    <TextView
-                        android:textSize="12sp"
-                        android:layout_marginLeft="11dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:textColor="@color/black"
-                        android:text="Message"/>
-                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
 

@@ -23,11 +23,13 @@ import com.google.firebase.database.ValueEventListener;
 import uk.ac.tees.w9336459.servicehub.Customers;
 import uk.ac.tees.w9336459.servicehub.R;
 import uk.ac.tees.w9336459.servicehub.U_MainScreen;
+import uk.ac.tees.w9336459.servicehub.menubtn;
 
 public class electronic_tile extends AppCompatActivity {
 
-    ImageView titleImage;
+    ImageView titleImage , menubtn;
     static ImageButton laptop_bt, tv_btn, radio_btn, mobiles_btn;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -42,6 +44,13 @@ public class electronic_tile extends AppCompatActivity {
         tv_btn = findViewById(R.id.ET_tv);
         radio_btn = findViewById(R.id.ET_musicsystem);
         mobiles_btn = findViewById(R.id.ET_smartphone);
+        menubtn = findViewById(R.id.menu);
+
+        menubtn.setOnClickListener((v)->{
+                Intent a = new Intent(electronic_tile.this, uk.ac.tees.w9336459.servicehub.menubtn.class);
+                startActivity(a);
+                finish();
+        });
 
         laptop_bt.setOnClickListener((v) -> {
 

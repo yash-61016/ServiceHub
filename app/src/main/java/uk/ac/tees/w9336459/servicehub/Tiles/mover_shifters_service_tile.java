@@ -14,7 +14,7 @@ import uk.ac.tees.w9336459.servicehub.R;
 
 public class mover_shifters_service_tile extends AppCompatActivity {
 
-    ImageView titleImage;
+    ImageView titleImage, menubtn;
     static ImageButton home_shifting, home_delivery;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -28,6 +28,13 @@ public class mover_shifters_service_tile extends AppCompatActivity {
         home_shifting = findViewById(R.id.home_shifting);
         home_delivery = findViewById(R.id.home_delivery);
 
+        menubtn = findViewById(R.id.menu);
+
+        menubtn.setOnClickListener((v)->{
+            Intent a = new Intent(mover_shifters_service_tile.this, uk.ac.tees.w9336459.servicehub.menubtn.class);
+            startActivity(a);
+            finish();
+        });
 
         home_shifting.setOnClickListener((v)->{
             String title = "Home Shifting";

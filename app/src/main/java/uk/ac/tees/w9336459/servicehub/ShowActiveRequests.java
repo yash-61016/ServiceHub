@@ -85,15 +85,7 @@ public class ShowActiveRequests extends AppCompatActivity {
                 startActivity(intent);
 
             }});
-        message.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ShowActiveRequests.this,Chat.class);
-                intent.putExtra("userid",getIntent().getStringExtra("userid"));
-                intent.putExtra("type","Customer");
-                startActivity(intent);
 
-            }});
         directions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

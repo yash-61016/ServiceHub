@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/welcome_bg"
@@ -109,27 +109,9 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/U_LoginAc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/U_L_passwordenter" />
 
-
-    <Button
-        android:id="@+id/U_L_skipbt"
-        android:layout_width="152dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="9dp"
-        android:alpha="0.5"
-        android:background="@drawable/skipbt"
-        android:fontFamily="@font/medium"
-        android:text="SKIP"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/U_LoginAc"
-        app:layout_constraintEnd_toStartOf="@+id/U_L_LoginInbt"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/U_L_passwordenter" />
 
     <TextView
         android:id="@+id/U_LoginAc"

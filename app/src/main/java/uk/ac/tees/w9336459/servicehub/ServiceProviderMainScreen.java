@@ -34,7 +34,7 @@ import uk.ac.tees.w9336459.servicehub.Model.ServiceProviders2;
 public class ServiceProviderMainScreen extends AppCompatActivity {
 
     public static Double spLat, spLng;
-    CircleImageView PP ;
+    CircleImageView SpProfile;
     Button Request_active,Request_pending,Request_completed;
     ImageButton menu;
     @Override
@@ -43,7 +43,7 @@ public class ServiceProviderMainScreen extends AppCompatActivity {
         setContentView(R.layout.activity_service_provider_main_screen);
 
         String dp = getIntent().getStringExtra("downloadUrlPP");
-        PP = findViewById(R.id.SP_MS_profile_image);
+        SpProfile = findViewById(R.id.SP_MS_profile_image);
 
         //Picasso.get().load(dp).into(PP);
 
@@ -57,7 +57,7 @@ public class ServiceProviderMainScreen extends AppCompatActivity {
                 spLng = c.getLongitude();
 
                 String dp = c.getProfilepicture();
-                Picasso.get().load(dp).into(PP);
+                Picasso.get().load(dp).into(SpProfile);
 
             }
 
@@ -67,6 +67,8 @@ public class ServiceProviderMainScreen extends AppCompatActivity {
             }
         });
 
+        // this code is for future feaure (To show the details of Customer's requests to the service Providers
+/**
         Request_active = findViewById(R.id.request_active);
         Request_completed = findViewById(R.id.request_completed);
         Request_pending = findViewById(R.id.request_pending);
@@ -98,13 +100,17 @@ public class ServiceProviderMainScreen extends AppCompatActivity {
             intent.putExtra("buttontext",buttontext);
             startActivity(intent);
         });
+ */
 
+       //menu Tab
         menu = findViewById(R.id.SP_MS_menu);
         menu.setOnClickListener((v)->{
             Intent intent = new Intent(ServiceProviderMainScreen.this,ServiceProvider_Menu.class);
             startActivity(intent);
         });
-        PP.setOnClickListener((v)->{
+
+        // Profile
+        SpProfile.setOnClickListener((v)->{
             Intent intent = new Intent(ServiceProviderMainScreen.this,ServiceProvider_details.class);
             startActivity(intent);
         });

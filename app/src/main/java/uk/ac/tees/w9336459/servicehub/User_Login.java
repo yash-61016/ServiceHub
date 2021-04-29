@@ -62,10 +62,10 @@ public class User_Login extends AppCompatActivity {
 
         mAuthstatelistener = (firebaseAuth -> {
             FirebaseUser mFbuser = mAuth.getCurrentUser();
+            DatabaseReference db = FirebaseDatabase.getInstance().getReference("Users").child("Details");
             if (mFbuser != null) {
                 Toast.makeText(User_Login.this, "You are logged in!!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(User_Login.this, U_MainScreen.class);
-
                 startActivity(i);
                 finishActivity(1);
             } else {

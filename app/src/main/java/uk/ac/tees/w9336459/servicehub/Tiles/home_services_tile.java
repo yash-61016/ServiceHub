@@ -15,7 +15,7 @@ import uk.ac.tees.w9336459.servicehub.R;
 public class home_services_tile extends AppCompatActivity {
 
 
-    ImageView titleImage;
+    ImageView titleImage, menubtn;
     static ImageButton interior_designing, plumbing, painting;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -29,6 +29,13 @@ public class home_services_tile extends AppCompatActivity {
         interior_designing = findViewById(R.id.interior);
         plumbing = findViewById(R.id.plumbing);
         painting = findViewById(R.id.painting);
+        menubtn = findViewById(R.id.menu);
+
+        menubtn.setOnClickListener((v)->{
+            Intent a = new Intent(home_services_tile.this, uk.ac.tees.w9336459.servicehub.menubtn.class);
+            startActivity(a);
+            finish();
+        });
 
         interior_designing.setOnClickListener((v)->{
             String title = "Interior Designing";

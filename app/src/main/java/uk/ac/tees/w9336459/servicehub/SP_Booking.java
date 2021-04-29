@@ -50,9 +50,7 @@ private LinearLayout review, call, message, directions;
     ImageView DP;
     RatingBar ratingBar,avbar;
     FirebaseDatabase database;
-    DatabaseReference ratingTbl;
     Button submit, cancel, request, pay;
-    Double latSP,lngSP;
     int numRate, totalRate;
     float avRate;
 
@@ -128,7 +126,7 @@ private LinearLayout review, call, message, directions;
         Category.setText(category);
         review.setOnClickListener(this);
         call.setOnClickListener(this);
-        message.setOnClickListener(this);
+
         directions.setOnClickListener(this);
         request.setOnClickListener(this);
         nrate.setText(""+numRate);
@@ -325,13 +323,7 @@ private LinearLayout review, call, message, directions;
             intent.putExtras(b);
             startActivity(intent);
         }
-        if(view == message)
-        {
-            Intent intent = new Intent(SP_Booking.this,Chat.class);
-            intent.putExtra("useremailid",getIntent().getStringExtra("emailID"));
-            intent.putExtra("type","ServiceProvider");
-            startActivity(intent);
-        }
+
         if(view == submit)
         {
 
