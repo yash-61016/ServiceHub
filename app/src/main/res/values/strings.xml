@@ -27,4 +27,7 @@
     <string name="sign_up_as_user">Sign up as User</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_home">title_home</string>
+    <string name="title_dashboard">title_dashboard</string>
+    <string name="title_settings">title_settings</string>
 </resources>

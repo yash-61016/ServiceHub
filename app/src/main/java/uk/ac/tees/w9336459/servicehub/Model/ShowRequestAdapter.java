@@ -50,7 +50,7 @@ public class ShowRequestAdapter extends RecyclerView.Adapter<ShowRequestAdapter.
         Picasso.get().load(c.getImage()).into(holder.profilepic);
         holder.phone.setText(c.getPhonenum());
 
-        holder.itemView.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener((v) -> {
 
             if (status.equals("pending")) {
                 Intent intent = new Intent(mcontext, ShowPendingRequest.class);

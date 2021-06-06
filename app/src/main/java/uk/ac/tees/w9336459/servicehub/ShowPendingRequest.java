@@ -39,8 +39,9 @@ public class ShowPendingRequest extends AppCompatActivity {
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
     Button accept,decline;
-    String userid,requestid;
+    String userid;
     List<RequestBox> mchat;
+    String requestid2="", requestid ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,6 @@ public class ShowPendingRequest extends AppCompatActivity {
         userid = getIntent().getStringExtra("userid");
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Details").child(ServiceProviderMainScreen.decodeUserEmail(userid));
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -85,6 +85,20 @@ public class ShowPendingRequest extends AppCompatActivity {
 
             }
         });
+        databaseReference = FirebaseDatabase.getInstance().getReference("RequestList").child((ServiceProviderMainScreen.decodeUserEmail(firebaseUser.getEmail())));
+        databaseReference.child(ServiceProviderMainScreen.decodeUserEmail(userid)).orderByChild("requestid");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot childSnapshot: snapshot.getChildren()) {
+                    requestid2 = childSnapshot.child("requestid").getValue(String.class);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         databaseReference = FirebaseDatabase.getInstance().getReference("RequestList").child((ServiceProviderMainScreen.decodeUserEmail(firebaseUser.getEmail())));
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -95,6 +109,7 @@ public class ShowPendingRequest extends AppCompatActivity {
                     if(requestList.getStatus().equals("active")){
                         Toast.makeText(ShowPendingRequest.this,"You already have an active request",Toast.LENGTH_SHORT).show();
 //                        finish();
+                        Toast.makeText(ShowPendingRequest.this, "id"+requestid2, Toast.LENGTH_SHORT).show();
                         accept.setClickable(false);
                         accept.setBackgroundColor(Color.GRAY);
                     }
@@ -125,40 +140,59 @@ public class ShowPendingRequest extends AppCompatActivity {
                 startActivity(intent);
             }});
 
-        accept.setOnClickListener(new View.OnClickListener() {
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Requests").child(requestid2);
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-
-                databaseReference = FirebaseDatabase.getInstance().getReference("Requests");
-                databaseReference.child(requestid)
-                .child("status").setValue("active");
-
-                databaseReference = FirebaseDatabase.getInstance().getReference("RequestList");
-                databaseReference.child(userid)
-                        .child(firebaseUser.getUid()).child("status").setValue("active");
-
-                databaseReference = FirebaseDatabase.getInstance().getReference("RequestList");
-                databaseReference.child(firebaseUser.getUid())
-                        .child(userid).child("status").setValue("active");
-
-                finish();
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot childSnapshot: snapshot.getChildren()) {
+                    String d  = childSnapshot.child("date").getValue(String.class);
+                    String t  = childSnapshot.child("time").getValue(String.class);
+                    String desc  = childSnapshot.child("description").getValue(String.class);
+                    date.setText(d);
+                    time.setText(t);
+                    des.setText(desc);
+                }
             }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        accept.setOnClickListener(v -> {
+/*
+            DatabaseReference databaseReference2 = FirebaseDatabase.getInstance().getReference("RequestList");
+            requestid = databaseReference2.child(userid).child("requestid").toString();*/
+
+            databaseReference = FirebaseDatabase.getInstance().getReference("Requests");
+            databaseReference.child(requestid2).child("status").setValue("active");
+
+            databaseReference = FirebaseDatabase.getInstance().getReference("RequestList");
+            databaseReference.child(ServiceProviderMainScreen.decodeUserEmail(userid))
+                    .child(ServiceProviderMainScreen.decodeUserEmail(firebaseUser.getEmail())).child("status").setValue("active");
+
+            databaseReference = FirebaseDatabase.getInstance().getReference("RequestList");
+            databaseReference.child(ServiceProviderMainScreen.decodeUserEmail(firebaseUser.getEmail())).child(ServiceProviderMainScreen.decodeUserEmail(userid)).child("status").setValue("active");
+
+            finish();
         });
 
         decline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 databaseReference = FirebaseDatabase.getInstance().getReference("Requests");
-                databaseReference.child(requestid)
+                databaseReference.child(requestid2)
                         .child("status").setValue("declined");
 
                 databaseReference = FirebaseDatabase.getInstance().getReference("RequestList");
-                databaseReference.child(userid)
-                        .child(firebaseUser.getUid()).child("status").setValue("declined");
+                databaseReference.child(ServiceProviderMainScreen.decodeUserEmail(userid))
+                        .child(ServiceProviderMainScreen.decodeUserEmail(firebaseUser.getEmail())).child("status").setValue("declined");
 
                 databaseReference = FirebaseDatabase.getInstance().getReference("RequestList");
                 databaseReference.child(firebaseUser.getUid())
-                        .child(userid).child("status").setValue("declined");
+                        .child(ServiceProviderMainScreen.decodeUserEmail(userid)).child("status").setValue("declined");
 
                 finish();
             }

@@ -3,24 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/menubtn">
+    app:startDestination="@+id/navigation_home">
 
-    <activity
-        android:id="@+id/menubtn"
-        android:name="uk.ac.tees.w9336459.servicehub.menubtn"
-        android:label="activity_menubtn"
-        tools:layout="@layout/activity_menubtn" >
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="uk.ac.tees.w9336459.servicehub.ui.dashboard.DashboardFragment"
+        android:label="title_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
         <action
-            android:id="@+id/action_menubtn_to_help"
-            app:destination="@id/help" />
-    </activity>
-    <activity
-        android:id="@+id/help"
-        android:name="uk.ac.tees.w9336459.servicehub.help"
-        android:label="activity_help"
-        tools:layout="@layout/activity_help" >
+            android:id="@+id/action_navigation_dashboard_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="uk.ac.tees.w9336459.servicehub.ui.home.HomeFragment"
+        android:label="title_home"
+        tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_help_to_menubtn"
-            app:destination="@id/menubtn" />
-    </activity>
+            android:id="@+id/action_navigation_home_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="uk.ac.tees.w9336459.servicehub.ui.notifications.NotificationsFragment"
+        android:label="title_settings"
+        tools:layout="@layout/fragment_notifications" />
 </navigation>

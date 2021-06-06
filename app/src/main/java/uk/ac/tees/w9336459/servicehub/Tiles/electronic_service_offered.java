@@ -70,7 +70,7 @@ public class electronic_service_offered extends AppCompatActivity {
             title.setText(titleId);
             if(title.getText().toString().equals("Laptop and Desktop Repairing")) {
 
-                mResultList = (RecyclerView) findViewById(R.id.U_ES_recyclerView);
+                mResultList =  findViewById(R.id.U_ES_recyclerView);
                 mResultList.setHasFixedSize(true);
                 mResultList.setLayoutManager(new LinearLayoutManager(this));
                // mref = FirebaseDatabase.getInstance().getReference("ServiceProviders").child("Details");

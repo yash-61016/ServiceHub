@@ -11,7 +11,7 @@
         android:id="@+id/U_NAV_signupas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="76dp"
         android:fontFamily="@font/bold"
         android:text="Sign_up_as_User"
         android:textColor="@color/white"

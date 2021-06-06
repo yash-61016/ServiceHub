@@ -14,8 +14,6 @@
         android:orientation="horizontal"
         android:padding="25dp">
 
-
-
         <TextView
             android:layout_width="323dp"
             android:layout_height="74dp"
@@ -39,7 +37,7 @@
             android:id="@+id/circle_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginStart="140dp"
+            android:layout_marginStart="120dp"
             android:src="@drawable/avatar"
             app:civ_border_width="5dp" />
 
@@ -47,7 +45,7 @@
             android:id="@+id/ProfileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="155dp"
+            android:layout_marginStart="135dp"
             android:layout_marginTop="-10dp"
             android:gravity="center"
             android:paddingTop="5dp"
@@ -64,7 +62,7 @@
             android:background="@drawable/button"
             android:text="CHOOSE"
             android:layout_marginTop="-135dp"
-            android:layout_marginEnd="-140dp"
+            android:layout_marginEnd="-110dp"
             android:textColor="@color/black" />
 
 
@@ -73,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="26dp"
             android:layout_gravity="center"
-            android:layout_marginStart="140dp"
+            android:layout_marginStart="110dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/button"
             android:text="Upload"

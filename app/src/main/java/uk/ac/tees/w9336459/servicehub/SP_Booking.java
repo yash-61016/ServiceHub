@@ -53,6 +53,7 @@ private LinearLayout review, call, message, directions;
     Button submit, cancel, request, pay;
     int numRate, totalRate;
     float avRate;
+    static String key;
 
     String spemailid;
     FirebaseUser fuser;
@@ -341,7 +342,7 @@ private LinearLayout review, call, message, directions;
 
     public void sendMessage(String sender, String receiver, String datetext, String timetext, String destext, String status){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Requests").push();
-        String key = reference.getKey();
+        key = reference.getKey();
         HashMap<String, Object> hashmap = new HashMap<>();
         hashmap.put("sender",sender);
         hashmap.put("receiver",receiver);
@@ -363,9 +364,11 @@ private LinearLayout review, call, message, directions;
                 if(!dataSnapshot.exists()){
                     dataref.child("id").setValue(ServiceProviderMainScreen.decodeUserEmail(spemailid));
                     dataref.child("status").setValue("pending");
+                    dataref.child("requestid").setValue(key);
                 }
                 if(dataSnapshot.exists()){
                     dataref.child("status").setValue("pending");
+                    dataref.child("requestid").setValue(key);
                 }
             }
 

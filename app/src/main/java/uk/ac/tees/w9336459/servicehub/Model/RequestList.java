@@ -5,10 +5,21 @@ public class RequestList {
     public String id;
     public String status;
 
-    public RequestList(String id,String status)
+    public String getRequestid() {
+        return requestid;
+    }
+
+    public void setRequestid(String requestid) {
+        this.requestid = requestid;
+    }
+
+    public String requestid;
+
+    public RequestList(String id,String status,String reqid)
     {
         this.id = id;
         this.status = status;
+        this.requestid = reqid;
     }
     public RequestList(){
 

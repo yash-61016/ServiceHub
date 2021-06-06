@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -93,7 +94,8 @@ import static android.view.View.GONE;
                         Customers c = dataSnapshot1.getValue(Customers.class);
                         for (RequestList chatlist : userList) {
                             String id = ServiceProviderMainScreen.decodeUserEmail(chatlist.getId());
-                            if ((c.getEmailid()).equals(id)
+                            Toast.makeText(RequestStatus.this, "id:"+id , Toast.LENGTH_SHORT).show();
+                            if ((ServiceProviderMainScreen.decodeUserEmail(c.getEmailid())).equals(id)
                                     && chatlist.getStatus().equals(status)) {
                                 musers.add(c);
                             }
