@@ -35,7 +35,7 @@ public class ShowActiveRequests extends AppCompatActivity {
     TextView job,time,date,des;
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
-    String userid,requestid;
+    String userid,requestid,requestid2="";
     List<RequestBox> mchat;
     Button complete;
 
@@ -76,6 +76,20 @@ public class ShowActiveRequests extends AppCompatActivity {
 
             }
         });
+        databaseReference = FirebaseDatabase.getInstance().getReference("RequestList").child((ServiceProviderMainScreen.decodeUserEmail(firebaseUser.getEmail())));
+        databaseReference.child(ServiceProviderMainScreen.decodeUserEmail(userid)).orderByChild("requestid");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot childSnapshot: snapshot.getChildren()) {
+                    requestid2 = childSnapshot.child("requestid").getValue(String.class);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,20 +110,46 @@ public class ShowActiveRequests extends AppCompatActivity {
 
             }});
 
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShowActiveRequests.this,Chat.class);
+                intent.putExtra("userid",getIntent().getStringExtra("userid"));
+                intent.putExtra("type","Users");
+                startActivity(intent);
+
+            }});
+        databaseReference = FirebaseDatabase.getInstance().getReference("Requests").child(requestid2);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                    String d = childSnapshot.child("date").getValue(String.class);
+                    String t = childSnapshot.child("time").getValue(String.class);
+                    String desc = childSnapshot.child("description").getValue(String.class);
+                    date.setText(d);
+                    time.setText(t);
+                    des.setText(desc);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
         complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 databaseReference = FirebaseDatabase.getInstance().getReference("Requests");
-                databaseReference.child(requestid)
+                databaseReference.child(requestid2)
                         .child("status").setValue("completed");
 
-                databaseReference = FirebaseDatabase.getInstance().getReference("Requestlist");
-                databaseReference.child(userid)
-                        .child(firebaseUser.getUid()).child("status").setValue("completed");
+                databaseReference = FirebaseDatabase.getInstance().getReference("RequestList");
+                databaseReference.child(ServiceProviderMainScreen.decodeUserEmail(userid))
+                        .child(ServiceProviderMainScreen.decodeUserEmail(firebaseUser.getEmail())).child("status").setValue("completed");
 
-                databaseReference = FirebaseDatabase.getInstance().getReference("Requestlist");
-                databaseReference.child(firebaseUser.getUid())
-                        .child(userid).child("status").setValue("completed");
+                databaseReference = FirebaseDatabase.getInstance().getReference("RequestList");
+                databaseReference.child(ServiceProviderMainScreen.decodeUserEmail(firebaseUser.getEmail()))
+                        .child(ServiceProviderMainScreen.decodeUserEmail(userid)).child("status").setValue("completed");
 
                 complete.setClickable(false);
                 complete.setText("Completed");
@@ -130,8 +170,8 @@ public class ShowActiveRequests extends AppCompatActivity {
                 mchat.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     RequestBox requestBox = snapshot.getValue(RequestBox.class);
-                    if(requestBox.getReceiver().equals(myid) && requestBox.getSender().equals(userid) ||
-                            requestBox.getReceiver().equals(userid) && requestBox.getSender().equals(myid) &&
+                    if(requestBox.getReceiver().equals(ServiceProviderMainScreen.decodeUserEmail(myid)) && requestBox.getSender().equals(ServiceProviderMainScreen.decodeUserEmail(userid)) ||
+                            requestBox.getReceiver().equals(ServiceProviderMainScreen.decodeUserEmail(userid)) && requestBox.getSender().equals(ServiceProviderMainScreen.decodeUserEmail(myid)) &&
                                     requestBox.getStatus().equals("active")){
                         date.setText(requestBox.getDate());
                         time.setText(requestBox.getTime());

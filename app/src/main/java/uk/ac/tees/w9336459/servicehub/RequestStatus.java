@@ -51,6 +51,7 @@ import static android.view.View.GONE;
             heading = findViewById(R.id.request_text);
             check = getIntent().getStringExtra("buttontext");
             heading.setText(check);
+
             recyclerView = (RecyclerView) findViewById(R.id.request_list);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -59,10 +60,10 @@ import static android.view.View.GONE;
             if(check.equals("Pending Requests")){status = "pending";}
             if(check.equals("Completed Requests")){status = "completed";}
 
+
             fuser = FirebaseAuth.getInstance().getCurrentUser();
 
             userList = new ArrayList<>();
-
             database = FirebaseDatabase.getInstance().getReference("RequestList").child(ServiceProviderMainScreen.decodeUserEmail(fuser.getEmail()));
             database.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -106,6 +107,9 @@ import static android.view.View.GONE;
                     listAdapter = new ShowRequestAdapter(RequestStatus.this, musers,status);
                     recyclerView.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(listAdapter);
+                    if(listAdapter.getItemCount() == 0){
+                        recyclerView.setVisibility(GONE);
+                    }
                 }
 
                 @Override
@@ -113,5 +117,8 @@ import static android.view.View.GONE;
 
                 }
             });
+
         }
+
 }
+

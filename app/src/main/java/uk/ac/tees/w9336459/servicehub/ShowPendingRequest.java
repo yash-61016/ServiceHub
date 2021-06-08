@@ -109,7 +109,7 @@ public class ShowPendingRequest extends AppCompatActivity {
                     if(requestList.getStatus().equals("active")){
                         Toast.makeText(ShowPendingRequest.this,"You already have an active request",Toast.LENGTH_SHORT).show();
 //                        finish();
-                        Toast.makeText(ShowPendingRequest.this, "id"+requestid2, Toast.LENGTH_SHORT).show();
+
                         accept.setClickable(false);
                         accept.setBackgroundColor(Color.GRAY);
                     }
@@ -127,6 +127,15 @@ public class ShowPendingRequest extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + getIntent().getStringExtra("phone")));
+                startActivity(intent);
+
+            }});
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShowPendingRequest.this,Chat.class);
+                intent.putExtra("userid",getIntent().getStringExtra("userid"));
+                intent.putExtra("type","Customer");
                 startActivity(intent);
 
             }});
@@ -210,8 +219,8 @@ public class ShowPendingRequest extends AppCompatActivity {
                 mchat.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     RequestBox requestBox = snapshot.getValue(RequestBox.class);
-                    if(requestBox.getReceiver().equals(myid) && requestBox.getSender().equals(userid) ||
-                            requestBox.getReceiver().equals(userid) && requestBox.getSender().equals(myid) &&
+                    if(requestBox.getReceiver().equals( ServiceProviderMainScreen.decodeUserEmail(myid)) && requestBox.getSender().equals(ServiceProviderMainScreen.decodeUserEmail(userid)) ||
+                            requestBox.getReceiver().equals(ServiceProviderMainScreen.decodeUserEmail(userid)) && requestBox.getSender().equals(ServiceProviderMainScreen.decodeUserEmail(myid)) &&
                                 requestBox.getStatus().equals("pending")){
                         date.setText(requestBox.getDate());
                         time.setText(requestBox.getTime());

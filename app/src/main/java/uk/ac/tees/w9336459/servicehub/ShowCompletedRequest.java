@@ -57,9 +57,7 @@ public class ShowCompletedRequest extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("Customers").child(userid);
-
-
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Details").child(ServiceProviderMainScreen.decodeUserEmail(userid));
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -67,7 +65,7 @@ public class ShowCompletedRequest extends AppCompatActivity {
                 String mname = s.getFirstname() + " " + s.getLastname();
                 name.setText(mname);
                 job.setText(s.getPhonenum());
-                dp.setImageResource(R.drawable.cuslogo);
+                Picasso.get().load(s.getImage()).into(dp);
                 readMessage(firebaseUser.getUid(),userid);
             }
 
@@ -87,8 +85,8 @@ public class ShowCompletedRequest extends AppCompatActivity {
                 mchat.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     RequestBox requestBox = snapshot.getValue(RequestBox.class);
-                    if(requestBox.getReceiver().equals(myid) && requestBox.getSender().equals(userid) ||
-                            requestBox.getReceiver().equals(userid) && requestBox.getSender().equals(myid)){
+                    if(requestBox.getReceiver().equals(ServiceProviderMainScreen.decodeUserEmail(myid)) && requestBox.getSender().equals(ServiceProviderMainScreen.decodeUserEmail(userid)) ||
+                            requestBox.getReceiver().equals(ServiceProviderMainScreen.decodeUserEmail(userid)) && requestBox.getSender().equals(ServiceProviderMainScreen.decodeUserEmail(myid))){
                         mchat.add(requestBox);
                     }
                     requestAdapter = new RequestAdapter(ShowCompletedRequest.this,mchat,null);

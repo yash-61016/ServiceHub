@@ -36,4 +36,14 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <TextView
+        android:layout_width="387dp"
+        android:layout_height="102dp"
+        android:layout_marginTop="200dp"
+        android:text="No task pending"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:alpha="0.5"
+        android:textSize="20sp"
+        android:fontFamily="@font/bold"/>
 </LinearLayout>

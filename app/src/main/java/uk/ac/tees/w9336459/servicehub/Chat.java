@@ -64,8 +64,8 @@ public class Chat extends AppCompatActivity {
         type = getIntent().getStringExtra("type");
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(type.equals("Customer")){
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Customers").child(userid);
+        if(type.equals("Users")){
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Details").child(decodeUserEmail(userid));
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -74,7 +74,7 @@ public class Chat extends AppCompatActivity {
                     name.setText(mname);
                     job.setText(s.getPhonenum());
                         dp.setImageResource(R.drawable.cuslogo);
-                    readMessage(firebaseUser.getUid(),userid,null);
+                    readMessage(decodeUserEmail(firebaseUser.getEmail()),decodeUserEmail(userid),null);
                 }
 
 
@@ -84,7 +84,7 @@ public class Chat extends AppCompatActivity {
                 }
             });}
         else {
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child(userid);
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Details").child(decodeUserEmail(userid));
 
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -95,7 +95,7 @@ public class Chat extends AppCompatActivity {
                         name.setText(mname);
                         job.setText(s.getSkills());
                         Picasso.get().load(s.getProfilepicture()).into(dp);
-                    readMessage(firebaseUser.getUid(),userid,s.getProfilepicture());
+                    readMessage(decodeUserEmail(firebaseUser.getUid()),decodeUserEmail(userid),s.getProfilepicture());
                 }
 
 
@@ -110,7 +110,7 @@ public class Chat extends AppCompatActivity {
             public void onClick(View v) {
                 String msg = message.getText().toString();
                 if(!msg.equals("")){
-                    sendMessage(firebaseUser.getUid(),userid,msg);
+                    sendMessage(decodeUserEmail(firebaseUser.getEmail()),decodeUserEmail(userid),msg);
                 }
                 else{
                     Toast.makeText(Chat.this,"Type a message to send",Toast.LENGTH_SHORT).show();
@@ -134,14 +134,14 @@ public class Chat extends AppCompatActivity {
         reference.child("Chats").push().setValue(hashmap);
 
         final DatabaseReference dataref = FirebaseDatabase.getInstance().getReference("Chatlist")
-                .child(firebaseUser.getUid())
-                .child(userid);
+                .child(decodeUserEmail(firebaseUser.getEmail()))
+                .child(decodeUserEmail(userid));
 
         dataref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(!dataSnapshot.exists()){
-                        dataref.child("id").setValue(userid);
+                        dataref.child("id").setValue(decodeUserEmail(userid));
                     }
             }
 
@@ -151,13 +151,13 @@ public class Chat extends AppCompatActivity {
             }
         });
         final DatabaseReference chatRef1 = FirebaseDatabase.getInstance().getReference("Chatlist")
-                .child(receiver).child(firebaseUser.getUid());
+                .child(receiver).child(decodeUserEmail(firebaseUser.getEmail()));
         chatRef1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(!dataSnapshot.exists())
                 {
-                    chatRef1.child("id").setValue(firebaseUser.getUid());
+                    chatRef1.child("id").setValue(decodeUserEmail(firebaseUser.getEmail()));
                 }
             }
 
@@ -192,5 +192,10 @@ public class Chat extends AppCompatActivity {
 
             }
         });
+
     }
+    public static String decodeUserEmail(String userEmail) {
+        return userEmail.replace(".", ",");
+    }
+
 }

@@ -52,6 +52,9 @@
         <activity android:name=".Tiles.health_service_tile" />
         <activity android:name=".ShowPendingRequest" />
         <activity android:name=".ShowActiveRequests" />
+        <activity android:name=".Chat" />
+
+        <activity android:name=".DirectionsSp" />
         <activity android:name=".ShowCompletedRequest" />
         <activity android:name=".RequestStatus" />
         <activity android:name=".Tiles.electronic_service_offered" />
