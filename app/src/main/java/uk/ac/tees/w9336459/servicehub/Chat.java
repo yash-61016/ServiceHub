@@ -77,28 +77,22 @@ public class Chat extends AppCompatActivity {
                     readMessage(decodeUserEmail(firebaseUser.getEmail()),decodeUserEmail(userid),null);
                 }
 
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
-            });}
-        else {
+            });} else if(type.equals("ServiceProviders")) {
             databaseReference = FirebaseDatabase.getInstance().getReference().child("ServiceProviders").child("Details").child(decodeUserEmail(userid));
-
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
+            databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     ServiceProviders2 s = dataSnapshot.getValue(ServiceProviders2.class);
-                        String mname = s.getFirstname() + " " + s.getLastname();
-                        name.setText(mname);
-                        job.setText(s.getSkills());
-                        Picasso.get().load(s.getProfilepicture()).into(dp);
-                    readMessage(decodeUserEmail(firebaseUser.getUid()),decodeUserEmail(userid),s.getProfilepicture());
+                    String mname = s.getFirstname() + " " + s.getLastname();
+                    name.setText(mname);
+                    job.setText(s.getSkills());
+                    Picasso.get().load(s.getProfilepicture()).into(dp);
+                    readMessage(decodeUserEmail(firebaseUser.getEmail()),decodeUserEmail(userid),s.getProfilepicture());
                 }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
