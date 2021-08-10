@@ -21,7 +21,7 @@
         android:roundIcon="@mipmap/servicehublogo2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ChangeLocationUser"></activity>
+        <activity android:name=".ChangeLocationUser" />
         <activity android:name=".ChangeLocationSP" />
         <activity android:name=".ServiceProvider_details" />
         <activity android:name=".ResetPassword" />
@@ -53,7 +53,6 @@
         <activity android:name=".ShowPendingRequest" />
         <activity android:name=".ShowActiveRequests" />
         <activity android:name=".Chat" />
-
         <activity android:name=".DirectionsSp" />
         <activity android:name=".ShowCompletedRequest" />
         <activity android:name=".RequestStatus" />

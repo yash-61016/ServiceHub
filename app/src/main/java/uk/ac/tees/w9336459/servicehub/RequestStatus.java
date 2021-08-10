@@ -94,20 +94,20 @@ import static android.view.View.GONE;
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         Customers c = dataSnapshot1.getValue(Customers.class);
                         for (RequestList chatlist : userList) {
-                            String id = ServiceProviderMainScreen.decodeUserEmail(chatlist.getId());
-                            Toast.makeText(RequestStatus.this, "id:"+id , Toast.LENGTH_SHORT).show();
+                            String id = chatlist.getId();
+                            Toast.makeText(RequestStatus.this, "id:" + id, Toast.LENGTH_SHORT).show();
                             if ((ServiceProviderMainScreen.decodeUserEmail(c.getEmailid())).equals(id)
                                     && chatlist.getStatus().equals(status)) {
                                 musers.add(c);
                             }
                         }
-                       // pbar.setVisibility(GONE);
+                        // pbar.setVisibility(GONE);
                     }
 
-                    listAdapter = new ShowRequestAdapter(RequestStatus.this, musers,status);
+                    listAdapter = new ShowRequestAdapter(RequestStatus.this, musers, status);
                     recyclerView.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(listAdapter);
-                    if(listAdapter.getItemCount() == 0){
+                    if (listAdapter.getItemCount() == 0) {
                         recyclerView.setVisibility(GONE);
                     }
                 }
@@ -117,7 +117,6 @@ import static android.view.View.GONE;
 
                 }
             });
-
         }
 
 }

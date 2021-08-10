@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -14,7 +15,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class menubtn extends AppCompatActivity {
 
     CircleImageView profilepic;
-    Button app_help , contact_us,changelocationUser;
+    Button app_help , contact_us,changelocationUser, hs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class menubtn extends AppCompatActivity {
         contact_us = findViewById(R.id.U_M_contactUs);
         profilepic = findViewById(R.id.profile_pic);
         changelocationUser= findViewById(R.id.changelocation);
+        hs = findViewById(R.id.U_M_ServiceHistory);
         String image = getIntent().getStringExtra("profilepic");
         Picasso.get().load(image).into(profilepic);
 
@@ -51,7 +53,17 @@ public class menubtn extends AppCompatActivity {
             startActivity(intent);
         });
 
+        hs.setOnClickListener((v)->{
+            U_M_ServiceHistory(v);
+        });
 
+
+    }
+
+    public void U_M_ServiceHistory(View v){
+        Intent intent = new Intent(menubtn.this,RequestStatus.class);
+        intent.putExtra("buttontext","Completed Requests");
+        startActivity(intent);
 
     }
     @Override

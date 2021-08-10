@@ -109,6 +109,20 @@ public class User_Login extends AppCompatActivity {
                     } else {
                         Toast.makeText(User_Login.this, "Error Occured! Please Login Again!!"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
+                    mAuth.signInWithEmailAndPassword(emailid.getText().toString(), password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()) {
+                                Toast.makeText(User_Login.this, "Successfully Logged In", Toast.LENGTH_LONG).show();
+                                Intent i = new Intent(User_Login.this, U_MainScreen.class);
+                                startActivity(i);
+                                finish();
+                            }else {
+                                Toast.makeText(User_Login.this, "Login Failed", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
                 });
             } else {
                 Toast.makeText(User_Login.this, "Error Occured!!", Toast.LENGTH_SHORT).show();

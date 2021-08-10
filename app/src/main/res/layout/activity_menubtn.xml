@@ -51,6 +51,17 @@
             android:textStyle="bold" />
 
 
+        <Button
+            android:id="@+id/U_M_ServiceHistory"
+            android:layout_width="194dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="0dp"
+            android:background="#00000000"
+            android:text="Service History"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/U_M_contactUs"

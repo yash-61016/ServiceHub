@@ -9,10 +9,12 @@ import android.os.Bundle;
 
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +39,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 
+import java.util.ArrayList;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import uk.ac.tees.w9336459.servicehub.Model.ServiceProviders2;
 import uk.ac.tees.w9336459.servicehub.Tiles.electronic_tile;
@@ -60,6 +64,10 @@ public class U_MainScreen extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Query firebasequery;
     String imageref ;
+
+    private AutoCompleteTextView txtSearch;
+    private ListView listData;
+
 
 
     @Override
@@ -181,6 +189,22 @@ public class U_MainScreen extends AppCompatActivity {
 
     }
 
+    private void populatesearch() {
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            if(snapshot.exists()) {
+                ArrayList<String> skillname=new ArrayList<>();
+            }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+    }
+
     public static String decodeUserEmail(String userEmail) {
         return userEmail.replace(".", ",");
     }
@@ -204,6 +228,11 @@ public class U_MainScreen extends AppCompatActivity {
 
     }
 
+    /**
+     *
+     * firebase search
+     * @param searchText
+     */
 
     // View Holder Class
     public void firebaseUserSearch(String searchText) {
@@ -242,17 +271,20 @@ public class U_MainScreen extends AppCompatActivity {
         public void setDetails( String fName,String lname, String skills, String Image) {
 
             TextView sp_f_name = (TextView) mView.findViewById(R.id.name_text1);
-            TextView sp_l_name = (TextView) mView.findViewById(R.id.name_text2);
+           // TextView sp_l_name = (TextView) mView.findViewById(R.id.name_text2);
             TextView sp_skills = (TextView) mView.findViewById(R.id.skills_text);
             CircleImageView sp_image = mView.findViewById(R.id.profile_picture);
 
 
             sp_skills.setText(skills);
-            sp_f_name.setText(fName);
-            sp_l_name.setText(lname);
+            sp_f_name.setText(fName  +" "+ lname);
             Picasso.get().load(Image).into(sp_image);
 
         }
 
     }
+
+
+
+
 }

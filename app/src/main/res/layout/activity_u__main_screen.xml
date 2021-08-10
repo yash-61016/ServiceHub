@@ -76,6 +76,7 @@
         android:id="@+id/U_Ms_search"
         android:layout_width="275dp"
         android:layout_height="49dp"
+        android:layout_marginStart="30dp"
         android:layout_marginEnd="65dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/search_layout"
@@ -113,6 +114,7 @@
         app:srcCompat="@mipmap/search_button" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:clickable="true"
         android:id="@+id/result_list"
         android:layout_width="429dp"
         android:layout_height="552dp"

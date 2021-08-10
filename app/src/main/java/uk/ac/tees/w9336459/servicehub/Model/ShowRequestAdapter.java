@@ -29,7 +29,7 @@ public class ShowRequestAdapter extends RecyclerView.Adapter<ShowRequestAdapter.
     private List<Customers> musers;
     private String status;
 
-    public ShowRequestAdapter(Context mcontext, List<Customers> musers, String status){
+     public ShowRequestAdapter(Context mcontext, List<Customers> musers, String status){
         this.musers = musers;
         this.mcontext = mcontext;
         this.status = status;
