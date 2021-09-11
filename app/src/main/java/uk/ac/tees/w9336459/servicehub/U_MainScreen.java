@@ -40,9 +40,12 @@ import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import uk.ac.tees.w9336459.servicehub.Model.ListAdapter;
 import uk.ac.tees.w9336459.servicehub.Model.ServiceProviders2;
+import uk.ac.tees.w9336459.servicehub.Tiles.electronic_service_offered;
 import uk.ac.tees.w9336459.servicehub.Tiles.electronic_tile;
 import uk.ac.tees.w9336459.servicehub.Tiles.health_service_tile;
 import uk.ac.tees.w9336459.servicehub.Tiles.home_services_tile;
@@ -59,14 +62,18 @@ public class U_MainScreen extends AppCompatActivity {
     EditText searchtext;
     ImageButton mSearchBtn;
     RecyclerView mResultList;
+    private ListAdapter useradapter;
+    private List<ServiceProviders2> mSP;
     static private CircleImageView profileimageview;
     private DatabaseReference mServiceProviderDatabse, mref;
     private FirebaseAuth mAuth;
     private Query firebasequery;
     String imageref ;
+    Query fbq;
 
     private AutoCompleteTextView txtSearch;
     private ListView listData;
+    String service;
 
 
 
@@ -84,6 +91,7 @@ public class U_MainScreen extends AppCompatActivity {
         Name = findViewById(R.id.U_Ms_name);
         title = findViewById(R.id.U_Ms_title);
 
+        mSP = new ArrayList<>();
 
         Er_bt = findViewById(R.id.U_Ms_ElectronicRepairs);
         hs_bt = findViewById(R.id.U_Ms_Health);
@@ -227,7 +235,6 @@ public class U_MainScreen extends AppCompatActivity {
         }
 
     }
-
     /**
      *
      * firebase search
@@ -239,7 +246,8 @@ public class U_MainScreen extends AppCompatActivity {
         Toast.makeText(U_MainScreen.this, "Started Search", Toast.LENGTH_LONG).show();
       //  Query firebasequery = mServiceProviderDatabse.orderByChild("name").startAt(searchText).endAt(searchText+"\uf8ff");
 
-        Query fbq = mServiceProviderDatabse.orderByChild("skills").startAt(searchText).endAt(searchText+'\uf8ff');
+        fbq = mServiceProviderDatabse.orderByChild("skills").startAt(searchText).endAt(searchText+'\uf8ff');
+
 
             FirebaseRecyclerAdapter<ServiceProviders2, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ServiceProviders2, UsersViewHolder>(
 
@@ -252,13 +260,49 @@ public class U_MainScreen extends AppCompatActivity {
                 @Override
                 protected void populateViewHolder(UsersViewHolder usersViewHolder, ServiceProviders2 users, int i) {
 
-                    usersViewHolder.setDetails(users.getFirstname(),users.getLastname(), users.getSkills(), users.getProfilepicture());
+                   usersViewHolder.setDetails(users.getFirstname(), users.getLastname(), users.getSkills(), users.getProfilepicture());
 
+                    usersViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            service =users.getSkills();
+                            final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                            DatabaseReference commandsRef = rootRef.child("ServiceProviders").child("Details");
+                            ValueEventListener eventListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    mSP.clear();
+                                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                        ServiceProviders2 serviceProviders = snapshot.getValue(ServiceProviders2.class);
+
+                                        assert serviceProviders != null;
+                                        assert firebaseUser != null;
+
+                                        if (service.equals(serviceProviders.getSkills())) {
+                                        mSP.add(serviceProviders);
+                                        }
+                                        //pbar.setVisibility(GONE);
+                                    }
+                                    useradapter = new ListAdapter(U_MainScreen.this, mSP);
+                                    mResultList.setAdapter(useradapter);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            };
+                            commandsRef.addListenerForSingleValueEvent(eventListener);
+                        }
+                    });
                 }
-            };
+                };
 
             mResultList.setAdapter(firebaseRecyclerAdapter);
+
     }
+
 
     public static class UsersViewHolder extends RecyclerView.ViewHolder {
 
@@ -283,7 +327,11 @@ public class U_MainScreen extends AppCompatActivity {
         }
 
     }
+    public void sentrequestlist(View view){
 
+        Intent intent = new Intent(U_MainScreen.this, Requests.class);
+        startActivity(intent);
+    }
 
 
 

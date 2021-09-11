@@ -17,6 +17,7 @@ import uk.ac.tees.w9336459.servicehub.Requests;
 import uk.ac.tees.w9336459.servicehub.SP_Booking;
 import uk.ac.tees.w9336459.servicehub.ShowSentRequest;
 import uk.ac.tees.w9336459.servicehub.Tiles.*;
+import uk.ac.tees.w9336459.servicehub.U_MainScreen;
 
 import com.squareup.picasso.Picasso;
 
@@ -61,6 +62,22 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 intent.putExtra("phone",serviceProviders.getPhonenum());
                 intent.putExtra("id",serviceProviders.getEmailid());
                 intent.putExtra("type","ServiceProvider");
+                mcontext.startActivity(intent);
+            }
+            if(mcontext instanceof U_MainScreen) {
+                Intent intent = new Intent(mcontext, SP_Booking.class);
+                intent.putExtra("name", serviceProviders.getFirstname() + " " + serviceProviders.getLastname());
+                intent.putExtra("dp", serviceProviders.getProfilepicture());
+                intent.putExtra("phone", serviceProviders.getPhonenum());
+                intent.putExtra("numRate", serviceProviders.getNumrate());
+                intent.putExtra("totalRate", serviceProviders.getTotalrate());
+                intent.putExtra("avRate", serviceProviders.getAvrate());
+                intent.putExtra("emailID",serviceProviders.getEmailid());
+                intent.putExtra("skills",serviceProviders.getSkills());
+                Bundle b = new Bundle();
+                b.putDouble("spLat", serviceProviders.getLatitude());
+                b.putDouble("spLng", serviceProviders.getLongitude());
+                intent.putExtras(b);
                 mcontext.startActivity(intent);
             }
             if(mcontext instanceof electronic_service_offered) {

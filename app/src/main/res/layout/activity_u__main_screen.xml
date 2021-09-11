@@ -115,6 +115,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:clickable="true"
+        android:onClick="sentrequestlist"
         android:id="@+id/result_list"
         android:layout_width="429dp"
         android:layout_height="552dp"
